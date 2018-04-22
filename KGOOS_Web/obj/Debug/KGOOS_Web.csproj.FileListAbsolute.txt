@@ -38,6 +38,6 @@ Y:\文稿\Visual Studio 2013\Projects\KGOOS_Web\KGOOS_Web\bin\zh-Hans\System.Web
 Y:\文稿\Visual Studio 2013\Projects\KGOOS_Web\KGOOS_Web\bin\zh-Hans\System.Web.WebPages.resources.dll
 Y:\文稿\Visual Studio 2013\Projects\KGOOS_Web\KGOOS_Web\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 Y:\文稿\Visual Studio 2013\Projects\KGOOS_Web\KGOOS_Web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
-Y:\文稿\Visual Studio 2013\Projects\KGOOS_Web\KGOOS_Web\obj\Debug\KGOOS_Web.csprojResolveAssemblyReference.cache
 Y:\文稿\Visual Studio 2013\Projects\KGOOS_Web\KGOOS_Web\obj\Debug\KGOOS_Web.dll
 Y:\文稿\Visual Studio 2013\Projects\KGOOS_Web\KGOOS_Web\obj\Debug\KGOOS_Web.pdb
+Y:\文稿\Visual Studio 2013\Projects\KGOOS_Web\KGOOS_Web\obj\Debug\KGOOS_Web.csprojResolveAssemblyReference.cache

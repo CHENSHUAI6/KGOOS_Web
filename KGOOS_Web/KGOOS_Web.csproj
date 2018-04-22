@@ -112,6 +112,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\BaseClass1.cs" />
+    <Compile Include="Common\DBClass.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -191,8 +193,13 @@
     <Content Include="assets\js\jquery.mobile.customized.min.js" />
     <Content Include="assets\js\modernizr-latest.js" />
     <Content Include="assets\js\respond.min.js" />
+    <Content Include="Common\dbSetting.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

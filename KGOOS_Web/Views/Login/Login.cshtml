@@ -10,11 +10,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>登 錄</title>
-    <style type="text/css">
-		.content-wrap { padding: 40px 0;  background: #f5f5f5; }
-		.container .row { padding-left: 20px; padding-right: 20px;}
-		.pay-method-btn { }
-    </style>
     <link rel="favicon" href="~/assets/images/favicon.png">
     <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
@@ -27,7 +22,6 @@
     <script src="assets/js/html5shiv.js"></script>
     <script src="assets/js/respond.min.js"></script>
     <![endif]-->
-    
 </head>
 
 <body>
@@ -65,18 +59,67 @@
     </div>
     <!-- /.navbar -->
 
-    <header id="head" class="secondary">
+    @*<header id="head" class="secondary">
         <div class="container">
             <div class="row">
+                <div class="col-sm-2">
+                    <h1></h1>
+                </div>
                 <div class="col-sm-8">
-                    <h1>登 錄</h1>
+                    <h1 style="color:black">登 錄</h1>
                 </div>
             </div>
         </div>
-    </header>
+    </header>*@
 
     <!-- container -->
-    
+    <div class="container">
+        <div class="row" style="margin-top:15%;">
+            <!-- Article content -->
+            <div class="col-sm-2">
+                <h1></h1>
+            </div>
+            <section class="col-sm-8 maincontent" style="text-align:center; background-color:white;">
+                <form class="form-horizontal" id="CommonForm" method="post" action="#">
+                    <div class="form-group form-group-lg">
+                        @*<label class="col-sm-8 control-label"><h1>登入您的賬戶</h1></label>*@
+                        <h1>登錄您的賬戶</h1>
+                    </div>
+                    <div class="form-group form-group-lg" style="margin-top:5%;">
+                        <label class="col-sm-2 control-label" for="name">會員名</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" id="name" placeholder="請輸入會員名/郵箱/手機號">
+                        </div>
+                    </div>
+                    <div class="form-group form-group-lg" style="margin-top:10%">
+                        <label class="col-sm-2 control-label" for="password">密碼</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="password" id="password" placeholder="請輸入密碼">
+                        </div>
+                    </div>
+                    <div class="form-group form-group-lg" style="text-align:right;width:100%">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-8">
+                            <a href="../Login/Register"><h5>忘記密碼</h5></a>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-lg" style="margin-top:1%;text-align:left;width:100%">
+                        <label class="col-sm-2 control-label"></label>
+                        <button type="button" class="btn btn-danger btn-lg" onclick="submitLogin()">登錄賬戶</button>
+                        @*<input class="btn btn-danger btn-lg" type="submit" id="submit" value="登錄賬戶"
+                            onclick="submitLogin">*@
+                    </div>
+                    <div class="form-group form-group-lg" style="text-align:right;width:100%">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-8">
+                            <a href="../Login/Register"><h5>立即註冊</h5></a>
+                        </div>
+                    </div>
+                </form>
+
+            </section>
+        </div>
+    </div>
     <!-- /container -->
 
 
@@ -127,16 +170,32 @@
 
 
     <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="~/contact/jqBootstrapValidation.js"></script>
-    <script src="~/contact/contact_me.js"></script>
-
+    <script src="~/assets/js/modernizr-latest.js"></script>
+    <script type='text/javascript' src='~/assets/js/jquery.min-login.js'></script>
+    @*<script type='text/javascript' src='~/assets/js/fancybox/jquery.fancybox.pack.js'></script>
+    <script type='text/javascript' src='~/assets/js/jquery.mobile.customized.min.js'></script>
+    <script type='text/javascript' src='~/assets/js/jquery.easing.1.3.js'></script>
+    <script type='text/javascript' src='~/assets/js/camera.min.js'></script>*@
+    <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/custom.js"></script>
+    <script>
+        function submitLogin() {
+            var name = $('#name').val();
+            var password = $('#password').val();
+            $.post('../Login/inputLogin', { name: name, password: password }, function (data) {
+                if (data.code == 0)
+                {
+                    window.location = '../Home/Index'
+                }
+                else
+                {
+                    alert(data.msg);
+                }
+                
+                });
+        }
+    </script>
 
-    <!-- Google Maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script src="~/assets/js/google-map.js"></script>
 
 
 </body>
