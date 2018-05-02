@@ -17,6 +17,7 @@
     <!-- Custom styles for our template -->
     <link rel="stylesheet" href="~/assets/css/bootstrap-theme.css" media="screen">
     <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="~/assets/layui/css/layui.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="assets/js/html5shiv.js"></script>
@@ -178,6 +179,7 @@
     <script type='text/javascript' src='~/assets/js/camera.min.js'></script>*@
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/custom.js"></script>
+    <script src="~/assets/layui/layui.js"></script>
     <script>
         function submitLogin() {
             var name = $('#name').val();
@@ -185,11 +187,24 @@
             $.post('../Login/inputLogin', { name: name, password: password }, function (data) {
                 if (data.code == 0)
                 {
+                    layui.use('layer', function () {
+                        var layer = layui.layer;
+                        layer.msg('登录成功！', {
+                            icon: 1,
+                            time: 1000
+                        });
+                    });
                     window.location = '../Home/Index'
                 }
                 else
                 {
-                    alert(data.msg);
+                    layui.use('layer', function () {
+                        var layer = layui.layer;
+                        layer.msg(data.msg, {
+                            icon: 2,
+                            time: 3000
+                        });
+                    });
                 }
                 
                 });

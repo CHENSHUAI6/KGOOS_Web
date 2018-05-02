@@ -17,6 +17,7 @@
     <!-- Custom styles for our template -->
     <link rel="stylesheet" href="~/assets/css/bootstrap-theme.css" media="screen">
     <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="~/assets/layui/css/layui.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="assets/js/html5shiv.js"></script>
@@ -288,6 +289,7 @@
         <script type='text/javascript' src='~/assets/js/camera.min.js'></script>*@
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/custom.js"></script>
+    <script src="~/assets/layui/layui.js"></script>
     <script>
         $(document).ready(function () {
             $("#name").blur(function () {
@@ -367,35 +369,52 @@
                             window.location = '../Home/Index'
                         }
                         else if (data.code == 1) {
-                            if (confirm(data.msg)) {
-                                window.location = '../Login/Login'
-                            }
-                            else {
-                                document.getElementById("name").value = "";
-                            }
+                            layui.use('layer', function () {
+                                var layer = layui.layer;
+                                layer.msg(data.msg, {
+                                    icon: 2,
+                                    time: 2000
+                                });
+                            });
+                            //if (confirm(data.msg)) {
+                            //}
+                            //else {
+                            //    document.getElementById("name").value = "";
+                            //}
                         }
                         else if (data.code == 2) {
-                            if (confirm(data.msg)) {
-                                window.location = '../Login/Login'
-                            }
-                            else {
+                            layui.use('layer', function () {
+                                var layer = layui.layer;
+                                layer.confirm(data.msg, { icon: 3, title: '提示' }, function (index) {
+                                    window.location = '../Login/Login'
+                                    layer.close(index);
+                                });
                                 document.getElementById("email").value = "";
-                            }
+                            });
+
                         }
                         else if (data.code == 3) {
-                            if (confirm(data.msg)) {
-                                window.location = '../Login/Login'
-                            }
-                            else {
+                            layui.use('layer', function () {
+                                var layer = layui.layer;
+                                layer.confirm(data.msg, { icon: 3, title: '提示' }, function (index) {
+                                    window.location = '../Login/Login'
+                                    layer.close(index);
+                                });
                                 document.getElementById("phone").value = "";
-                            }
+                            });
                         }
                         else {
 
                         }
                     });
             } else {
-                alert('驗證碼錯誤，請重新輸入');
+                layui.use('layer', function () {
+                    var layer = layui.layer;
+                    layer.msg('驗證碼錯誤，請重新輸入', {
+                        icon: 2,
+                        time: 2000
+                    });
+                });
             }
         }
     </script>

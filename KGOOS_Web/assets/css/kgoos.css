@@ -1,0 +1,76 @@
+﻿.contran{
+     background-color: white;
+     margin-right: 1%;
+     margin-left: 1%;
+}
+.contran h3{
+    margin-top: 5%;
+    /*font-weight: bold;*/
+}
+.contran h4{
+    margin-top: 5%;
+    /*font-weight: bold;*/
+}
+.contran ul{
+    margin-top: 5%;
+}
+.contran ul li a{
+    color: gray; 
+}
+.contran ul li a h3{
+    margin: 0;
+}
+.contran ul li a h4{
+    margin: 0;
+}
+.c_white{
+    color: white; 
+}
+.c_red{
+    color: red; 
+}
+.bc_pink{
+    background-color: pink;
+}
+.con_right{
+    background-color: white;
+    margin-right: 1%;
+    margin-left: 1%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.con_right hr{
+    height : 2px;
+
+}
+
+
+
+.ta_cen{
+    text-align:center;
+}
+.ta_rig{
+    text-align:right;
+}
+.ta_left{
+    text-align:left;
+}
+
+.ma_0{
+    margin:0;
+}
+.ma_top_10{
+    margin-top:10px;
+}
+.pad_0{
+    padding:0;
+}
+
+.dis_none{
+    display:none;
+}
+
+
+.f_w_bold{
+    font-weight: bold
+}

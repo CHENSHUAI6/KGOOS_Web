@@ -114,6 +114,7 @@
   <ItemGroup>
     <Compile Include="Common\BaseClass1.cs" />
     <Compile Include="Common\DBClass.cs" />
+    <Compile Include="Controllers\ConTranController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -130,6 +131,7 @@
     <Content Include="assets\css\camera.css" />
     <Content Include="assets\css\font-awesome.min.css" />
     <Content Include="assets\css\isotope.css" />
+    <Content Include="assets\css\kgoos.css" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\images\1.jpg" />
@@ -142,6 +144,7 @@
     <Content Include="assets\images\camera-loader.gif" />
     <Content Include="assets\images\camera_skins.png" />
     <Content Include="assets\images\favicon.png" />
+    <Content Include="assets\images\head.jpg" />
     <Content Include="assets\images\logo.png" />
     <Content Include="assets\images\news1.jpg" />
     <Content Include="assets\images\news2.jpg" />
@@ -193,6 +196,107 @@
     <Content Include="assets\js\jquery.mobile.customized.min.js" />
     <Content Include="assets\js\modernizr-latest.js" />
     <Content Include="assets\js\respond.min.js" />
+    <Content Include="assets\layui\css\layui.css" />
+    <Content Include="assets\layui\css\layui.mobile.css" />
+    <Content Include="assets\layui\css\modules\code.css" />
+    <Content Include="assets\layui\css\modules\laydate\default\laydate.css" />
+    <Content Include="assets\layui\css\modules\layer\default\icon-ext.png" />
+    <Content Include="assets\layui\css\modules\layer\default\icon.png" />
+    <Content Include="assets\layui\css\modules\layer\default\layer.css" />
+    <Content Include="assets\layui\css\modules\layer\default\loading-0.gif" />
+    <Content Include="assets\layui\css\modules\layer\default\loading-1.gif" />
+    <Content Include="assets\layui\css\modules\layer\default\loading-2.gif" />
+    <Content Include="assets\layui\font\iconfont.svg" />
+    <Content Include="assets\layui\images\face\0.gif" />
+    <Content Include="assets\layui\images\face\1.gif" />
+    <Content Include="assets\layui\images\face\10.gif" />
+    <Content Include="assets\layui\images\face\11.gif" />
+    <Content Include="assets\layui\images\face\12.gif" />
+    <Content Include="assets\layui\images\face\13.gif" />
+    <Content Include="assets\layui\images\face\14.gif" />
+    <Content Include="assets\layui\images\face\15.gif" />
+    <Content Include="assets\layui\images\face\16.gif" />
+    <Content Include="assets\layui\images\face\17.gif" />
+    <Content Include="assets\layui\images\face\18.gif" />
+    <Content Include="assets\layui\images\face\19.gif" />
+    <Content Include="assets\layui\images\face\2.gif" />
+    <Content Include="assets\layui\images\face\20.gif" />
+    <Content Include="assets\layui\images\face\21.gif" />
+    <Content Include="assets\layui\images\face\22.gif" />
+    <Content Include="assets\layui\images\face\23.gif" />
+    <Content Include="assets\layui\images\face\24.gif" />
+    <Content Include="assets\layui\images\face\25.gif" />
+    <Content Include="assets\layui\images\face\26.gif" />
+    <Content Include="assets\layui\images\face\27.gif" />
+    <Content Include="assets\layui\images\face\28.gif" />
+    <Content Include="assets\layui\images\face\29.gif" />
+    <Content Include="assets\layui\images\face\3.gif" />
+    <Content Include="assets\layui\images\face\30.gif" />
+    <Content Include="assets\layui\images\face\31.gif" />
+    <Content Include="assets\layui\images\face\32.gif" />
+    <Content Include="assets\layui\images\face\33.gif" />
+    <Content Include="assets\layui\images\face\34.gif" />
+    <Content Include="assets\layui\images\face\35.gif" />
+    <Content Include="assets\layui\images\face\36.gif" />
+    <Content Include="assets\layui\images\face\37.gif" />
+    <Content Include="assets\layui\images\face\38.gif" />
+    <Content Include="assets\layui\images\face\39.gif" />
+    <Content Include="assets\layui\images\face\4.gif" />
+    <Content Include="assets\layui\images\face\40.gif" />
+    <Content Include="assets\layui\images\face\41.gif" />
+    <Content Include="assets\layui\images\face\42.gif" />
+    <Content Include="assets\layui\images\face\43.gif" />
+    <Content Include="assets\layui\images\face\44.gif" />
+    <Content Include="assets\layui\images\face\45.gif" />
+    <Content Include="assets\layui\images\face\46.gif" />
+    <Content Include="assets\layui\images\face\47.gif" />
+    <Content Include="assets\layui\images\face\48.gif" />
+    <Content Include="assets\layui\images\face\49.gif" />
+    <Content Include="assets\layui\images\face\5.gif" />
+    <Content Include="assets\layui\images\face\50.gif" />
+    <Content Include="assets\layui\images\face\51.gif" />
+    <Content Include="assets\layui\images\face\52.gif" />
+    <Content Include="assets\layui\images\face\53.gif" />
+    <Content Include="assets\layui\images\face\54.gif" />
+    <Content Include="assets\layui\images\face\55.gif" />
+    <Content Include="assets\layui\images\face\56.gif" />
+    <Content Include="assets\layui\images\face\57.gif" />
+    <Content Include="assets\layui\images\face\58.gif" />
+    <Content Include="assets\layui\images\face\59.gif" />
+    <Content Include="assets\layui\images\face\6.gif" />
+    <Content Include="assets\layui\images\face\60.gif" />
+    <Content Include="assets\layui\images\face\61.gif" />
+    <Content Include="assets\layui\images\face\62.gif" />
+    <Content Include="assets\layui\images\face\63.gif" />
+    <Content Include="assets\layui\images\face\64.gif" />
+    <Content Include="assets\layui\images\face\65.gif" />
+    <Content Include="assets\layui\images\face\66.gif" />
+    <Content Include="assets\layui\images\face\67.gif" />
+    <Content Include="assets\layui\images\face\68.gif" />
+    <Content Include="assets\layui\images\face\69.gif" />
+    <Content Include="assets\layui\images\face\7.gif" />
+    <Content Include="assets\layui\images\face\70.gif" />
+    <Content Include="assets\layui\images\face\71.gif" />
+    <Content Include="assets\layui\images\face\8.gif" />
+    <Content Include="assets\layui\images\face\9.gif" />
+    <Content Include="assets\layui\layui.all.js" />
+    <Content Include="assets\layui\layui.js" />
+    <Content Include="assets\layui\lay\modules\carousel.js" />
+    <Content Include="assets\layui\lay\modules\code.js" />
+    <Content Include="assets\layui\lay\modules\element.js" />
+    <Content Include="assets\layui\lay\modules\flow.js" />
+    <Content Include="assets\layui\lay\modules\form.js" />
+    <Content Include="assets\layui\lay\modules\jquery.js" />
+    <Content Include="assets\layui\lay\modules\laydate.js" />
+    <Content Include="assets\layui\lay\modules\layedit.js" />
+    <Content Include="assets\layui\lay\modules\layer.js" />
+    <Content Include="assets\layui\lay\modules\laypage.js" />
+    <Content Include="assets\layui\lay\modules\laytpl.js" />
+    <Content Include="assets\layui\lay\modules\mobile.js" />
+    <Content Include="assets\layui\lay\modules\table.js" />
+    <Content Include="assets\layui\lay\modules\tree.js" />
+    <Content Include="assets\layui\lay\modules\upload.js" />
+    <Content Include="assets\layui\lay\modules\util.js" />
     <Content Include="Common\dbSetting.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -230,6 +334,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Login\Register.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConTran\MySelf.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConTran\InputGoods.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\layui\font\iconfont.eot" />
+    <Content Include="assets\layui\font\iconfont.ttf" />
+    <Content Include="assets\layui\font\iconfont.woff" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
