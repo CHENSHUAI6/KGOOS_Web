@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>我的賬戶</title>
+    <title>查看订单&付款</title>
     <link rel="favicon" href="~/assets/images/favicon.png">
     <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
@@ -81,9 +81,9 @@
                 <div class="col-lg-3 col-md-3 col-sm-12 contran">
                     <h3>開始集運</h3>
                     <ul class="nav nav-pills nav-stacked">
-                        <li><a href="~/Views/ConTran/MySelf" class="bc_pink"><h4 class="c_white f_s_20">大陸倉庫專屬地址</h4></a></li>
-                        <li><a href="~/Views/ConTran/InputGoods"><h4>货物登記&集運</h4></a></li>
-                        <li><a href="~/Views/ConTran/PayFeight"><h4>查看订单&付款</h4></a></li>
+                        <li><a href="#" class="bc_pink"><h3 class="c_white">大陸倉庫專屬地址</h3></a></li>
+                        <li><a href="#"><h4>货物登記&集運</h4></a></li>
+                        <li><a href="#"><h4>查看订单&付款</h4></a></li>
                         <li><a href="#"><h4>物流跟踪</h4></a></li>
                     </ul>
                     <h3>用戶中心</h3>
@@ -99,148 +99,89 @@
 
                 <div class="col-lg-8 col-md-8 col-sm-12 con_right">
                     <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                        <h1 class="ma_top_10">基本信息</h1>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 ta_cen">
-                        <img src="~/assets/images/head.jpg"
-                             class="alignleft img-circle img-thumbnail notopmargin nobottommargin"
-                             alt="Avatar" style="width: 150px; height:150px;"><br />
-                        <span class="h3">tangli5210a, 您好</span>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <br />
-                        <div class="f_s_20">會員名: @Session["name"]</div>
-                        <div class="f_s_20 ma_top_10">淘寶ID: tangli5210a</div>
-                        <div class="f_s_20 ma_top_10">積分: 30 分</div>
-                        <div class="f_s_20 ma_top_10">優惠券: 3 張</div>
-                        <div class="f_s_20 ma_top_10">K幣: 60 </div>
-                        @*<h3>會員名: tangli5210a</h3>
-                        <h3>淘寶ID: tangli5210a</h3>
-                        <h3>積分: 30 分</h3>
-                        <h3>優惠券: 3 張</h3>
-                        <h3>K幣: 60 個</h3>*@
+                        <h1 class="ma_top_10 col-lg-12 col-md-12 col-sm-12"><span class="c_deepPink f_w_bold">查看订单&付款</span></h1>
                     </div>
 
-                    <div class ="col-lg-12 col-md-12 col-sm-12">
-                        <hr style="width:100%;"/>
-                    </div>
-                    
+                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 ta_left">
+                        <div class="form-group">
+                            <h3 class="ma_top_20 col-lg-6 col-md-6 col-sm-6 f_w_bold ">
+                                集運訂單號:
+                                <span class=" f_w_bold">1234567890123456</span>
+                            </h3>
+                            <h3 class="ma_top_20 col-lg-6 col-md-6 col-sm-6 f_w_bold ">
+                                費用:
+                                <span class="c_red f_w_bold">2002.98 元</span>
+                            </h3>
+                        </div>
 
-                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 ta_cen">
-                        <h1 class="ma_0">您的集運專屬倉地址</h1>
-                    </div>
-                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                        <h3 class="ma_0">發往香港</h3>
-                        <div class="form-group form-group-lg col-lg-2 col-md-2 col-sm-2 ma_top_10"></div>
-                        <div class="form-group form-group-lg col-lg-10 col-md-10 col-sm-10 ma_top_10">
-                            <table class="table table-bordered">
-                                @*<caption>边框表格布局</caption>*@
+                        <div class="form-group">
+                            <h3 class="ma_top_20 col-lg-6 col-md-6 col-sm-6 f_w_bold ">
+                                時間:
+                                <span class=" f_w_bold">2018-05-11 16:51:26</span>
+                            </h3>
+
+                            <h3 class="ma_top_20 col-lg-6 col-md-6 col-sm-6 f_w_bold c_red">
+                                未付款
+                                <a class="c_blue">点击前往付款</a>
+                            </h3>
+                        </div>
+
+                        <div class="form-group">
+                            <h3 class="ma_top_20 col-lg-12 col-md-12 col-sm-12 f_w_bold ">
+                                收貨地址:
+                                <span class="f_s_20">陈虹宇-13251850032</span>
+                            </h3>
+                           
+                            <h3 class="ma_top_10 col-lg-12 col-md-12 col-sm-12 f_w_bold f_s_20">四川省-成都市-双流区-四川省成都市双流区 四川省成都市双流区</h3>
+                        </div>
+
+                        <div class="form-group">
+                            <h3 class="ma_top_20 col-lg-10 col-md-10 col-sm-10 f_w_bold ">
+                                已申請/已發貨
+                                <span class="f_s_20">順風快遞+123456789012343（快遞單號）</span>
+                            </h3>
+
+                            <div class="form-group form-group-lg col-lg-2 col-md-2 col-sm-2 pad_top_20">
+                                <button data-method="notice" type="button"
+                                        class="btn btn-danger btn-lg col-lg-2 col-md-2 col-sm-2"
+                                        onclick="ok();">
+                                    查詢
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <div class="ma_top_20 col-lg-12 col-md-12 col-sm-12">
+                            <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>广东（省）</th>
-                                        <th>东莞（市）</th>
-                                        <th>虎门（镇)</th>
+                                        <th>序號</th>
+                                        <th>倉庫</th>
+                                        <th>單號</th>
+                                        <th>物品名稱</th>
+                                        <th>到件時間</th>
+                                        <th>計費重量</th>
+                                        <th>狀態</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="3" class="ta_left">
-                                            <div id="xg_address" class="col-lg-10 col-md-10 col-sm-10 ta_left ma_0 pad_0">广东省东莞市虎门镇赤岗堤围路8号快购香港会员编号-會員账号</div>        
-                                            <div id="xg_div" class="dis_none">
-                                                <input readonly="readonly" class="xg_address"
-                                                       type="text" value="广东省东莞市虎门镇赤岗堤围路8号快购香港会员编号-會員账号" />
-                                            </div>
-                                            <a href="javascript:void(0);" onclick="xg_copy()" class="c_red col-lg-2 col-md-2 col-sm-2 f_w_bold">copy</a>
-                                        </td>
+                                        <td>1</td>
+                                        <td>倉庫</td>
+                                        <td>單號</td>
+                                        <td>物品名稱</td>
+                                        <td>到件時間</td>
+                                        <td>計費重量</td>
+                                        <td>狀態</td>
                                     </tr>
-                                    <tr>
-                                        <td>收件人：会员编号-快購</td>
-                                        <td>电话：18128042914</td>
-                                        <td>邮编：523900</td>
-                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>
-
-                    </div>
-
-                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                        <h3 class="ma_0">發往臺灣</h3>
-                        <div class="form-group form-group-lg col-lg-2 col-md-2 col-sm-2 ma_top_10"></div>
-                        <div class="form-group form-group-lg col-lg-10 col-md-10 col-sm-10 ma_top_10">
-                            <table class="table table-bordered">
-                                @*<caption>边框表格布局</caption>*@
-                                <thead>
-                                    <tr>
-                                        <th>广东（省）</th>
-                                        <th>东莞（市）</th>
-                                        <th>虎门（镇)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="3" class="ta_left">
-                                            <div class="col-lg-10 col-md-10 col-sm-10 ta_left ma_0 pad_0">广东省东莞市虎门镇赤岗堤围路8号快购香港会员编号-會員账号</div>
-                                            <div id="tw_div" class="dis_none">
-                                                <input readonly="readonly" class="tw_address"
-                                                       type="text" value="广东省东莞市虎门镇赤岗堤围路8号快购香港会员编号-會員账号" />
-                                            </div>
-                                            <a href="javascript:void(0);" onclick="tw_copy()" class="c_red col-lg-2 col-md-2 col-sm-2 f_w_bold">copy</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>收件人：会员编号-快購</td>
-                                        <td>电话：18128042914</td>
-                                        <td>邮编：523900</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-
-                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                        <h3 class="ma_0">發往海外其他地區</h3>
-                        <div class="form-group form-group-lg col-lg-2 col-md-2 col-sm-2 ma_top_10"></div>
-                        <div class="form-group form-group-lg col-lg-10 col-md-10 col-sm-10 ma_top_10">
-                            <table class="table table-bordered">
-                                @*<caption>边框表格布局</caption>*@
-                                <thead>
-                                    <tr>
-                                        <th>广东（省）</th>
-                                        <th>东莞（市）</th>
-                                        <th>虎门（镇)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="3" class="ta_left">
-                                            <div class="col-lg-10 col-md-10 col-sm-10 ta_left ma_0 pad_0">广东省东莞市虎门镇赤岗堤围路8号快购香港会员编号-會員账号</div>
-                                            <div id="other_div" class="dis_none">
-                                                <input readonly="readonly" class="other_address"
-                                                       type="text" value="广东省东莞市虎门镇赤岗堤围路8号快购香港会员编号-會員账号" />
-                                            </div>                                           
-                                            <a href="javascript:void(0);" onclick="other_copy()" class="c_red col-lg-2 col-md-2 col-sm-2 f_w_bold">copy</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>收件人：会员编号-快購</td>
-                                        <td>电话：18128042914</td>
-                                        <td>邮编：523900</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                  
-                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                        <h4 class="ma_0">溫馨提示：</h4>
-                        <span class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 ma_top_10">如購買大件商品或在同一店鋪購買多件商品，請確認賣家是否分多個快遞單號發出，如分多個快遞單號發出，請賣家務必告訴您單號并登記認領，以免貨物漏發！</span>
                     </div>
 
                 </div>
-            </div>               
+            </div>
         </div>
     </div>
     <!-- /container -->

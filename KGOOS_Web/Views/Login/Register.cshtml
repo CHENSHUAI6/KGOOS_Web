@@ -366,7 +366,7 @@
                     { name: name, password: password, email: email, id: id, phone: phone, friendId: friendId },
                     function (data) {
                         if (data.code == 0) {
-                            window.location = '../Home/Index'
+                            window.location = '../ConTran/MySelf'
                         }
                         else if (data.code == 1) {
                             layui.use('layer', function () {
@@ -375,12 +375,9 @@
                                     icon: 2,
                                     time: 2000
                                 });
+                                document.getElementById("name").value = "";
                             });
-                            //if (confirm(data.msg)) {
-                            //}
-                            //else {
-                            //    document.getElementById("name").value = "";
-                            //}
+                            
                         }
                         else if (data.code == 2) {
                             layui.use('layer', function () {

@@ -192,6 +192,7 @@
     <Content Include="assets\js\jquery.cslider.js" />
     <Content Include="assets\js\jquery.easing.1.3.js" />
     <Content Include="assets\js\jquery.isotope.min.js" />
+    <Content Include="assets\js\jquery.min-login.js" />
     <Content Include="assets\js\jquery.min.js" />
     <Content Include="assets\js\jquery.mobile.customized.min.js" />
     <Content Include="assets\js\modernizr-latest.js" />
@@ -310,7 +311,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -345,6 +348,18 @@
     <Content Include="assets\layui\font\iconfont.eot" />
     <Content Include="assets\layui\font\iconfont.ttf" />
     <Content Include="assets\layui\font\iconfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConTran\ConTran.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConTran\ConAdress.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConTran\PayFeight.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConTran\Order.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

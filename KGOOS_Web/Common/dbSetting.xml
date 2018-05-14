@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <dbconfig>
   <db database="Db_Kgoos" default="true">
-    <Server>115.159.68.236</Server>
-    <uid>chy</uid>
+    <Server>.</Server>
+    <uid>sa</uid>
     <pwd>Aa123456</pwd>
     <Timeout>600000</Timeout>
   </db>

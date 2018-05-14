@@ -81,10 +81,9 @@
                 <div class="col-lg-3 col-md-3 col-sm-12 contran">
                     <h3>開始集運</h3>
                     <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#" class="bc_pink"><h3 class="c_white">大陸倉庫專屬地址</h3></a></li>
-                        <li><a href="#"><h4>货物登記&集運</h4></a></li>
-                        <li><a href="#"><h4>查看订单&付款</h4></a></li>
-                        <li><a href="#"><h4>物流跟踪</h4></a></li>
+                        <li><a href="~/Views/ConTran/MySelf"><h4>大陸倉庫專屬地址</h4></a></li>
+                        <li><a href="~/Views/ConTran/InputGoods" class="bc_pink"><h4 class="c_white f_s_20">货物登記&集運</h4></a></li>
+                        <li><a href="~/Views/ConTran/PayFeight"><h4>查看订单&付款</h4></a></li>
                     </ul>
                     <h3>用戶中心</h3>
                     <ul class="nav nav-pills nav-stacked">
@@ -99,90 +98,172 @@
 
                 <div class="col-lg-8 col-md-8 col-sm-12 con_right">
                     <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                        <h1 class="ma_top_10 col-lg-10 col-md-10 col-sm-10">登記認領&集運</h1>
+                        <h1 class="ma_top_10 col-lg-10 col-md-10 col-sm-10"><span class="c_deepPink f_w_bold"> step 1：登記認領&集運</span></h1>
                         <a href="javascript:void(0);" 
                            class="ma_top_10 ta_left c_red col-lg-2 col-md-2 col-sm-2 f_w_bold">认领须知</a>
 
                     </div>
+                      
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <ul id="myTab1" class="nav nav-pills">
+                            <li class="active"><a href="#inputThing" data-toggle="tab">登記物品</a></li>
+                            <li><a href="#NoArrive" data-toggle="tab">未到件</a></li>
+                            <li><a href="#Arrived" data-toggle="tab">已到件</a></li>
+                        </ul>
 
-                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 ta_cen">
-                        <h1 class="ma_0">您的集運專屬倉地址</h1>
+                        <hr style="width:100%;" />
+
                     </div>
                     
-                    <ul id="myTab" class="nav nav-tabs">
-                        <li class="active"><a href="#home" data-toggle="tab">登記物品</a></li>
-                        <li><a href="#ios" data-toggle="tab">未到件</a></li>
-                        <li><a href="#ios" data-toggle="tab">已到件</a></li>
-                        
-                    </ul>
-                    <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade in active" id="home">
-                            <section class="col-lg-12 col-md-12 col-sm-12 maincontent" style="text-align:center; background-color:white;">
-                                <form class="form-horizontal" id="CommonForm" method="post" action="#">
-                                    
-                                    <div class="form-group form-group-lg" style="margin-top:5%;text-align:right;width:100%">
-                                        <label class="col-sm-2 control-label"></label>
-                                        <div class="col-sm-10">
-                                            <a class="c_red" href="../Login/Register"><h5>*如何查找快递单号</h5></a>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group form-group-lg">
-                                        <label class=" col-lg-3 col-md-3 col-sm-12 control-label" for="name">快遞單號</label>
-                                        <div class="col-lg-9 col-md-9 col-sm-12">
-                                            <input class="form-control" type="text" id="name" placeholder="請輸入快遞單號(必填)">
-                                        </div>
-                                    </div>
-                                                                        
-                                    <div class="form-group form-group-lg" style="margin-top:5%;">
-                                        <label class=" col-lg-3 col-md-3 col-sm-12 control-label" for="name">物品名稱及數量</label>
-                                        <div class="col-lg-9 col-md-9 col-sm-12">
-                                            <input class="form-control" type="text" id="name" placeholder="如 衣服x2  褲子X5">
-                                        </div>
-                                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div id="myTab1Content" class="tab-content">
+                            <div class="tab-pane fade in active" id="inputThing">
+                                <section class="col-lg-12 col-md-12 col-sm-12 maincontent" style="text-align:center; background-color:white;">
+                                    <form class="form-horizontal" id="CommonForm" method="post" action="#">
 
-                                    <div class="form-group form-group-lg" style="margin-top:5%;">
-                                        <label class=" col-lg-3 col-md-3 col-sm-12 control-label" for="name">購物鏈接</label>
-                                        <div class="col-lg-9 col-md-9 col-sm-12">
-                                            <input class="form-control" type="text" id="name" placeholder="購物鏈接以作為丟貨憑證">
+                                        <div class="form-group form-group-lg" style="margin-top:5%;text-align:right;width:100%">
+                                            <label class="col-sm-2 control-label"></label>
+                                            <div class="col-sm-10">
+                                                <a class="c_red" href="../Login/Register"><h5>*如何查找快递单号</h5></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-group-lg">
+                                            <label class=" col-lg-3 col-md-3 col-sm-12 control-label" for="name">快遞單號</label>
+                                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                                <input class="form-control" type="text" id="name" placeholder="請輸入快遞單號(必填)">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-group-lg" style="margin-top:5%;">
+                                            <label class=" col-lg-3 col-md-3 col-sm-12 control-label" for="name">物品名稱及數量</label>
+                                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                                <input class="form-control" type="text" id="name" placeholder="如 衣服x2  褲子X5">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-group-lg" style="margin-top:5%;">
+                                            <label class=" col-lg-3 col-md-3 col-sm-12 control-label" for="name">購物鏈接</label>
+                                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                                <input class="form-control" type="text" id="name" placeholder="購物鏈接以作為丟貨憑證">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-group-lg" style="margin-top:5%;">
+                                            <label class=" col-lg-3 col-md-3 col-sm-12 control-label ta_left" for="name">備註</label>
+                                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                                <textarea style="height:10%" class="form-control" rows="3"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-group-lg" style="margin-top:1%;text-align:left;width:100%">
+                                            <label class="col-lg-3 col-md-3 col-sm-3 control-label"></label>
+                                            <button type="button" class="col-lg-3 col-md-3 col-sm-3 btn btn-danger btn-lg" onclick="submitLogin()">認領</button>
+                                            <label class="col-lg-3 col-md-3 col-sm-3 control-label"></label>
+                                            <button type="button" class="col-lg-3 col-md-3 col-sm-3 btn btn-danger btn-lg" onclick="submitLogin()">重設</button>
+                                        </div>
+                                    </form>
+
+                                </section>
+                            </div>
+                            <div class="tab-pane fade" id="NoArrive">
+                                <table class="table table-bordered">
+                                    @*<caption>边框表格布局</caption>*@
+                                    <thead>
+                                        <tr>
+                                            <th>序號</th>
+                                            <th>快遞運單號</th>
+                                            <th>物品名稱&數量</th>
+                                            <th>備註</th>
+                                            <th colspan="2" class="ta_cen">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>K0001</td>
+                                            <td>1234567890123456</td>
+                                            <td>敖德翁群 * 1件</td>
+                                            <td>阿斯頓撒大所大所多</td>
+                                            <td>修改</td>
+                                            <td>刪除</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="tab-pane fade" id="Arrived">
+
+                                <ul id="myTab2" class="nav nav-pills">
+                                    <li class="active"><a href="#all" data-toggle="tab">全部</a></li>
+                                    <li><a href="#hongKong" data-toggle="tab">發往香港的貨物</a></li>
+                                    <li><a href="#taiWan" data-toggle="tab">發往台灣的貨物</a></li>
+                                    <li><a href="#other" data-toggle="tab">發往海外其他地區的貨物</a></li>
+                                </ul>
+
+                                <hr style="width:100%;" />
+                                <div id="myTab2Content" class="tab-content">
+                                    <div class="tab-pane fade in active ta_cen" id="all">
+                                        <table class="table table-bordered">
+                                            @*<caption>边框表格布局</caption>*@
+                                            <thead>
+                                                <tr>
+                                                    <th>選擇</th>
+                                                    <th>序號</th>
+                                                    <th>倉庫</th>
+                                                    <th>快遞運單號</th>
+                                                    <th>物品名稱</th>
+                                                    <th>重量</th>
+                                                    <th>體積重</th>
+                                                    <th>超長/重</th>
+                                                    <th>入倉時間</th>
+                                                    <th>備註</th>
+                                                    <th colspan="2" class="ta_cen">操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <input type="checkbox">
+                                                    </td>
+                                                    <td>1</td>
+                                                    <td>香港</td>
+                                                    <td>1234567890123456</td>
+                                                    <td><a title="洗衣機一個，打撒所以">洗衣機...</a></td>
+                                                    <td>重量</td>
+                                                    <td><a title="asdasdasdasdasdasdasdasdasdasdasdasdasdasqweqwewqewqeqwewqeqweqw">23.3</a></td>
+                                                    <td>是</td>
+                                                    <td>2018.05.02</td>
+                                                    <td><a title="我是備註，我是備註，我是備註">...</a></td>
+                                                    <td>改</td>
+                                                    <td>刪</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
+                                            <a href="javascript:void(0);"
+                                               class="ma_top_10 pad_0 ta_left col-lg-12 col-md-12 col-sm-12 f_s_20 c_red f_w_bold">全選</a>
+
+                                        </div>
+                                        <div class="form-group form-group-lg col-lg-8 col-md-8 col-sm-8 ta_left">
+                                            <button type="button" class="btn btn-danger btn-lg" onclick="baidu()">請集運給我</button>
                                         </div>
                                     </div>
-
-                                    <div class="form-group form-group-lg" style="margin-top:5%;">
-                                        <label class=" col-lg-3 col-md-3 col-sm-12 control-label ta_left" for="name">備註</label>
-                                        <div class="col-lg-9 col-md-9 col-sm-12">
-                                            <textarea style="height:10%" class="form-control" rows="3"></textarea>
-                                        </div>
+                                    <div class="tab-pane fade" id="hongKong">
                                     </div>
-                                    
-                                    <div class="form-group form-group-lg" style="margin-top:1%;text-align:left;width:100%">
-                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label"></label>
-                                        <button type="button" class="col-lg-3 col-md-3 col-sm-3 btn btn-danger btn-lg" onclick="submitLogin()">認領</button>
-                                        <label class="col-lg-3 col-md-3 col-sm-3 control-label"></label>
-                                        <button type="button" class="col-lg-3 col-md-3 col-sm-3 btn btn-danger btn-lg" onclick="submitLogin()">重設</button>
-                                    </div>                                 
-                                </form>
-
-                            </section>
-                        </div>
-                        <div class="tab-pane fade" id="ios">
-                            <p>
-                                iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
-                                TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。
-                            </p>
-                        </div>
-                        <div class="tab-pane fade" id="jmeter">
-                            <p>jMeter 是一款开源的测试软件。它是 100% 纯 Java 应用程序，用于负载和性能测试。</p>
-                        </div>
-                        <div class="tab-pane fade" id="ejb">
-                            <p>
-                                Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
-                            </p>
+                                    <div class="tab-pane fade" id="taiWan">
+                                        台灣
+                                    </div>
+                                    <div class="tab-pane fade" id="other">
+                                        其他
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <hr class="col-lg-12 col-md-12 col-sm-12" />
-
+                    
+                    
+                    
                 </div>
             </div>
         </div>

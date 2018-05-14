@@ -141,6 +141,7 @@ namespace KGOOS_Web.Controllers
                 {
                     Session["id"] = id_user;
                     Session["name"] = name;
+                    Session["tb_User"] = id;
                     Session["phone"] = phone;
                     Session["email"] = email;
                     return Json(new
