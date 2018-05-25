@@ -114,6 +114,7 @@
   <ItemGroup>
     <Compile Include="Common\BaseClass1.cs" />
     <Compile Include="Common\DBClass.cs" />
+    <Compile Include="Common\Freight.cs" />
     <Compile Include="Controllers\ConTranController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -195,6 +196,7 @@
     <Content Include="assets\js\jquery.min-login.js" />
     <Content Include="assets\js\jquery.min.js" />
     <Content Include="assets\js\jquery.mobile.customized.min.js" />
+    <Content Include="assets\js\kgoos.js" />
     <Content Include="assets\js\modernizr-latest.js" />
     <Content Include="assets\js\respond.min.js" />
     <Content Include="assets\layui\css\layui.css" />
@@ -360,6 +362,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ConTran\Order.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConTran\editGoods.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\kgoos.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,679 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+您 Web 项目的发布/打包进程将使用此文件。您可以通过编辑此 MSBuild 文件
+来自定义该进程的行为。若要了解与此相关的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkID=208121。
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\kgoos发布</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="assets/css/bootstrap-theme.css">
+      <publishTime>08/25/2014 22:23:48</publishTime>
+    </File>
+    <File Include="assets/css/bootstrap.min.css">
+      <publishTime>04/26/2018 00:57:54</publishTime>
+    </File>
+    <File Include="assets/css/camera.css">
+      <publishTime>08/25/2014 22:23:46</publishTime>
+    </File>
+    <File Include="assets/css/font-awesome.min.css">
+      <publishTime>08/25/2014 22:23:46</publishTime>
+    </File>
+    <File Include="assets/css/isotope.css">
+      <publishTime>08/25/2014 22:23:46</publishTime>
+    </File>
+    <File Include="assets/css/kgoos.css">
+      <publishTime>05/16/2018 22:27:00</publishTime>
+    </File>
+    <File Include="assets/css/style.css">
+      <publishTime>10/26/2014 14:43:18</publishTime>
+    </File>
+    <File Include="assets/fonts/fontawesome-webfont.eot">
+      <publishTime>08/25/2014 22:23:56</publishTime>
+    </File>
+    <File Include="assets/fonts/fontawesome-webfont.svg">
+      <publishTime>08/25/2014 22:23:58</publishTime>
+    </File>
+    <File Include="assets/fonts/fontawesome-webfont.ttf">
+      <publishTime>08/25/2014 22:23:54</publishTime>
+    </File>
+    <File Include="assets/fonts/fontawesome-webfont.woff">
+      <publishTime>08/25/2014 22:23:54</publishTime>
+    </File>
+    <File Include="assets/fonts/FontAwesome.otf">
+      <publishTime>08/25/2014 22:23:52</publishTime>
+    </File>
+    <File Include="assets/images/1.jpg">
+      <publishTime>10/26/2014 14:38:58</publishTime>
+    </File>
+    <File Include="assets/images/about.jpg">
+      <publishTime>10/26/2014 14:30:32</publishTime>
+    </File>
+    <File Include="assets/images/arrow.png">
+      <publishTime>08/25/2014 22:24:22</publishTime>
+    </File>
+    <File Include="assets/images/arrows.png">
+      <publishTime>08/25/2014 22:24:20</publishTime>
+    </File>
+    <File Include="assets/images/bg.png">
+      <publishTime>10/26/2014 00:41:22</publishTime>
+    </File>
+    <File Include="assets/images/bg_header.jpg">
+      <publishTime>10/26/2014 01:02:02</publishTime>
+    </File>
+    <File Include="assets/images/blank.gif">
+      <publishTime>08/25/2014 22:24:12</publishTime>
+    </File>
+    <File Include="assets/images/camera-loader.gif">
+      <publishTime>08/25/2014 22:24:12</publishTime>
+    </File>
+    <File Include="assets/images/camera_skins.png">
+      <publishTime>08/25/2014 22:24:10</publishTime>
+    </File>
+    <File Include="assets/images/favicon.png">
+      <publishTime>08/25/2014 22:24:10</publishTime>
+    </File>
+    <File Include="assets/images/head.jpg">
+      <publishTime>04/23/2018 18:59:33</publishTime>
+    </File>
+    <File Include="assets/images/logo.png">
+      <publishTime>10/25/2014 23:49:42</publishTime>
+    </File>
+    <File Include="assets/images/news1.jpg">
+      <publishTime>10/26/2014 00:22:18</publishTime>
+    </File>
+    <File Include="assets/images/news2.jpg">
+      <publishTime>10/26/2014 00:25:22</publishTime>
+    </File>
+    <File Include="assets/images/news3.jpg">
+      <publishTime>10/26/2014 00:24:24</publishTime>
+    </File>
+    <File Include="assets/images/news4.jpg">
+      <publishTime>10/26/2014 00:22:18</publishTime>
+    </File>
+    <File Include="assets/images/photo-1.jpg">
+      <publishTime>08/25/2014 22:24:04</publishTime>
+    </File>
+    <File Include="assets/images/photo-2.jpg">
+      <publishTime>08/25/2014 22:24:02</publishTime>
+    </File>
+    <File Include="assets/images/photo-3.jpg">
+      <publishTime>08/25/2014 22:24:02</publishTime>
+    </File>
+    <File Include="assets/images/photo-4.jpg">
+      <publishTime>08/25/2014 22:24:00</publishTime>
+    </File>
+    <File Include="assets/images/portfolio/img1.jpg">
+      <publishTime>10/26/2014 14:37:06</publishTime>
+    </File>
+    <File Include="assets/images/portfolio/img2.jpg">
+      <publishTime>10/26/2014 14:36:42</publishTime>
+    </File>
+    <File Include="assets/images/portfolio/img3.jpg">
+      <publishTime>10/26/2014 14:36:12</publishTime>
+    </File>
+    <File Include="assets/images/portfolio/img4.jpg">
+      <publishTime>10/26/2014 14:35:54</publishTime>
+    </File>
+    <File Include="assets/images/portfolio/img5.jpg">
+      <publishTime>10/26/2014 14:34:56</publishTime>
+    </File>
+    <File Include="assets/images/portfolio/img6.jpg">
+      <publishTime>10/26/2014 14:34:38</publishTime>
+    </File>
+    <File Include="assets/images/portfolio/img7.jpg">
+      <publishTime>10/26/2014 14:33:52</publishTime>
+    </File>
+    <File Include="assets/images/portfolio/img8.jpg">
+      <publishTime>10/26/2014 14:33:24</publishTime>
+    </File>
+    <File Include="assets/images/portfolio/img9.jpg">
+      <publishTime>10/26/2014 14:32:50</publishTime>
+    </File>
+    <File Include="assets/images/slides/img1.jpg">
+      <publishTime>10/25/2014 23:40:48</publishTime>
+    </File>
+    <File Include="assets/images/slides/img2.jpg">
+      <publishTime>10/25/2014 23:33:24</publishTime>
+    </File>
+    <File Include="assets/images/slides/img3.jpg">
+      <publishTime>10/25/2014 23:37:04</publishTime>
+    </File>
+    <File Include="assets/images/slides/thumbs/big_bunny_fake.jpg">
+      <publishTime>08/25/2014 22:24:58</publishTime>
+    </File>
+    <File Include="assets/images/slides/thumbs/bridge.jpg">
+      <publishTime>08/25/2014 22:24:56</publishTime>
+    </File>
+    <File Include="assets/images/slides/thumbs/header_bg.png">
+      <publishTime>08/25/2014 22:24:56</publishTime>
+    </File>
+    <File Include="assets/images/slides/thumbs/leaf.jpg">
+      <publishTime>08/25/2014 22:24:56</publishTime>
+    </File>
+    <File Include="assets/images/slides/thumbs/road.jpg">
+      <publishTime>08/25/2014 22:24:54</publishTime>
+    </File>
+    <File Include="assets/images/slides/thumbs/sea.jpg">
+      <publishTime>08/25/2014 22:24:54</publishTime>
+    </File>
+    <File Include="assets/images/slides/thumbs/shelter.jpg">
+      <publishTime>08/25/2014 22:24:54</publishTime>
+    </File>
+    <File Include="assets/images/slides/thumbs/tree.jpg">
+      <publishTime>08/25/2014 22:24:54</publishTime>
+    </File>
+    <File Include="assets/images/slides/thumbs/_notes/dwsync.xml">
+      <publishTime>08/25/2014 22:24:58</publishTime>
+    </File>
+    <File Include="assets/images/slides/_notes/dwsync.xml">
+      <publishTime>08/25/2014 22:25:00</publishTime>
+    </File>
+    <File Include="assets/js/bootstrap.min.js">
+      <publishTime>08/25/2014 22:25:08</publishTime>
+    </File>
+    <File Include="assets/js/camera.min.js">
+      <publishTime>08/25/2014 22:25:08</publishTime>
+    </File>
+    <File Include="assets/js/custom.js">
+      <publishTime>04/20/2018 14:34:48</publishTime>
+    </File>
+    <File Include="assets/js/fancybox/blank.gif">
+      <publishTime>08/25/2014 22:25:16</publishTime>
+    </File>
+    <File Include="assets/js/fancybox/Descr.WD3">
+      <publishTime>08/25/2014 22:25:14</publishTime>
+    </File>
+    <File Include="assets/js/fancybox/fancybox_loading.gif">
+      <publishTime>08/25/2014 22:25:14</publishTime>
+    </File>
+    <File Include="assets/js/fancybox/fancybox_loading_402x.gif">
+      <publishTime>08/25/2014 22:25:14</publishTime>
+    </File>
+    <File Include="assets/js/fancybox/fancybox_overlay.png">
+      <publishTime>08/25/2014 22:25:14</publishTime>
+    </File>
+    <File Include="assets/js/fancybox/fancybox_sprite.png">
+      <publishTime>08/25/2014 22:25:12</publishTime>
+    </File>
+    <File Include="assets/js/fancybox/fancybox_sprite_402x.png">
+      <publishTime>08/25/2014 22:25:12</publishTime>
+    </File>
+    <File Include="assets/js/fancybox/jquery.fancybox.css">
+      <publishTime>08/25/2014 22:25:10</publishTime>
+    </File>
+    <File Include="assets/js/fancybox/jquery.fancybox.pack.js">
+      <publishTime>08/25/2014 22:25:10</publishTime>
+    </File>
+    <File Include="assets/js/google-map.js">
+      <publishTime>08/25/2014 22:25:06</publishTime>
+    </File>
+    <File Include="assets/js/html5shiv.js">
+      <publishTime>08/25/2014 22:25:06</publishTime>
+    </File>
+    <File Include="assets/js/jquery.cslider.js">
+      <publishTime>08/25/2014 22:25:06</publishTime>
+    </File>
+    <File Include="assets/js/jquery.easing.1.3.js">
+      <publishTime>08/25/2014 22:25:06</publishTime>
+    </File>
+    <File Include="assets/js/jquery.isotope.min.js">
+      <publishTime>08/25/2014 22:25:04</publishTime>
+    </File>
+    <File Include="assets/js/jquery.min-login.js">
+      <publishTime>04/22/2018 00:59:32</publishTime>
+    </File>
+    <File Include="assets/js/jquery.min.js">
+      <publishTime>08/25/2014 22:25:04</publishTime>
+    </File>
+    <File Include="assets/js/jquery.mobile.customized.min.js">
+      <publishTime>08/25/2014 22:25:02</publishTime>
+    </File>
+    <File Include="assets/js/kgoos.js">
+      <publishTime>05/21/2018 16:27:01</publishTime>
+    </File>
+    <File Include="assets/js/modernizr-latest.js">
+      <publishTime>08/25/2014 22:25:02</publishTime>
+    </File>
+    <File Include="assets/js/respond.min.js">
+      <publishTime>08/25/2014 22:25:00</publishTime>
+    </File>
+    <File Include="assets/layui/css/layui.css">
+      <publishTime>04/03/2018 06:45:40</publishTime>
+    </File>
+    <File Include="assets/layui/css/layui.mobile.css">
+      <publishTime>04/03/2018 06:45:41</publishTime>
+    </File>
+    <File Include="assets/layui/css/modules/code.css">
+      <publishTime>04/03/2018 06:45:42</publishTime>
+    </File>
+    <File Include="assets/layui/css/modules/laydate/default/laydate.css">
+      <publishTime>04/03/2018 06:45:46</publishTime>
+    </File>
+    <File Include="assets/layui/css/modules/layer/default/icon-ext.png">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/css/modules/layer/default/icon.png">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/css/modules/layer/default/layer.css">
+      <publishTime>04/03/2018 06:45:46</publishTime>
+    </File>
+    <File Include="assets/layui/css/modules/layer/default/loading-0.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/css/modules/layer/default/loading-1.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/css/modules/layer/default/loading-2.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/font/iconfont.eot">
+      <publishTime>04/03/2018 06:45:40</publishTime>
+    </File>
+    <File Include="assets/layui/font/iconfont.svg">
+      <publishTime>04/03/2018 06:45:41</publishTime>
+    </File>
+    <File Include="assets/layui/font/iconfont.ttf">
+      <publishTime>04/03/2018 06:45:42</publishTime>
+    </File>
+    <File Include="assets/layui/font/iconfont.woff">
+      <publishTime>04/03/2018 06:45:46</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/0.gif">
+      <publishTime>04/03/2018 06:45:41</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/1.gif">
+      <publishTime>04/03/2018 06:45:41</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/10.gif">
+      <publishTime>04/03/2018 06:45:45</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/11.gif">
+      <publishTime>04/03/2018 06:45:46</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/12.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/13.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/14.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/15.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/16.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/17.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/18.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/19.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/2.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/20.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/21.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/22.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/23.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/24.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/25.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/26.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/27.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/28.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/29.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/3.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/30.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/31.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/32.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/33.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/34.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/35.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/36.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/37.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/38.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/39.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/4.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/40.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/41.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/42.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/43.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/44.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/45.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/46.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/47.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/48.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/49.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/5.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/50.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/51.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/52.gif">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/53.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/54.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/55.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/56.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/57.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/58.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/59.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/6.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/60.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/61.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/62.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/63.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/64.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/65.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/66.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/67.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/68.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/69.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/7.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/70.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/71.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/8.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/images/face/9.gif">
+      <publishTime>04/03/2018 06:45:48</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/carousel.js">
+      <publishTime>04/03/2018 06:45:41</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/code.js">
+      <publishTime>04/03/2018 06:45:42</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/element.js">
+      <publishTime>04/03/2018 06:45:46</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/flow.js">
+      <publishTime>04/03/2018 06:45:46</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/form.js">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/jquery.js">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/laydate.js">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/layedit.js">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/layer.js">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/laypage.js">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/laytpl.js">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/mobile.js">
+      <publishTime>04/03/2018 06:45:46</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/table.js">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/tree.js">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/upload.js">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/lay/modules/util.js">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/layui.all.js">
+      <publishTime>04/03/2018 06:45:47</publishTime>
+    </File>
+    <File Include="assets/layui/layui.js">
+      <publishTime>04/03/2018 06:45:40</publishTime>
+    </File>
+    <File Include="bin/KGOOS_Web.dll">
+      <publishTime>05/22/2018 21:41:28</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>04/19/2018 10:21:16</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Mvc.FixedDisplayModes.dll">
+      <publishTime>04/19/2018 10:21:18</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>04/19/2018 10:21:14</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.dll">
+      <publishTime>07/09/2013 11:04:48</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>04/19/2018 10:21:18</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.WebRequest.dll">
+      <publishTime>07/09/2013 11:04:48</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>04/19/2018 10:21:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>04/19/2018 10:21:20</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>04/19/2018 10:21:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>04/19/2018 10:21:18</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>04/19/2018 10:21:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>04/19/2018 10:21:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>04/19/2018 10:21:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>04/19/2018 10:21:16</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Net.Http.Formatting.resources.dll">
+      <publishTime>04/19/2018 10:21:30</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Net.Http.resources.dll">
+      <publishTime>07/09/2013 11:34:42</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Net.Http.WebRequest.resources.dll">
+      <publishTime>07/09/2013 11:34:40</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Helpers.resources.dll">
+      <publishTime>04/19/2018 10:21:24</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Http.resources.dll">
+      <publishTime>04/19/2018 10:21:26</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Http.WebHost.resources.dll">
+      <publishTime>04/19/2018 10:21:28</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Mvc.resources.dll">
+      <publishTime>04/19/2018 10:21:26</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Razor.resources.dll">
+      <publishTime>04/19/2018 10:21:24</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Deployment.resources.dll">
+      <publishTime>04/19/2018 10:21:24</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Razor.resources.dll">
+      <publishTime>04/19/2018 10:21:24</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.resources.dll">
+      <publishTime>04/19/2018 10:21:24</publishTime>
+    </File>
+    <File Include="Common/dbSetting.xml">
+      <publishTime>05/22/2018 18:01:11</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>04/19/2018 10:21:10</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>04/19/2018 10:21:30</publishTime>
+    </File>
+    <File Include="Views/ConTran/ConAdress.cshtml">
+      <publishTime>05/20/2018 00:08:31</publishTime>
+    </File>
+    <File Include="Views/ConTran/ConTran.cshtml">
+      <publishTime>05/22/2018 19:37:42</publishTime>
+    </File>
+    <File Include="Views/ConTran/editGoods.cshtml">
+      <publishTime>05/16/2018 22:37:48</publishTime>
+    </File>
+    <File Include="Views/ConTran/InputGoods.cshtml">
+      <publishTime>05/22/2018 19:23:28</publishTime>
+    </File>
+    <File Include="Views/ConTran/MySelf.cshtml">
+      <publishTime>05/21/2018 16:28:34</publishTime>
+    </File>
+    <File Include="Views/ConTran/Order.cshtml">
+      <publishTime>05/11/2018 22:36:14</publishTime>
+    </File>
+    <File Include="Views/ConTran/PayFeight.cshtml">
+      <publishTime>05/15/2018 23:36:56</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>05/21/2018 15:04:34</publishTime>
+    </File>
+    <File Include="Views/Login/Login.cshtml">
+      <publishTime>05/14/2018 14:43:49</publishTime>
+    </File>
+    <File Include="Views/Login/Register.cshtml">
+      <publishTime>05/22/2018 17:29:34</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>04/19/2018 10:21:10</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>05/21/2018 22:07:55</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,423 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>註 冊</title>
+    <link rel="favicon" href="~/assets/images/favicon.png">
+    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css">
+    <!-- Custom styles for our template -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap-theme.css" media="screen">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="~/assets/layui/css/layui.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <meta http-equiv='content-type' content='text/html;charset=utf-8' />
+    <script type='text/javascript'>
+        var code; //在全局定义验证码
+
+        function createCode() {
+            code = "";
+            var codeLength = 4;//验证码的长度
+            var checkCode = document.getElementById("code");
+            var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+            'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');//随机数
+            for (var i = 0; i < codeLength; i++) {//循环操作
+                var index = Math.floor(Math.random() * 36);//取得随机数的索引（0~35）
+                code += random[index];//根据索引取得随机数加到code上
+            }
+            checkCode.value = code;//把code值赋给验证码
+        }
+        //校验验证码
+        function validate() {
+            var inputCode = document.getElementById("input").value.toUpperCase(); //取得输入的验证码并转化为大写
+            if (inputCode.length <= 0) { //若输入的验证码长度为0
+                //alert("请输入验证码！"); //则弹出请输入验证码
+                document.getElementById("IsTrue").innerHTML = '請輸入驗證碼';
+                document.getElementById("IsTrue").style.color = 'red';
+            } else if (inputCode != code) { //若输入的验证码与产生的验证码不一致时
+                //alert("验证码输入错误"); //则弹出验证码输入错误
+                document.getElementById("IsTrue").innerHTML = '錯誤';
+                document.getElementById("IsTrue").style.color = 'red';
+                createCode();//刷新验证码
+                document.getElementById("input").value = "";//清空文本框
+            } else { //输入正确时
+                //alert("合格！^-^");
+                document.getElementById("IsTrue").innerHTML = '正確';
+                document.getElementById("IsTrue").style.color = 'green';
+
+            }
+        }
+    </script>
+    <style type='text/css'>
+        #code {
+            font-family: Arial,宋体;
+            font-style: italic;
+            color: green;
+            border: 0;
+            padding: 2px 3px;
+            letter-spacing: 3px;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+<body onload='createCode()'>
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- Button for smallest screens -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="../../assets/images/logo.png" alt="Techro HTML5 template">
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav pull-right mainNav">
+                    <li><a href="index.html">主 頁</a></li>
+                    <li class="active"><a href="about.html" style="font-size:30px;">開始集運</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="price.html">Price</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="sidebar-right.html">Right Sidebar</a></li>
+                            <li><a href="#">Dummy Link1</a></li>
+                            <li><a href="#">Dummy Link2</a></li>
+                            <li><a href="#">Dummy Link3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+    <!-- /.navbar -->
+
+    @*<header id="head" class="secondary">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <h1></h1>
+                </div>
+                <div class="col-sm-8">
+                    <h1 style="color:black">註 冊</h1>
+                </div>
+            </div>
+        </div>
+    </header>*@
+
+    <!-- container -->
+    <div class="container">
+        <div class="row" style="margin-top:15%;">
+            <!-- Article content -->
+            <div class="col-sm-2">
+                <h1></h1>
+            </div>
+            <section class="col-sm-8 maincontent" style="text-align:center; background-color:white;">
+                <form class="form-horizontal" id="CommonForm" method="post" action="#">
+                    <div class="form-group form-group-lg">
+                        @*<label class="col-sm-8 control-label"><h1>登入您的賬戶</h1></label>*@
+                        <h1>註冊</h1>
+                    </div>
+                    <div class="form-group form-group-lg" style="margin-top:5%;">
+                        <label class="col-sm-2 control-label" for="name">會員名</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" id="name" placeholder="請輸入會員名(必填)">
+                        </div>
+                    </div>
+                    <div class="form-group form-group-lg" style="display:none;" id="lab_name">
+                        <label class="col-sm-2 control-label"></label>
+                        <label class="col-sm-8 control-label" style="color:red;text-align:left;">* 請輸入會員名</label>
+                    </div>
+                    <div class="form-group form-group-lg" style="margin-top:5%">
+                        <label class="col-sm-2 control-label" for="password">密碼</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="password" id="password" placeholder="請輸入密碼(必填)">
+                        </div>
+                    </div>
+                    <div class="form-group form-group-lg" style="display:none;" id="lab_password">
+                        <label class="col-sm-2 control-label"></label>
+                        <label class="col-sm-8 control-label" style="color:red;text-align:left;">* 請輸入密碼</label>
+                    </div>
+
+                    <div class="form-group form-group-lg" style="margin-top:5%">
+                        <label class="col-sm-2 control-label" for="password1">確認密碼</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="password" id="password1" placeholder="請確認入密碼(必填)">
+                        </div>
+                    </div>
+                    <div class="form-group form-group-lg" style="display:none;" id="lab_password1">
+                        <label class="col-sm-2 control-label"></label>
+                        <label class="col-sm-8 control-label" style="color:red;text-align:left;">* 密碼不一致</label>
+                    </div>
+                    <div class="form-group form-group-lg" style="margin-top:5%;">
+                        <label class="col-sm-2 control-label" for="email">郵箱地址@*<span style="color:red">*必填</span>*@</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" id="email" placeholder="請輸入郵箱(必填)">
+                        </div>
+                    </div>
+                    <div class="form-group form-group-lg" style="display:none;" id="lab_email">
+                        <label class="col-sm-2 control-label"></label>
+                        <label class="col-sm-8 control-label" style="color:red;text-align:left;">* 請輸入郵箱</label>
+                    </div>
+                    <div class="form-group form-group-lg" style="margin-top:5%">
+                        <label class="col-sm-2 control-label" for="id">淘寶ID</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" id="id" placeholder="請輸入淘寶ID">
+                        </div>
+                    </div>
+                    <div class="form-group form-group-lg" style="margin-top:5%">
+                        <label class="col-sm-2 control-label" for="phone">聯繫方式</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" id="phone" placeholder="請輸入手機號">
+                        </div>
+                    </div>
+                    <div class="form-group form-group-lg" style="margin-top:5%">
+                        <label class="col-sm-2 control-label" for="input">驗證碼</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" id="input">                 
+                        </div>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="button" id="code" onclick="createCode()" title='点击更换验证码' />
+                        </div>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="button" value="验证" onclick="validate()" />
+                        </div>
+                        <label class="col-sm-2 control-label" id="IsTrue" style="text-align:left"></label>
+                    </div>
+                    <div>
+                       
+                    </div>
+
+
+                    <div class="form-group form-group-lg" style="margin-top:5%">
+                        <label class="col-sm-2 control-label" for="friendId">推薦人ID</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" id="friendId" placeholder="請輸入推薦人ID">
+                        </div>
+                    </div>
+                    <div class="form-group form-group-lg" style="margin-top:1%;text-align:left;width:100%">
+                        <label class="col-sm-2 control-label"></label>
+                        <button type="button" class="btn btn-danger btn-lg" onclick="submitRegister()">提交</button>
+                        @*<input class="btn btn-danger btn-lg" type="submit" id="submit" value="登錄賬戶"
+                            onclick="submitLogin">*@
+                    </div>
+                    <div class="form-group form-group-lg" style="text-align:right;width:100%">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-8">
+                            <a href="../Login/Login"><h5>已有賬號，前往登錄</h5></a>
+                        </div>
+                    </div>
+                </form>
+
+            </section>
+        </div>
+    </div>
+    <!-- /container -->
+
+
+
+    <footer id="footer">
+        <div class="container">
+            <div class="social text-center">
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-dribbble"></i></a>
+                <a href="#"><i class="fa fa-flickr"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+            </div>
+
+            <div class="clear"></div>
+            <!--CLEAR FLOATS-->
+        </div>
+        <div class="footer2">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6 panel">
+                        <div class="panel-body">
+                            <p class="simplenav">
+                                <a href="index.html">Home</a> |
+                                <a href="about.html">About</a> |
+                                <a href="services.html">Services</a> |
+                                <a href="price.html">Price</a> |
+                                <a href="projects.html">Projects</a> |
+                                <a href="contact.html">Contact</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 panel">
+                        <div class="panel-body">
+                            <p class="text-right">
+                                Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /row of panels -->
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+    <script src="~/assets/js/modernizr-latest.js"></script>
+
+    <script type='text/javascript' src='~/assets/js/jquery.min-login.js'></script>
+    <script type='text/javascript' src='~/assets/js/jquery.min.js'></script>
+    @*<script type='text/javascript' src='~/assets/js/fancybox/jquery.fancybox.pack.js'></script>
+        <script type='text/javascript' src='~/assets/js/jquery.mobile.customized.min.js'></script>
+        <script type='text/javascript' src='~/assets/js/jquery.easing.1.3.js'></script>
+        <script type='text/javascript' src='~/assets/js/camera.min.js'></script>*@
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+    <script src="~/assets/layui/layui.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#name").blur(function () {
+                nameCheck();
+            });
+            $("#password").blur(function () {
+                passwordCheck();
+            });
+            $("#password1").blur(function () {
+                password1Check();
+            });
+            $("#email").blur(function () {
+                emailCheck();
+            });
+        });
+
+        function nameCheck() {
+            var name = $("#name").val();
+            if (name == "") {
+                document.getElementById("lab_name").style.display = 'block';
+            } else {
+                document.getElementById("lab_name").style.display = 'none';
+            }
+        }
+        function passwordCheck() {
+            var password = $("#password").val();
+            if (password == "") {
+                document.getElementById("lab_password").style.display = 'block';
+            } else {
+                document.getElementById("lab_password").style.display = 'none';
+            }
+        }
+        function password1Check() {
+            var password = $("#password").val();
+            var password1 = $("#password1").val();
+            if (password != password1) {
+                document.getElementById("lab_password1").style.display = 'block';
+            } else {
+                document.getElementById("lab_password1").style.display = 'none';
+            }
+        }
+        function emailCheck() {
+            var email = $("#email").val();
+            if (email == "") {
+                document.getElementById("lab_email").style.display = 'block';
+            } else {
+                document.getElementById("lab_email").style.display = 'none';
+            }
+        }
+
+        function submitRegister() {
+            nameCheck();
+            passwordCheck();
+            password1Check();
+            emailCheck();
+
+            if (document.getElementById("lab_name").style.display == 'block' ||
+                document.getElementById("lab_password").style.display == 'block' ||
+                document.getElementById("lab_password1").style.display == 'block' ||
+                document.getElementById("lab_email").style.display == 'block')
+            {
+                return;
+            }
+            validate();
+            var isTrue = document.getElementById("IsTrue").innerHTML;
+            if (isTrue == '正確') {
+                var name = $('#name').val();
+                var password = $('#password').val();
+                var email = $('#email').val();
+                var id = $('#id').val();
+                var phone = $('#phone').val();
+                var friendId = $('#friendId').val();
+                $.post('../Login/inputRegister',
+                    { name: name, password: password, email: email, id: id, phone: phone, friendId: friendId },
+                    function (data) {
+                        if (data.code == 0) {
+                            window.location = '../ConTran/MySelf'
+                        }
+                        else if (data.code == 1) {
+                            layui.use('layer', function () {
+                                var layer = layui.layer;
+                                layer.msg(data.msg, {
+                                    icon: 2,
+                                    time: 2000
+                                });
+                                document.getElementById("name").value = "";
+                            });
+                            
+                        }
+                        else if (data.code == 2) {
+                            layui.use('layer', function () {
+                                var layer = layui.layer;
+                                layer.confirm(data.msg, { icon: 3, title: '提示' }, function (index) {
+                                    window.location = '../Login/Login'
+                                    layer.close(index);
+                                });
+                                document.getElementById("email").value = "";
+                            });
+
+                        }
+                        else if (data.code == 3) {
+                            layui.use('layer', function () {
+                                var layer = layui.layer;
+                                layer.confirm(data.msg, { icon: 3, title: '提示' }, function (index) {
+                                    window.location = '../Login/Login'
+                                    layer.close(index);
+                                });
+                                document.getElementById("phone").value = "";
+                            });
+                        }
+                        else {
+
+                        }
+                    });
+            } else {
+                layui.use('layer', function () {
+                    var layer = layui.layer;
+                    layer.msg('驗證碼錯誤，請重新輸入', {
+                        icon: 2,
+                        time: 2000
+                    });
+                });
+            }
+        }
+    </script>
+
+
+
+</body>
+
+</html>

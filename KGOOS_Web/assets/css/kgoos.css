@@ -104,6 +104,9 @@
     font-family: 宋体;
 
 }
+.f_s_12{
+    font-size:12px;
+}
 .f_s_20{
     font-size:20px;
     font-family: 宋体;
@@ -115,4 +118,8 @@
 .f_s_36{
     font-size:36px;
     font-family: 宋体;
+}
+
+.th_cen{
+    text-align:center;vertical-align:middle;
 }

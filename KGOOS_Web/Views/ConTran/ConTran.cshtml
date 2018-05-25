@@ -104,75 +104,60 @@
 
                     <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 ta_cen">
                         <form role="form">
+                            <input type="text" style="display:none" id="weightIdList" value="@ViewBag.weightIdList" readonly="readonly" />
+
                             <div class="form-group">
                                 <div class="col-lg-4 col-md-4 col-sm-8">
-                                    <label for="name">目的地</label>
-                                    <select class="form-control input-mg">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
+                                    <div id="div_Region" class="ma_top_30">
+                                        <select class=form-control>
+                                            <option>請選擇發往區域</option>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div class="col-lg-4 col-md-4 col-sm-8">
-                                    <label for="name">承運商</label>
-                                    <select class="form-control input-mg">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
+                                    <div id="div_Destination" class="ma_top_30">
+                                        <select class=form-control>
+                                            <option>請選擇目的地</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="ma_top_30 col-lg-12 col-md-12 col-sm-12">
                                 <table class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>勾選</th>
-                                            <th>序號</th>
-                                            <th>派件公司</th>
-                                            <th>計費重量</th>
-                                            <th>目的地</th>
-                                            <th>費用</th>
-                                            <th>備註&說明</th>
+                                            <th width="50px" style="text-align:center;vertical-align:middle;">勾選</th>
+                                            <th width="50px" style="text-align:center;vertical-align:middle;">序號</th>
+                                            <th width="150px" style="text-align:center;vertical-align:middle;">派件公司</th>
+                                            <th width="100px" style="text-align:center;vertical-align:middle;">計費重量</th>
+                                            <th width="80px" style="text-align:center;vertical-align:middle;">費用</th>
+                                            <th style="text-align:center;vertical-align:middle;">備註&說明</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox">
+                                    <tbody id="TB_ConList">
+                                        @*<tr>
+                                            <td style="text-align:center;vertical-align:middle;">
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
                                             </td>
-                                            <td>Bangalore</td>
-                                            <td>560001</td>
-                                            <td>Tanmay</td>
-                                            <td>Bangalore</td>
-                                            <td>560001</td>
-                                            <td>Tanmay</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tanmay</td>
-                                            <td>Bangalore</td>
-                                            <td>560001</td>
-                                            <td>Tanmay</td>
-                                            <td>Bangalore</td>
-                                            <td>560001</td>
-                                            <td>Tanmay</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tanmay</td>
-                                            <td>Bangalore</td>
-                                            <td>560001</td>
-                                            <td>Tanmay</td>
-                                            <td>Bangalore</td>
-                                            <td>560001</td>
-                                            <td>Tanmay</td>
-                                        </tr>
-                                    </tbody>
+                                            <td style="text-align:center;vertical-align:middle;">序號</td>
+                                            <td style="text-align:center;vertical-align:middle;">派件公司</td>
+                                            <td style="text-align:center;vertical-align:middle;">計費重量</td>
+                                            <td style="text-align:center;vertical-align:middle;">費用</td>
+                                            <td style="text-align:left;vertical-align:middle;">
+                                                奧斯卡大家昂克賽拉京東卡時間段克拉數據的卡拉是經典款
+                                            </td>
+                                        </tr>*@
+                                    </tbody>                                   
                                 </table>
-                            </div>   
+                            </div> 
+                            
+                            <input id="con_carrier" style="display:none" type="text">
+
+                            <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
+                                <button type="button" class="btn btn-danger btn-lg" onclick="inputConCarrier();">使用此承運商發件</button>
+                            </div>
                         </form>
                     </div>
 
@@ -232,6 +217,7 @@
     <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
     <script src="~/assets/js/modernizr-latest.js"></script>
     <script type='text/javascript' src='~/assets/js/jquery.min-login.js'></script>
+    <script type='text/javascript' src='~/assets/js/jquery.min.js'></script>
     @*<script type='text/javascript' src='~/assets/js/fancybox/jquery.fancybox.pack.js'></script>
         <script type='text/javascript' src='~/assets/js/jquery.mobile.customized.min.js'></script>
         <script type='text/javascript' src='~/assets/js/jquery.easing.1.3.js'></script>
@@ -240,63 +226,70 @@
     <script src="~/assets/js/custom.js"></script>
     <script src="~/assets/layui/layui.js"></script>
     <script>
-        function submitLogin() {
-            var name = $('#name').val();
-            var password = $('#password').val();
-            $.post('../Login/inputLogin', { name: name, password: password }, function (data) {
-                if (data.code == 0)
-                {
-                    window.location = '../Home/Index'
+        $(function () {
+            getToRegion();
+        });
+
+        function getToRegion() {
+            $.post('../ConTran/getToRegion', function (data) {
+                if (data == 0) {
                 }
-                else
-                {
-                    alert(data.msg);
+                else {
+                    $('#div_Region').html(data);
                 }
-
-                });
-        }
-
-        function xg_copy() {
-            document.getElementById("xg_div").style.display = "block";
-            $('.xg_address').select();
-            document.execCommand("copy", false, null);
-            document.getElementById("xg_div").style.display = "none";
-            layui.use('layer', function () {
-                var layer = layui.layer;
-                layer.msg('发往香港地址复制成功！', {
-                    icon: 1,
-                    time: 1000
-                });
             });
         }
 
-        function tw_copy() {
-            document.getElementById("tw_div").style.display = "block";
-            $('.tw_address').select();
-            document.execCommand("copy", false, null);
-            document.getElementById("tw_div").style.display = "none";
-            layui.use('layer', function () {
-                var layer = layui.layer;
-                layer.msg('发往台湾地址复制成功！', {
-                    icon: 1,
-                    time: 1000
-                });
+        function getDestination(region) {
+            $.post('../ConTran/getDestination', { region: region }, function (data) {
+                if (data == 0) {
+                }
+                else {
+                    $('#div_Destination').html(data);
+                }
+            });
+        }
+        
+        function Region_Change() {
+            var region = document.getElementById("region").value;
+            getDestination(region);
+        }
+
+        function Destination_Change() {
+            var region = document.getElementById("region").value;
+            var destination = document.getElementById("destination").value;
+            getConList(region, destination);
+        }
+
+        function getConList(region, destination) {
+            var weightIdList = $('#weightIdList').val();
+            $.post('../ConTran/getConList',
+                { region: region, destination: destination, weightIdList: weightIdList },
+                function (data) {
+
+                if (data == 0) {
+                }
+                else {
+                    $('#TB_ConList').html(data);
+                }
             });
         }
 
-        function other_copy() {
-            document.getElementById("other_div").style.display = "block";
-            $('.other_address').select();
-            document.execCommand("copy", false, null);
-            document.getElementById("other_div").style.display = "none";
-            layui.use('layer', function () {
-                var layer = layui.layer;
-                layer.msg('发往其他地址复制成功！', {
-                    icon: 1,
-                    time: 1000
-                });
-            });
+        function inputConCarrier() {
+            var weightIdList = $('#weightIdList').val();
+            
+
+            var radios = document.getElementsByName("optionsRadios");
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked == true) {
+                    i++;
+                    var conCarrierId = radios[--i].value;
+                }
+            }
+
+            window.location = '../ConTran/ConAdress?weightIdList=' + weightIdList + '&conCarrierId=' + conCarrierId;
         }
+
     </script>
 
 

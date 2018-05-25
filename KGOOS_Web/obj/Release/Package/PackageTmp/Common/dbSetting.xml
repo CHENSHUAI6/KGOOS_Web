@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dbconfig>
+  <db database="Db_Kgoos" default="true">
+    <Server>.</Server>
+    <uid>sa</uid>
+    <pwd>Aa123456</pwd>
+    <Timeout>600000</Timeout>
+  </db>
+</dbconfig>

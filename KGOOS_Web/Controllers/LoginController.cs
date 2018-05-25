@@ -23,6 +23,7 @@ namespace KGOOS_Web.Controllers
             return View();
         }
 
+        #region 登录判断
         /// <summary>
         /// 登录判断
         /// </summary>
@@ -36,7 +37,7 @@ namespace KGOOS_Web.Controllers
             {
                 string sql = "";
                 password = BaseClass1.md5(password, 32);
-                sql = "select t1.id_user, t1.id_name, phone_phone, email_user,pwd_user from t_user as t1 " +
+                sql = "select t1.id_user, t1.id_name, phone_phone, email_user,tb_user from t_user as t1 " +
                     "where t1.id_name = '" + name + "' " +
                     //"where (t1.id_name = '" + name + "' " +
                     //"or t1.phone_phone = '" + name + "' " +
@@ -50,6 +51,7 @@ namespace KGOOS_Web.Controllers
                     Session["name"] = ds.Tables[0].Rows[0][1];
                     Session["phone"] = ds.Tables[0].Rows[0][2];
                     Session["email"] = ds.Tables[0].Rows[0][3];
+                    Session["tb_User"] = ds.Tables[0].Rows[0][4];
                     return Json(new
                     {
                         code = 0,
@@ -71,7 +73,9 @@ namespace KGOOS_Web.Controllers
                 });
             }
         }
+        #endregion
 
+        #region 注册
         /// <summary>
         /// 注册
         /// </summary>
@@ -164,7 +168,8 @@ namespace KGOOS_Web.Controllers
                     msg = "系統繁忙，請稍後再試，" + e.Message
                 });
             }
-        } 
+        }
 
+        #endregion
     }
 }

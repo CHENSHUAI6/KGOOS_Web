@@ -93,6 +93,86 @@ namespace KGOOS_Web.Common
                 }
             }
             return string.Empty;
+        }      
+
+        /// <summary>
+        /// 根据区间锁定公式
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="W"></param>
+        /// <returns></returns>
+        public static string getWeight(DataTable dt, double W)
+        {
+            string weight = "";
+            double min_num = 0.0, max_num = 0.0;
+            string char1 = "", char2 = "";
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    min_num = 0.0;
+                    max_num = 0.0;
+                    char1 = "";
+                    char2 = "";
+
+                    min_num = double.Parse(dt.Rows[i]["min_num"].ToString());
+                    max_num = double.Parse(dt.Rows[i]["max_num"].ToString());
+                    char1 = dt.Rows[i]["char1"].ToString();
+                    char2 = dt.Rows[i]["char2"].ToString();
+
+                    if (char1.Equals("＜"))
+                    {
+                        if (W > min_num)
+                        {
+                            if (char2.Equals("＜"))
+                            {
+                                if (W < max_num)
+                                {
+                                    weight = "";
+                                    weight = dt.Rows[i]["formula"].ToString();
+
+                                    return weight;
+                                }
+                            }
+                            else if (char2.Equals("≤"))
+                            {
+                                if (W <= max_num)
+                                {
+                                    weight = "";
+                                    weight = dt.Rows[i]["formula"].ToString();
+                                    return weight;
+                                }
+                            }
+                        }
+                    }
+                    else if (char1.Equals("≤"))
+                    {
+                        if (W >= min_num)
+                        {
+                            if (char2.Equals("＜"))
+                            {
+                                if (W < max_num)
+                                {
+                                    weight = "";
+                                    weight = dt.Rows[i]["formula"].ToString();
+                                    return weight;
+                                }
+                            }
+                            else if (char2.Equals("≤"))
+                            {
+                                if (W <= max_num)
+                                {
+                                    weight = "";
+                                    weight = dt.Rows[i]["formula"].ToString();
+                                    return weight;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+            return "";
         }
     }
 }
