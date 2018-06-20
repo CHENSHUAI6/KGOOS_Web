@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>查看订单&付款</title>
+    <title>收貨地址維護</title>
     <link rel="favicon" href="~/assets/images/favicon.png">
     <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
@@ -82,9 +82,9 @@
                     <h3>開始集運</h3>
                     <ul class="nav nav-pills nav-stacked">
                         <li><a href="~/ConTran/MySelf"><h4>大陸倉庫專屬地址</h4></a></li>
-                        <li><a href="~/ConTran/InputGoods"><h4>货物登記&集運</h4></a></li>
-                        <li><a href="~/ConTran/Order" class="bc_pink"><h4 class="c_white f_s_20">查看订单&付款</h4></a></li>
-                        <li><a href="#"><h4>物流跟踪</h4></a></li>
+                        <li><a href="~/ConTran/InputGoods"> <h4>货物登記&集運</h4></a></li>
+                        <li><a href="~/ConTran/Order"><h4>查看订单&付款</h4></a></li>
+                        <li><a href="~/ConTran/UserAdress" class="bc_pink"><h4 class="c_white f_s_20">收貨地址維護</h4></a></li>
                     </ul>
                     <h3>用戶中心</h3>
                     <ul class="nav nav-pills nav-stacked">
@@ -99,95 +99,30 @@
 
                 <div class="col-lg-8 col-md-8 col-sm-12 con_right">
                     <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                        <h1 class="ma_top_10 col-lg-12 col-md-12 col-sm-12"><span class="c_deepPink f_w_bold">查看订单&付款</span></h1>
+                        <h1 class="ma_top_10 col-lg-10 col-md-10 col-sm-10"><span class="c_deepPink f_w_bold">收貨地址維護</span></h1>
                     </div>
 
+                    <div id="UserAdress" class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 f_s_20">
+                        @*<div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                    陈虹宇-132********<br />
+                                    四川省-成都市-双流区-四川省成都市双流区 四川省成都市双流区
+                                </label>
 
-                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 ta_left" id="Div_Order">
-
-                        @*<div class="col-lg-12 col-md-12 col-sm-12">
-                            <hr style="width:100%;" />
-                        </div>
-
-                        <div class="form-group">
-                            <h3 class="ma_top_20 col-lg-7 col-md-7 col-sm-7 f_w_bold ">
-                                集運訂單號:
-                                <span class=" f_w_bold">123456789012</span>
-                            </h3>
-                            <h3 class="ma_top_20 col-lg-5 col-md-5 col-sm-5 f_w_bold ">
-                                費用:
-                                <span class="c_red f_w_bold">2002.98 元</span>
-                            </h3>
-                        </div>
-
-                        <div class="form-group">
-                            <h3 class="ma_top_20 col-lg-6 col-md-6 col-sm-6 f_w_bold ">
-                                時間:
-                                <span class=" f_w_bold">2018-05-11 16:51:26</span>
-                            </h3>
-
-                            <h3 class="ma_top_20 col-lg-6 col-md-6 col-sm-6 f_w_bold c_green">
-                                未付款
-                                <button data-method="notice" type="button"
-                                        class="btn btn-danger btn-sm"
-                                        onclick="ok();"style="display:inline">
-                                    前往付款
-                                </button>
-                            </h3>
-                        </div>
-
-                        <div class="form-group">
-                            <h3 class="ma_top_10 col-lg-12 col-md-12 col-sm-12 f_w_bold ">
-                                收貨地址:
-                                <span class="f_s_20">陈虹宇-13251850032</span>
-                            </h3>
-
-                            <h3 class="ma_top_10 col-lg-12 col-md-12 col-sm-12 f_w_bold f_s_20">四川省-成都市-双流区-四川省成都市双流区 四川省成都市双流区</h3>
-                        </div>
-
-                        <div class="form-group">
-                            <h3 class="ma_top_20 col-lg-12 col-md-12 col-sm-12 f_w_bold ">
-                                已申請/已發貨
-                                <span class="f_s_20 ma_left_20">順風快遞+123456789012343（快遞單號）</span>
-
-                                <button data-method="notice" type="button"
-                                        class="btn btn-danger btn-sm"
-                                        onclick="ok();">
-                                    查詢
-                                </button>
-                            </h3>
-
-
-
-                        </div>
-
-                        <div class="ma_top_20 col-lg-12 col-md-12 col-sm-12">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>序號</th>
-                                        <th>倉庫</th>
-                                        <th>單號</th>
-                                        <th>物品名稱</th>
-                                        <th>到件時間</th>
-                                        <th>計費重量</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>倉庫</td>
-                                        <td>單號</td>
-                                        <td>物品名稱</td>
-                                        <td>到件時間</td>
-                                        <td>計費重量</td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>*@
+                            </div>*@
 
                     </div>
+
+                    <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
+                        <button type="button" class="btn btn-danger " onclick="createAdress()">新增</button>
+                    </div>
+                    <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
+                        <button type="button" class="btn btn-danger " onclick="updateAdress()">修改</button>
+                    </div>
+                    <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
+                        <button type="button" class="btn btn-danger " onclick="deleteAdress()">刪除</button>
+                    </div>          
 
                 </div>
             </div>
@@ -246,37 +181,74 @@
     <script src="~/assets/js/modernizr-latest.js"></script>
     <script type='text/javascript' src='~/assets/js/jquery.min-login.js'></script>
     <script type='text/javascript' src='~/assets/js/jquery.min.js'></script>
-    @*<script type='text/javascript' src='~/assets/js/fancybox/jquery.fancybox.pack.js'></script>*@
-    @*<script type='text/javascript' src='~/assets/js/jquery.mobile.customized.min.js'></script>
-    <script type='text/javascript' src='~/assets/js/jquery.easing.1.3.js'></script>
-    <script type='text/javascript' src='~/assets/js/camera.min.js'></script>*@
+    @*<script type='text/javascript' src='~/assets/js/fancybox/jquery.fancybox.pack.js'></script>
+        <script type='text/javascript' src='~/assets/js/jquery.mobile.customized.min.js'></script>
+        <script type='text/javascript' src='~/assets/js/jquery.easing.1.3.js'></script>
+        <script type='text/javascript' src='~/assets/js/camera.min.js'></script>*@
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/custom.js"></script>
     <script src="~/assets/layui/layui.js"></script>
+    <script src="~/assets/js/kgoos.js"></script>
+
     <script>
         $(function () {
-            getOrder();
+            getUserAdress();
         });
 
-        function getOrder() {
-            $.post('../ConTran/getOrder',
-                function (data) {
-                    if (data == 0) {
-                    }
-                    else {
-                        $('#Div_Order').html(data);
-                    }
-                });
-            
+        function createAdress() {
+            window.location = '../ConTran/updateUserAdress?userAdressId=new';
         }
 
+        function updateAdress() {
+            var radios = document.getElementsByName("optionsRadios");
+            var userAdressId = '';
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked == true) {
+                    i++;
+                    userAdressId = radios[--i].value;
+                    //alert("你选中的是第" + i + "个单选框。值为：" + radios[--i].value);
+                }
+            }
+            window.location = '../ConTran/updateUserAdress?userAdressId=' + userAdressId;
+        }
 
+        function deleteAdress() {
+            var radios = document.getElementsByName("optionsRadios");
+            var userAdressId = '';
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked == true) {
+                    i++;
+                    userAdressId = radios[--i].value;
+                    //alert("你选中的是第" + i + "个单选框。值为：" + radios[--i].value);
+                }
+            }
 
+            $.post('../ConTran/deleteUserAdress', { userAdressId: userAdressId }, function (data) {
+                if (data.code == 0) {
+                    alert_layui(data.msg, 1);
+                    getUserAdress();
+                }
+                else {
+                    alert_layui(data.msg, 2);
+                }
+            });
+        }
+
+        function getUserAdress()
+        {
+            $.post('../ConTran/getUserAdress', function (data) {
+                if (data == 0) {
+                }
+                else {
+                    $('#UserAdress').html(data);
+                }
+            });
+        }
 
     </script>
 
 
 
 </body>
-
 </html>
+

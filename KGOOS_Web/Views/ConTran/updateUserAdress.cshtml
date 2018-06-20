@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>收貨地址</title>
+    <title>收貨地址維護</title>
     <link rel="favicon" href="~/assets/images/favicon.png">
     <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
@@ -82,9 +82,9 @@
                     <h3>開始集運</h3>
                     <ul class="nav nav-pills nav-stacked">
                         <li><a href="~/ConTran/MySelf"><h4>大陸倉庫專屬地址</h4></a></li>
-                        <li><a href="~/ConTran/InputGoods" class="bc_pink"><h4 class="c_white f_s_20">货物登記&集運</h4></a></li>
+                        <li><a href="~/ConTran/InputGoods"> <h4>货物登記&集運</h4></a></li>
                         <li><a href="~/ConTran/Order"><h4>查看订单&付款</h4></a></li>
-                        <li><a href="#"><h4>物流跟踪</h4></a></li>
+                        <li><a href="~/ConTran/UserAdress" class="bc_pink"><h4 class="c_white f_s_20">收貨地址維護</h4></a></li>
                     </ul>
                     <h3>用戶中心</h3>
                     <ul class="nav nav-pills nav-stacked">
@@ -97,37 +97,14 @@
                     </ul>
                 </div>
 
-                <input type="text" style="display:none" id="weightIdList" value="@ViewBag.weightIdList" readonly="readonly" />
-                <input type="text" style="display:none" id="conCarrierId" value="@ViewBag.conCarrierId" readonly="readonly" />
+                <input type="text" style="display:none" id="userAdressId" value="@ViewBag.userAdressId" readonly="readonly" />
 
                 <div class="col-lg-8 col-md-8 col-sm-12 con_right">
                     <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                        <h1 class="ma_top_10 col-lg-10 col-md-10 col-sm-10"><span class="c_deepPink f_w_bold"> step 3：請選擇您的收貨地址</span></h1>
+                        <h1 class="ma_top_10 col-lg-10 col-md-10 col-sm-10"><span class="c_deepPink f_w_bold">收貨地址維護</span></h1>
                     </div>
-
-                    <div id="UserAdress" class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 f_s_20">
-                        @*<div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                陈虹宇-132********<br />
-                                四川省-成都市-双流区-四川省成都市双流区 四川省成都市双流区
-                            </label>
-
-                        </div>*@
-                        
-                    </div>
-
-                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                        <button type="button" class="btn btn-danger btn-lg" onclick="inputAdress()">提交订单&付款</button>
-                    </div>
-
-
 
                     <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 ma_top_30">
-                        
-                        <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                            <h2 class="ma_top_10 col-lg-10 col-md-10 col-sm-10"><span class="c_deepPink f_w_bold">填寫新的地址作為收貨信息</span></h2>
-                        </div>
 
                         <form class="form-horizontal" id="CommonForm" method="post" action="#">
                             <table>
@@ -149,7 +126,7 @@
                                                 <option>請選擇區域</option>
                                             </select>
                                         </div>
-                                        
+
                                     </td>
                                     <td class="col-lg-4 col-md-4 col-sm-12">
                                         <div id="div_City" class="ma_top_30">
@@ -176,10 +153,10 @@
                                     </td>
                                 </tr>
                             </table>
-                            
+
                             <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                                <button type="button" class="btn btn-danger btn-lg" onclick="inputNewAdress()">使用新地址提交订单&付款</button>
-                            </div>                                                         
+                                <button type="button" class="btn btn-danger btn-lg" onclick="inputNewAdress()">保 存</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -246,12 +223,14 @@
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/custom.js"></script>
     <script src="~/assets/layui/layui.js"></script>
+    <script src="~/assets/js/kgoos.js"></script>
+
     <script>
-        $(function () {
-            getUserAdress();
+        $(function () {      
             getAdressRegion();
             getAdressCity();
             getAdressOther();
+            getOleAdress();
 
         });
 
@@ -261,7 +240,7 @@
                 if (data == 0) {
                 }
                 else {
-                    $('#div_Region').html(data);                  
+                    $('#div_Region').html(data);
                 }
             });
         }
@@ -314,7 +293,7 @@
             window.location = '../ConTran/PayFeight?weightIdList=' + weightIdList +
                 '&conCarrierId=' + conCarrierId + '&userAdressId=' + userAdressId;
 
-            
+
         }
 
         function inputNewAdress() {
@@ -322,8 +301,6 @@
             var adress_phone = $('#phone').val();
             var adress_tel = $('#tel').val();
             var adress_datail = $('#ta_detail').val();
-            var weightIdList = $('#weightIdList').val();
-            var conCarrierId = $('#conCarrierId').val();
 
             var adress_region = document.getElementById("region").value;
             var adress_city = document.getElementById("city").value;
@@ -369,39 +346,90 @@
                 return;
             }
 
-
-            $.post('../ConTran/inputUserAdress',
-                {adress_name:adress_name, adress_phone:adress_phone, adress_tel:adress_tel, 
-                adress_region:adress_region, adress_city:adress_city, adress_other:adress_other, 
-                adress_datail: adress_datail},
+            var userAdressId = $('#userAdressId').val();
+            if (userAdressId == 'new')
+            {
+                $.post('../ConTran/inputUserAdress',
+                {
+                    adress_name: adress_name, adress_phone: adress_phone, adress_tel: adress_tel,
+                    adress_region: adress_region, adress_city: adress_city, adress_other: adress_other,
+                    adress_datail: adress_datail
+                },
                 function (data) {
-
                     if (data.code == 0) {
-                        window.location = '../ConTran/PayFeight?weightIdList=' + weightIdList +
-                 '&conCarrierId=' + conCarrierId + '&userAdressId=' + data.address_id;
+                        window.location = '../ConTran/UserAdress';
                     }
                     else {
-                        layui.use('layer', function () {
-                            var layer = layui.layer;
-                            layer.msg(data.msg, {
-                                icon: 2,
-                                time: 2000
-                            });
-                        });
-
+                        alert_layui(data.msg, 2);
                     }
-            }); 
+                });
+            }
+            else
+            {
+                $.post('../ConTran/updateUserAdress',
+                {
+                    adress_name: adress_name, adress_phone: adress_phone, adress_tel: adress_tel,
+                    adress_region: adress_region, adress_city: adress_city, adress_other: adress_other,
+                    adress_datail: adress_datail, userAdressId: userAdressId
+                },
+                function (data) {
+                    if (data.code == 0) {
+                        window.location = '../ConTran/UserAdress';
+                    }
+                    else {
+                        alert_layui(data.msg, 2);
+                    }
+                });
+            }
+            
         }
 
-        function getUserAdress()
+        function getOleAdress()
         {
-            $.post('../ConTran/getUserAdress', function (data) {
-                if (data == 0) {
-                }
-                else {
-                    $('#UserAdress').html(data);
-                }
-            });
+            var userAdressId = $('#userAdressId').val();
+            if (userAdressId != 'new')
+            {
+                $.post('../ConTran/getUserAdressById', { userAdressId: userAdressId }, function (data) {
+                    if (data.code == 0) {
+                        $('#name').val(data.adress_name);
+                        $('#phone').val(data.adress_phone);
+                        $('#tel').val(data.adress_tel);
+                        $('#ta_detail').val(data.adress_datail);
+                        var adress_region = data.adress_region;
+                        var adress_city = data.adress_city;
+                        var adress_other = data.adress_other;
+
+                        $.post('../ConTran/getAdressRegion', function (data) {
+                            if (data == 0) {
+                            }
+                            else {
+                                $('#div_Region').html(data);
+                                document.getElementById("region").value = adress_region;
+                            }
+                        });
+                        
+                        $.post('../ConTran/getAdressCity', { adress_region: adress_region }, function (data) {
+                            if (data == 0) {
+                            }
+                            else {
+                                $('#div_City').html(data);
+                                document.getElementById("city").value = adress_city;
+                            }
+                        });
+                        $.post('../ConTran/getAdressOther', { adress_region: adress_region, adress_city: adress_city }, function (data) {
+                            if (data == 0) {
+                            }
+                            else {
+                                $('#div_Other').html(data);
+                                document.getElementById("other").value = adress_other;
+                            }
+                        });                        
+                    }
+                    else {
+                        alert_layui(data.msg, 2);
+                    }
+                });
+            }
         }
 
     </script>

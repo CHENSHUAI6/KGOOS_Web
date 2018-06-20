@@ -368,6 +368,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\kgoos.pubxml" />
+    <Content Include="Views\ConTran\UserAdress.cshtml" />
+    <Content Include="Views\ConTran\updateUserAdress.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

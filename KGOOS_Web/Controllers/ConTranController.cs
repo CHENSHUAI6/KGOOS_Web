@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,6 +28,7 @@ namespace KGOOS_Web.Controllers
             ViewBag.weightIdList = weightIdList;
             return View();
         }
+
         public ActionResult ConAdress(string weightIdList, string conCarrierId)
         {
             ViewBag.weightIdList = weightIdList;
@@ -34,8 +36,11 @@ namespace KGOOS_Web.Controllers
             return View();
         }
 
-        public ActionResult PayFeight()
+        public ActionResult PayFeight(string weightIdList, string conCarrierId, string userAdressId)
         {
+            ViewBag.weightIdList = weightIdList;
+            ViewBag.conCarrierId = conCarrierId;
+            ViewBag.userAdressId = userAdressId;
             return View();
         }
 
@@ -54,6 +59,17 @@ namespace KGOOS_Web.Controllers
         {
             return View();
         }
+
+        public ActionResult UserAdress()
+        {
+            return View();
+        }
+
+        public ActionResult updateUserAdress(string userAdressId)
+        {
+            ViewBag.userAdressId = userAdressId;
+            return View();
+        }     
 
         #region 获取用户基本信息
         /// <summary>
@@ -533,14 +549,17 @@ namespace KGOOS_Web.Controllers
         /// 付费弹窗
         /// </summary>
         /// <returns></returns>
-        public string getPopups()
+        public string getPopups(string weightIdList, string conCarrierId, string userAdressId, string lastFreight)
         {
             string html = "";
+            string OrderId = "";
+            OrderId = inputPackInfo(weightIdList, conCarrierId, userAdressId, lastFreight);
+
             html = 
                 "<div style='padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;'> " +
 
                     "<div style='text-align:center;'>您本次集運還需支付 " +
-                        "<span style='color: red; font-weight: bold;'>XX</span> " +
+                        "<span style='color: red; font-weight: bold;'>" + lastFreight + "</span> " +
                         "元。 " +
                     "</div>  " +
                     "<br><br> " +
@@ -553,7 +572,7 @@ namespace KGOOS_Web.Controllers
 
                     "<div style='text-align:center;'> " +
                         "您的集運訂單號為： " +
-                        "<span style='color: red; font-weight: bold;'>XXXXXXXX </span> " +
+                        "<span style='color: red; font-weight: bold;'>" + OrderId + " </span> " +
                         "<span style='padding-left: 30px; color: pink;'>請將此編號複製粘貼到淘寶付款留言里，以證明閣下已付款！</span> " + 
                     "</div> " +
                     "<br><br> " +
@@ -703,6 +722,7 @@ namespace KGOOS_Web.Controllers
                     return Json(new
                     {
                         code = 0,
+                        address_id = id,
                         msg = "操作成功！"
                     });
                 }
@@ -725,6 +745,112 @@ namespace KGOOS_Web.Controllers
                 });
             }
             
+        }
+        #endregion
+
+        #region 修改收货地址
+        [HttpPost]
+        public JsonResult updateUserAdress(string adress_name, string adress_phone, string adress_tel,
+            string adress_region, string adress_city, string adress_other, string adress_datail,
+            string userAdressId)
+        {
+            string sql = "";
+            DataSet ds = new DataSet();
+            string id = "";
+            id = userAdressId;
+            try
+            {
+                try
+                {
+                    tbId = Session["tb_User"].ToString();
+                    userId = Session["id"].ToString();
+                }
+                catch (Exception e0)
+                {
+                    tbId = "test";
+                    userId = "test";
+                }
+
+                sql = "update T_User_Adress set user_id = '{1}' , adress_name = '{2}', " +
+                    "adress_phone = '{3}', adress_tel = '{4}', adress_region = '{5}', " +
+                    "adress_city = '{6}', adress_other = '{7}', adress_datail = '{8}', " +
+                    "adress_note = '{9}' " +
+                    "where id = '{0}'";
+
+                sql = string.Format(sql, id, userId, adress_name, adress_phone, adress_tel, adress_region,
+                    adress_city, adress_other, adress_datail, "网页添加地址");
+                int n = 0;
+                n = DBClass.execUpdate(sql);
+                if (n > 0)
+                {
+                    return Json(new
+                    {
+                        code = 0,
+                        msg = "操作成功！"
+                    });
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        code = -1,
+                        msg = "系統繁忙，請稍後再試"
+                    });
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                return Json(new
+                {
+                    code = -1,
+                    msg = "系統繁忙，請稍後再試" + e.Message
+                });
+            }
+
+        }
+        #endregion
+
+        #region 刪除收货地址
+        [HttpPost]
+        public JsonResult deleteUserAdress(string userAdressId)
+        {
+            string sql = "";
+            try
+            {
+                sql = "delete t_user_adress where id = '" + userAdressId + "' ";
+
+                int n = 0;
+                n = DBClass.execUpdate(sql);
+                if (n > 0)
+                {
+                    return Json(new
+                    {
+                        code = 0,
+                        msg = "刪除成功！"
+                    });
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        code = -1,
+                        msg = "系統繁忙，請稍後再試"
+                    });
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                return Json(new
+                {
+                    code = -1,
+                    msg = "系統繁忙，請稍後再試" + e.Message
+                });
+            }
+
         }
         #endregion
 
@@ -784,6 +910,64 @@ namespace KGOOS_Web.Controllers
             }catch(Exception e)
             {
                 return e.Message;
+            }
+            
+        }
+        #endregion
+
+        #region 獲取用戶收貨地址根據ID
+        [HttpPost]
+        public JsonResult getUserAdressById(string userAdressId)
+        {
+            string sql = "";
+            DataSet ds = new DataSet();
+            try
+            {
+                sql = "select * from t_user_adress as t1 where t1.id = '" + userAdressId + "' ";
+
+                ds = DBClass.execQuery(sql);
+                DataTable dt = ds.Tables[0];
+
+                if (dt.Rows.Count == 1)
+                {
+                    string adress_name = dt.Rows[0]["adress_name"].ToString();
+                    string adress_phone = dt.Rows[0]["adress_phone"].ToString();
+                    string adress_tel = dt.Rows[0]["adress_tel"].ToString();
+                    string adress_region = dt.Rows[0]["adress_region"].ToString();
+                    string adress_city = dt.Rows[0]["adress_city"].ToString();
+                    string adress_other = dt.Rows[0]["adress_other"].ToString();
+                    string adress_datail = dt.Rows[0]["adress_datail"].ToString();
+         
+                    return Json(new
+                    {
+                        code = 0,
+                        adress_name = adress_name,
+                        adress_phone = adress_phone,
+                        adress_tel = adress_tel,
+                        adress_region = adress_region,
+                        adress_city = adress_city,
+                        adress_other = adress_other,
+                        adress_datail = adress_datail,
+                        msg = "操作成功！"
+                    });
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        code = -1,
+                        msg = "系統繁忙，請稍後再試"
+                    });
+                }
+
+                
+            }catch(Exception e)
+            {
+                return Json(new
+                {
+                    code = -1,
+                    msg = "系統繁忙，請稍後再試" + e.Message
+                });
             }
             
         }
@@ -1033,6 +1217,300 @@ namespace KGOOS_Web.Controllers
                 }
             }
             return "";
+        }
+        #endregion
+
+        #region 根据选中承运商获取快递费
+        [HttpPost]
+        public JsonResult getFeightByConId(string weightIdList, string conCarrierId, string userAdressId)
+        {
+            string sql = "";
+            DataSet ds = new DataSet();
+            float freight = 0;
+
+            try
+            {
+                sql = "select * from T_con_carrier as t1 where t1.id = '" + conCarrierId + "'; " +
+                    "select * from t_weight as t2 where t2.id in (" + weightIdList + ") ";
+
+                ds = DBClass.execQuery(sql);
+                DataTable dt = ds.Tables[0];
+                DataTable dt1 = ds.Tables[1];
+                float helf = 0;
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+                    helf += float.Parse(dt1.Rows[i]["Weight_Helf"].ToString());
+                }
+                freight = getFeight(conCarrierId, helf);
+
+                return Json(new
+                {
+                    code = 0,
+                    freight = freight,
+                    msg = "成功！"
+                }); 
+
+            }catch(Exception e)
+            {
+                return Json(new
+                {
+                    code = -1,
+                    msg = "系統繁忙，請稍後再試"
+                }); 
+            }
+            
+        }
+        #endregion
+
+        #region 打包信息写入数据库
+        public string inputPackInfo(string weightIdList, string conCarrierId, string userAdressId, string lastFreight)
+        {
+            string sql;
+            int n1 = 0, n2 = 0;
+            string orderId = "";
+            string Con_Express_Id = "";
+            SqlConnection conn = DBClass.getConnection();
+            SqlTransaction sqlTran = conn.BeginTransaction();
+            string time = "";
+            try
+            {
+                orderId = BaseClass1.getInsertMaxId("T_Order","id","000001");
+                time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                Con_Express_Id = orderId.Substring(2);
+                try
+                {
+                    tbId = Session["tb_User"].ToString();
+                    userId = Session["id"].ToString();
+                }
+                catch (Exception e0)
+                {
+                    tbId = "test";
+                    userId = "test";
+                }
+
+                sql = "insert into T_Order " +
+                    "(id,user_id,user_tb,con_carrier_id,user_adress_id,Freight,order_time,Con_Express_Id) " +
+                    "values " +
+                    "('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')";
+
+                sql = string.Format(sql, orderId, userId, tbId, conCarrierId, userAdressId, 
+                    lastFreight, time, Con_Express_Id);
+                
+
+                n1 = DBClass.execUpdate(conn, sqlTran, sql);
+
+                sql = "update t_weight set Weight_Type = 'D', Order_id = '" + orderId + "' " +
+                     "where id in (" + weightIdList + ");";
+
+                n2 = DBClass.execUpdate(conn, sqlTran, sql);
+
+                if (n1 > 0 && n2 > 0)
+                {
+                    sqlTran.Commit();
+                    return orderId;
+                }
+                else
+                {
+                    return "集运失败，请重试或联系管理员！";
+                }
+                
+                
+            }
+            catch (Exception e)
+            {
+                return "系統繁忙，請稍後再試 ——" + e.Message;
+            }          
+        }
+        #endregion
+
+        #region 订单页展示信息
+        public string getOrder()
+        {
+            string sql = "";
+            string _html = "";
+            DataSet ds = new DataSet();
+
+            string sql1 = "";
+            DataSet ds1 = new DataSet();
+            try
+            {
+                try
+                {
+                    tbId = Session["tb_User"].ToString();
+                    userId = Session["id"].ToString();
+                }
+                catch (Exception e0)
+                {
+                    tbId = "test";
+                    userId = "test";
+                }
+
+                sql = "select * from T_Order as t1 " +
+                    "join T_User_Adress as t2 on t2.id = t1.user_adress_id " + 
+                    "join T_con_carrier as t3 on t3.id = t1.con_carrier_id " +
+                    "where t1.user_id = '" + userId + "'";
+                ds = DBClass.execQuery(sql);
+                DataTable dt = ds.Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++ )
+                    {
+                        string phone = "";
+                        string isPay = "";
+                        string isPayColor = "";
+                        string isPayShow = "";
+                        string status = "";
+
+                        if (dt.Rows[i]["adress_phone"].ToString().Length > 0)
+                        {
+                            phone = dt.Rows[i]["adress_phone"].ToString();
+                        }
+                        else
+                        {
+                            phone = dt.Rows[i]["adress_tel"].ToString();
+                        }
+
+                        if (dt.Rows[i]["is_shipments"].ToString() == "Y")
+                        {
+                            status = "已发货";
+                        }
+                        else
+                        {
+                            status = "已申请";
+                        }
+
+                        if (dt.Rows[i]["is_pay"].ToString() == "Y")
+                        {
+                            isPay = "已付款";
+                            isPayColor = "c_green";
+                            isPayShow = "none";
+                        }
+                        else
+                        {
+                            isPay = "未付款";
+                            isPayColor = "c_red";
+                            isPayShow = "inline";
+                        }
+                        #region Header
+                        _html += "<div class='col-lg-12 col-md-12 col-sm-12'> " +
+                                "<hr style='width:100%;' /> " +
+                            "</div> " +
+
+                            "<div class='form-group'> " +
+                                "<h3 class='ma_top_20 col-lg-7 col-md-7 col-sm-7 f_w_bold '> " +
+                                    "集運訂單號: " +
+                                    "<span class='f_w_bold'>" + dt.Rows[i]["id"].ToString() + "</span> " +
+                                "</h3> " +
+                                "<h3 class='ma_top_20 col-lg-5 col-md-5 col-sm-5 f_w_bold'> " +
+                                    "費用: " +
+                                    "<span class='c_red f_w_bold'>" + dt.Rows[i]["Freight"].ToString() + " 元</span> " +
+                                "</h3> " +
+                            "</div> " +
+
+                            "<div class=form-group> " +
+                                "<h3 class='ma_top_20 col-lg-6 col-md-6 col-sm-6 f_w_bold'> " +
+                                    "時間: " +
+                                    "<span class='f_w_bold'>" + dt.Rows[i]["order_time"].ToString() + "</span> " +
+                                "</h3> " +
+
+                                "<h3 class='ma_top_20 col-lg-6 col-md-6 col-sm-6 f_w_bold " + isPayColor + "' >" +
+                                    isPay +
+                                    "<button data-method=notice type=button class='btn btn-danger btn-sm ma_left_20' " +
+                                            "onclick=ok(); style='display:" + isPayShow + "'> " +
+                                        "前往付款 " +
+                                    "</button> " +                    
+                                "</h3> " +
+                            "</div> " +
+
+                            "<div class=form-group> " +
+                                "<h3 class='ma_top_10 col-lg-12 col-md-12 col-sm-12 f_w_bold'> " +
+                                    "收貨地址: " +
+                                    "<span class=f_s_20>" + dt.Rows[i]["adress_name"].ToString() + "-" + phone + "</span> " +
+                                "</h3> " +
+
+                                "<h3 class='ma_top_10 col-lg-12 col-md-12 col-sm-12 f_w_bold f_s_20'>" +
+                                dt.Rows[i]["adress_region"].ToString() + "-" +
+                                dt.Rows[i]["adress_city"].ToString() + "-" +
+                                dt.Rows[i]["adress_other"].ToString() + "-" +
+                                dt.Rows[i]["adress_datail"].ToString() + "</h3> " +
+                            "</div> " +
+
+                            "<div class=form-group> " +
+                                "<h3 class='ma_top_20 col-lg-12 col-md-12 col-sm-12 f_w_bold'> " +
+                                    status +
+                                    "<span class='f_s_20 ma_left_20'>" + dt.Rows[i]["con_name"].ToString() + "-" +
+                                    dt.Rows[i]["Con_Express_Id"].ToString() + "</span> " +
+
+                                    "<button data-method=notice type=button class='btn btn-danger btn-sm' " +
+                                            "onclick=ok();> " +
+                                        "查詢 " +
+                                    "</button> " +
+                                "</h3> " +
+                            "</div> ";
+                        #endregion
+
+
+                        sql1 = "select * from t_weight as t1 " +
+                            "join T_Region as t2 on t2.Region_Id = t1.Weight_Region " +
+                            "where t1.Order_id = '" + dt.Rows[i][0].ToString() + "'";
+                        ds1 = DBClass.execQuery(sql1);
+                        DataTable dt1 = ds1.Tables[0];
+
+                        if (dt1.Rows.Count > 0)
+                        {
+                            #region item
+                            _html += "<div class='ma_top_20 col-lg-12 col-md-12 col-sm-12'> " +
+                                        "<table class='table table-striped table-bordered'> " +
+                                            "<thead> " +
+                                                "<tr> " +
+                                                    "<th>序號</th> " +
+                                                    "<th>倉庫</th> " +
+                                                    "<th>單號</th> " +
+                                                    "<th>物品名稱</th> " +
+                                                    "<th>到件時間</th> " +
+                                                    "<th>計費重量</th> " +
+                                                "</tr> " +
+                                            "</thead> " +
+                                            "<tbody> ";
+                            for (int j = 0; j < dt1.Rows.Count; j++)
+                            {
+                                string shortName = "";
+
+                                if (dt1.Rows[j]["Web_Goods_Name"].ToString().Length > 6)
+                                {
+                                    shortName = dt1.Rows[j]["Web_Goods_Name"].ToString().Substring(0, 6) + "...";
+                                }
+                                else
+                                {
+                                    shortName = dt1.Rows[j]["Web_Goods_Name"].ToString();
+                                }
+                                
+                                _html += "<tr> " +
+                                            "<td>" + j + "</td> " +
+                                            "<td>" + dt1.Rows[j]["Region_Name"].ToString() + "</td> " +
+                                            "<td>" + dt1.Rows[j]["Weight_ConID"].ToString() + "</td> " +
+                                            "<td>" + shortName + "</td> " +
+                                            "<td>" + dt1.Rows[j]["Weight_Time"].ToString() + "</td> " +
+                                            "<td>" + dt1.Rows[j]["Weight_Helf"].ToString() + "</td> " +
+                                         "</tr> ";
+                                
+                            }
+                            _html += "</tbody> " +
+                                        "</table> " +
+                                    "</div>";
+                                #endregion
+                        }
+
+                    }
+                        
+                }
+                
+
+            }catch (Exception e)
+            {
+                _html = e.Message;
+            }
+            return _html;
         }
         #endregion
     }

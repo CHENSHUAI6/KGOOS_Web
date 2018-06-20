@@ -25,7 +25,7 @@
       <publishTime>08/25/2014 22:23:46</publishTime>
     </File>
     <File Include="assets/css/kgoos.css">
-      <publishTime>05/16/2018 22:27:00</publishTime>
+      <publishTime>06/03/2018 18:06:46</publishTime>
     </File>
     <File Include="assets/css/style.css">
       <publishTime>10/26/2014 14:43:18</publishTime>
@@ -553,7 +553,7 @@
       <publishTime>04/03/2018 06:45:40</publishTime>
     </File>
     <File Include="bin/KGOOS_Web.dll">
-      <publishTime>05/22/2018 21:41:28</publishTime>
+      <publishTime>06/03/2018 22:59:35</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>04/19/2018 10:21:16</publishTime>
@@ -631,7 +631,7 @@
       <publishTime>04/19/2018 10:21:24</publishTime>
     </File>
     <File Include="Common/dbSetting.xml">
-      <publishTime>05/22/2018 18:01:11</publishTime>
+      <publishTime>05/22/2018 22:55:56</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>04/19/2018 10:21:10</publishTime>
@@ -640,25 +640,25 @@
       <publishTime>04/19/2018 10:21:30</publishTime>
     </File>
     <File Include="Views/ConTran/ConAdress.cshtml">
-      <publishTime>05/20/2018 00:08:31</publishTime>
+      <publishTime>06/03/2018 22:30:28</publishTime>
     </File>
     <File Include="Views/ConTran/ConTran.cshtml">
-      <publishTime>05/22/2018 19:37:42</publishTime>
+      <publishTime>06/03/2018 22:30:14</publishTime>
     </File>
     <File Include="Views/ConTran/editGoods.cshtml">
       <publishTime>05/16/2018 22:37:48</publishTime>
     </File>
     <File Include="Views/ConTran/InputGoods.cshtml">
-      <publishTime>05/22/2018 19:23:28</publishTime>
+      <publishTime>06/03/2018 22:29:57</publishTime>
     </File>
     <File Include="Views/ConTran/MySelf.cshtml">
-      <publishTime>05/21/2018 16:28:34</publishTime>
+      <publishTime>05/26/2018 12:16:35</publishTime>
     </File>
     <File Include="Views/ConTran/Order.cshtml">
-      <publishTime>05/11/2018 22:36:14</publishTime>
+      <publishTime>06/03/2018 22:58:08</publishTime>
     </File>
     <File Include="Views/ConTran/PayFeight.cshtml">
-      <publishTime>05/15/2018 23:36:56</publishTime>
+      <publishTime>06/03/2018 22:56:17</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>05/21/2018 15:04:34</publishTime>
