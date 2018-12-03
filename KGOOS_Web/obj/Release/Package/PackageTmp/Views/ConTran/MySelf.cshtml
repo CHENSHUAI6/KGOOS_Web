@@ -1,357 +1,207 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutContran.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>我的賬戶</title>
-    <link rel="favicon" href="~/assets/images/favicon.png">
-    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css">
-    <!-- Custom styles for our template -->
-    <link rel="stylesheet" href="~/assets/css/bootstrap-theme.css" media="screen">
-    <link rel="stylesheet" href="~/assets/css/style.css">
-    <link rel="stylesheet" href="~/assets/css/kgoos.css">
-    <link rel="stylesheet" href="~/assets/layui/css/layui.css">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="assets/js/html5shiv.js"></script>
-    <script src="assets/js/respond.min.js"></script>
-    <![endif]-->
-</head>
+<script>
+    $(function () {
+        build_active("li_2");
+        build_con_active("li_con_1");
+        getUserData();
+        getNum();
+    })
 
-<body>
-    <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <!-- Button for smallest screens -->
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a class="navbar-brand" href="index.html">
-                    <img src="../../assets/images/logo.png" alt="Techro HTML5 template">
-                </a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav pull-right mainNav">
-                    <li><a href="index.html">主 頁</a></li>
-                    <li class="active"><a href="about.html" style="font-size:30px;">開始集運</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="price.html">Price</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="sidebar-right.html">Right Sidebar</a></li>
-                            <li><a href="#">Dummy Link1</a></li>
-                            <li><a href="#">Dummy Link2</a></li>
-                            <li><a href="#">Dummy Link3</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
-        </div>
+    function getUserData() {
+        $.post('../ConTran/getUserData', function (data) {
+            if (data.code == 0) {
+                $('#integral').html(data.integral);
+                $('#coupon').html(data.coupon);
+                $('#k_con').html(data.k_con);
+            }
+            else {
+                alert_layui(data.msg, 2);
+            }
+        });
+    }
+
+    function getNum() {
+        $.post('../ConTran/getNum', function (data) {
+            if (data.code != 0) {
+                alert_layui(data.msg, 1, 200);
+            }
+        });
+    }
+
+    function xg_copy() {
+        document.getElementById("xg_div").style.display = "block";
+        $('.xg_address').select();
+        document.execCommand("copy", false, null);
+        document.getElementById("xg_div").style.display = "none";
+        alert_layui('发往香港地址复制成功！', 1);
+
+    }
+
+    function tw_copy() {
+        document.getElementById("tw_div").style.display = "block";
+        $('.tw_address').select();
+        document.execCommand("copy", false, null);
+        document.getElementById("tw_div").style.display = "none";
+        alert_layui('发往台湾地址复制成功！', 1);
+    }
+
+    function other_copy() {
+        document.getElementById("other_div").style.display = "block";
+        $('.other_address').select();
+        document.execCommand("copy", false, null);
+        document.getElementById("other_div").style.display = "none";
+        alert_layui('发往其他地址复制成功！', 1);
+    }
+
+</script>
+
+
+
+<div class="col-lg-8 col-md-8 col-sm-12 con_right">
+    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
+        <h1 class="ma_top_10">基本信息</h1>
     </div>
-    <!-- /.navbar -->
-    @*<header id="head" class="secondary">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <h1></h1>
-                    </div>
-                    <div class="col-sm-8">
-                        <h1 style="color:black">登 錄</h1>
-                    </div>
-                </div>
-            </div>
-        </header>*@
-
-    <!-- container -->
-    <div class="container">
-        <div class="fluid_container">
-            <div class="row" style="margin-top:15%;">
-                <!-- Article content -->
-                <div class="col-lg-3 col-md-3 col-sm-12 contran">
-                    <h3>開始集運</h3>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="~/ConTran/MySelf" class="bc_pink"><h4 class="c_white f_s_20">大陸倉庫專屬地址</h4></a></li>
-                        <li><a href="~/ConTran/InputGoods"><h4>货物登記&集運</h4></a></li>
-                        <li><a href="~/ConTran/Order"><h4>查看订单&付款</h4></a></li>
-                        <li><a href="#"><h4>物流跟踪</h4></a></li>
-                    </ul>
-                    <h3>用戶中心</h3>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#"><h4>基本信息管理</h4></a></li>
-                        <li><a href="#"><h4>優惠券</h4></a></li>
-                        <li><a href="#"><h4>個人積分</h4></a></li>
-                        <li><a href="#"><h4>兌換&充值</h4></a></li>
-                        <li><a href="#"><h4>推廣鏈接</h4></a></li>
-                        <li><a href="#"><h4>商業合作建議</h4></a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-8 col-md-8 col-sm-12 con_right">
-                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                        <h1 class="ma_top_10">基本信息</h1>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 ta_cen">
-                        <img src="~/assets/images/head.jpg"
-                             class="alignleft img-circle img-thumbnail notopmargin nobottommargin"
-                             alt="Avatar" style="width: 150px; height:150px;"><br />
-                        <span class="h3">@Session["name"], 您好</span>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <br />
-                        <div class="f_s_20">會員名: @Session["id"]</div>
-                        <div class="f_s_20 ma_top_10">淘寶ID: @Session["name"]</div>
-                        <div class="f_s_20 ma_top_10">積分: <span id="integral"></span></div>
-                        <div class="f_s_20 ma_top_10">優惠券: <span id="coupon"></span></div>
-                        <div class="f_s_20 ma_top_10">K幣: <span id="k_con"></span></div>
-                        @*<h3>會員名: tangli5210a</h3>
-                        <h3>淘寶ID: tangli5210a</h3>
-                        <h3>積分: 30 分</h3>
-                        <h3>優惠券: 3 張</h3>
-                        <h3>K幣: 60</h3>*@
-                    </div>
-
-                    <div class ="col-lg-12 col-md-12 col-sm-12">
-                        <hr style="width:100%;"/>
-                    </div>
-                    
-
-                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 ta_cen">
-                        <h1 class="ma_0">您的集運專屬倉地址</h1>
-                    </div>
-                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                        <h3 class="ma_0">發往香港</h3>
-                        <div class="form-group form-group-lg col-lg-2 col-md-2 col-sm-2 ma_top_10"></div>
-                        <div class="form-group form-group-lg col-lg-10 col-md-10 col-sm-10 ma_top_10">
-                            <table class="table table-bordered">
-                                @*<caption>边框表格布局</caption>*@
-                                <thead>
-                                    <tr>
-                                        <th>广东（省）</th>
-                                        <th>东莞（市）</th>
-                                        <th>虎门（镇)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="3" class="ta_left">
-                                            <div id="xg_address" class="col-lg-10 col-md-10 col-sm-10 ta_left ma_0 pad_0">广东省东莞市虎门镇赤岗堤围路8号快购香港会员编号-會員账号</div>        
-                                            <div id="xg_div" class="dis_none">
-                                                <input readonly="readonly" class="xg_address"
-                                                       type="text" value="广东省东莞市虎门镇赤岗堤围路8号快购香港会员编号-會員账号" />
-                                            </div>
-                                            <a href="javascript:void(0);" onclick="xg_copy()" class="c_red col-lg-2 col-md-2 col-sm-2 f_w_bold">copy</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>收件人：会员编号-快購</td>
-                                        <td>电话：18128042914</td>
-                                        <td>邮编：523900</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-
-                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                        <h3 class="ma_0">發往臺灣</h3>
-                        <div class="form-group form-group-lg col-lg-2 col-md-2 col-sm-2 ma_top_10"></div>
-                        <div class="form-group form-group-lg col-lg-10 col-md-10 col-sm-10 ma_top_10">
-                            <table class="table table-bordered">
-                                @*<caption>边框表格布局</caption>*@
-                                <thead>
-                                    <tr>
-                                        <th>广东（省）</th>
-                                        <th>东莞（市）</th>
-                                        <th>虎门（镇)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="3" class="ta_left">
-                                            <div class="col-lg-10 col-md-10 col-sm-10 ta_left ma_0 pad_0">广东省东莞市虎门镇赤岗堤围路8号快购香港会员编号-會員账号</div>
-                                            <div id="tw_div" class="dis_none">
-                                                <input readonly="readonly" class="tw_address"
-                                                       type="text" value="广东省东莞市虎门镇赤岗堤围路8号快购香港会员编号-會員账号" />
-                                            </div>
-                                            <a href="javascript:void(0);" onclick="tw_copy()" class="c_red col-lg-2 col-md-2 col-sm-2 f_w_bold">copy</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>收件人：会员编号-快購</td>
-                                        <td>电话：18128042914</td>
-                                        <td>邮编：523900</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-
-                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                        <h3 class="ma_0">發往海外其他地區</h3>
-                        <div class="form-group form-group-lg col-lg-2 col-md-2 col-sm-2 ma_top_10"></div>
-                        <div class="form-group form-group-lg col-lg-10 col-md-10 col-sm-10 ma_top_10">
-                            <table class="table table-bordered">
-                                @*<caption>边框表格布局</caption>*@
-                                <thead>
-                                    <tr>
-                                        <th>广东（省）</th>
-                                        <th>东莞（市）</th>
-                                        <th>虎门（镇)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="3" class="ta_left">
-                                            <div class="col-lg-10 col-md-10 col-sm-10 ta_left ma_0 pad_0">广东省东莞市虎门镇赤岗堤围路8号快购香港会员编号-會員账号</div>
-                                            <div id="other_div" class="dis_none">
-                                                <input readonly="readonly" class="other_address"
-                                                       type="text" value="广东省东莞市虎门镇赤岗堤围路8号快购香港会员编号-會員账号" />
-                                            </div>                                           
-                                            <a href="javascript:void(0);" onclick="other_copy()" class="c_red col-lg-2 col-md-2 col-sm-2 f_w_bold">copy</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>收件人：会员编号-快購</td>
-                                        <td>电话：18128042914</td>
-                                        <td>邮编：523900</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                  
-                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                        <h4 class="ma_0">溫馨提示：</h4>
-                        <span class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 ma_top_10">如購買大件商品或在同一店鋪購買多件商品，請確認賣家是否分多個快遞單號發出，如分多個快遞單號發出，請賣家務必告訴您單號并登記認領，以免貨物漏發！</span>
-                    </div>
-
-                </div>
-            </div>               
-        </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 ta_cen">
+        <img src="~/assets/images/head.jpg"
+             class="alignleft img-circle img-thumbnail notopmargin nobottommargin"
+             alt="Avatar" style="width: 150px; height:150px;"><br />
+        <span class="h3">@Session["name"], 您好</span>
     </div>
-    <!-- /container -->
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <br />
+        <div class="f_s_20">會員编号: @Session["id"]</div>
+        <div class="f_s_20 ma_top_10">淘寶ID: @Session["tb_User"]</div>
+        <div class="f_s_20 ma_top_10">積分: @Session["user_bp"] 分</div>
+        <div class="f_s_20 ma_top_10">優惠券: @Session["coupon"] 張</div>
+        <div class="f_s_20 ma_top_10">K幣: <span id="k_con"></span></div>
+        @*<h3>會員名: tangli5210a</h3>
+            <h3>淘寶ID: tangli5210a</h3>
+            <h3>積分: 30 分</h3>
+            <h3>優惠券: 3 張</h3>
+            <h3>K幣: 60</h3>*@
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <hr style="width:100%;" />
+    </div>
 
 
-
-    <footer id="footer">
-        <div class="container">
-            <div class="social text-center">
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-dribbble"></i></a>
-                <a href="#"><i class="fa fa-flickr"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
-            </div>
-
-            <div class="clear"></div>
-            <!--CLEAR FLOATS-->
+    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 ta_cen">
+        <h1 class="ma_0">您的集運專屬倉地址</h1>
+    </div>
+    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
+        <h3 class="ma_0">發往香港</h3>
+        <div class="form-group form-group-lg col-lg-2 col-md-2 col-sm-2 ma_top_10"></div>
+        <div class="form-group form-group-lg col-lg-10 col-md-10 col-sm-10 ma_top_10">
+            <table class="table table-bordered">
+                @*<caption>边框表格布局</caption>*@
+                <thead>
+                    <tr>
+                        <th>广东（省）</th>
+                        <th>东莞（市）</th>
+                        <th>虎门（镇)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3" class="ta_left">
+                            <div id="xg_address" class="col-lg-10 col-md-10 col-sm-10 ta_left ma_0 pad_0">广东省东莞市虎门镇赤岗堤围路8号快购香港-@Session["id"]-@Session["tb_User"]</div>
+                            <div id="xg_div" class="dis_none">
+                                <input readonly="readonly" class="xg_address"
+                                       type="text" value="广东省东莞市虎门镇赤岗堤围路8号快购香港-@Session["id"]-@Session["tb_User"]" />
+                            </div>
+                            <a href="javascript:void(0);" onclick="xg_copy()" class="c_red col-lg-2 col-md-2 col-sm-2 f_w_bold">copy</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>收件人：@Session["id"]-快購</td>
+                        <td>电话：18128042914</td>
+                        <td>邮编：523900</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="footer2">
-            <div class="container">
-                <div class="row">
 
-                    <div class="col-md-6 panel">
-                        <div class="panel-body">
-                            <p class="simplenav">
-                                <a href="index.html">Home</a> |
-                                <a href="about.html">About</a> |
-                                <a href="services.html">Services</a> |
-                                <a href="price.html">Price</a> |
-                                <a href="projects.html">Projects</a> |
-                                <a href="contact.html">Contact</a>
-                            </p>
-                        </div>
-                    </div>
+    </div>
 
-                    <div class="col-md-6 panel">
-                        <div class="panel-body">
-                            <p class="text-right">
-                                Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /row of panels -->
-            </div>
+    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
+        <h3 class="ma_0">發往臺灣</h3>
+        <div class="form-group form-group-lg col-lg-2 col-md-2 col-sm-2 ma_top_10"></div>
+        <div class="form-group form-group-lg col-lg-10 col-md-10 col-sm-10 ma_top_10">
+            <table class="table table-bordered">
+                @*<caption>边框表格布局</caption>*@
+                <thead>
+                    <tr>
+                        <th>广东（省）</th>
+                        <th>东莞（市）</th>
+                        <th>虎门（镇)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3" class="ta_left">
+                            <div class="col-lg-10 col-md-10 col-sm-10 ta_left ma_0 pad_0">广东省东莞市虎门镇赤岗堤围路8号快购台灣-@Session["id"]-@Session["tb_User"]</div>
+                            <div id="tw_div" class="dis_none">
+                                <input readonly="readonly" class="tw_address"
+                                       type="text" value="广东省东莞市虎门镇赤岗堤围路8号快购台灣-@Session["id"]-@Session["tb_User"]" />
+                            </div>
+                            <a href="javascript:void(0);" onclick="tw_copy()" class="c_red col-lg-2 col-md-2 col-sm-2 f_w_bold">copy</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>收件人：@Session["id"]-快購</td>
+                        <td>电话：18128042914</td>
+                        <td>邮编：523900</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </footer>
+
+    </div>
+
+    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
+        <h3 class="ma_0">發往海外其他地區</h3>
+        <div class="form-group form-group-lg col-lg-2 col-md-2 col-sm-2 ma_top_10"></div>
+        <div class="form-group form-group-lg col-lg-10 col-md-10 col-sm-10 ma_top_10">
+            <table class="table table-bordered">
+                @*<caption>边框表格布局</caption>*@
+                <thead>
+                    <tr>
+                        <th>广东（省）</th>
+                        <th>东莞（市）</th>
+                        <th>虎门（镇)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3" class="ta_left">
+                            <div class="col-lg-10 col-md-10 col-sm-10 ta_left ma_0 pad_0">广东省东莞市虎门镇赤岗堤围路8号快购海外-@Session["id"]-@Session["tb_User"]</div>
+                            <div id="other_div" class="dis_none">
+                                <input readonly="readonly" class="other_address"
+                                       type="text" value="广东省东莞市虎门镇赤岗堤围路8号快购海外-@Session["id"]-@Session["tb_User"]" />
+                            </div>
+                            <a href="javascript:void(0);" onclick="other_copy()" class="c_red col-lg-2 col-md-2 col-sm-2 f_w_bold">copy</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>收件人：@Session["id"]-快購</td>
+                        <td>电话：18128042914</td>
+                        <td>邮编：523900</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
+        <h4 class="ma_0">溫馨提示：</h4>
+        <span class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 ma_top_10">如購買大件商品或在同一店鋪購買多件商品，請確認賣家是否分多個快遞單號發出，如分多個快遞單號發出，請賣家務必告訴您單號并登記認領，以免貨物漏發！</span>
+    </div>
+
+</div>
 
 
-    <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-    <script src="~/assets/js/modernizr-latest.js"></script>
-    <script type='text/javascript' src='~/assets/js/jquery.min-login.js'></script>
-    <script type='text/javascript' src='~/assets/js/jquery.min.js'></script>
-    @*<script type='text/javascript' src='~/assets/js/fancybox/jquery.fancybox.pack.js'></script>
-        <script type='text/javascript' src='~/assets/js/jquery.mobile.customized.min.js'></script>
-        <script type='text/javascript' src='~/assets/js/jquery.easing.1.3.js'></script>
-        <script type='text/javascript' src='~/assets/js/camera.min.js'></script>*@
-    <script src="~/assets/js/bootstrap.min.js"></script>
-    <script src="~/assets/js/custom.js"></script>
-    <script src="~/assets/layui/layui.js"></script>
-    <script src="~/assets/js/kgoos.js"></script>
-    <script>
-
-        $(function () {
-            getUserData();
-        })
-
-        function getUserData() {
-            $.post('../ConTran/getUserData', function (data) {
-                if (data.code == 0) {
-                    $('#integral').html(data.integral);
-                    $('#coupon').html(data.coupon);
-                    $('#k_con').html(data.k_con);
-                }
-                else {
-                    alert_layui(data.msg, 2);
-                }
-
-            });
-        }
-
-        function xg_copy() {
-            document.getElementById("xg_div").style.display = "block";
-            $('.xg_address').select();
-            document.execCommand("copy", false, null);
-            document.getElementById("xg_div").style.display = "none";
-            alert_layui('发往香港地址复制成功！', 1);
-            
-        }
-
-        function tw_copy() {
-            document.getElementById("tw_div").style.display = "block";
-            $('.tw_address').select();
-            document.execCommand("copy", false, null);
-            document.getElementById("tw_div").style.display = "none";
-            alert_layui('发往台湾地址复制成功！', 1);
-        }
-
-        function other_copy() {
-            document.getElementById("other_div").style.display = "block";
-            $('.other_address').select();
-            document.execCommand("copy", false, null);
-            document.getElementById("other_div").style.display = "none";
-            alert_layui('发往其他地址复制成功！', 1);
-        }
-
-    </script>
-
-
-
-</body>
-</html>

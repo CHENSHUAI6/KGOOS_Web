@@ -118,6 +118,8 @@
     <Compile Include="Controllers\ConTranController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OtherController.cs" />
+    <Compile Include="Controllers\OtherHeadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -370,6 +372,14 @@
     <None Include="Properties\PublishProfiles\kgoos.pubxml" />
     <Content Include="Views\ConTran\UserAdress.cshtml" />
     <Content Include="Views\ConTran\updateUserAdress.cshtml" />
+    <Content Include="Views\Other\Coupon.cshtml" />
+    <Content Include="Views\Other\MyData.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\OtherHead\NewMessage.cshtml" />
+    <Content Include="Views\OtherHead\Education.cshtml" />
+    <Content Include="Views\OtherHead\Contact.cshtml" />
+    <Content Include="Views\OtherHead\Logistics.cshtml" />
+    <Content Include="Views\Shared\_LayoutContran.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutContran.cshtml";
+}
+
+<script>
+    $(function () {
+        build_active("li_2");
+        build_con_active("li_con_7");
+        getUserAdress();
+    });
+
+    function createAdress() {
+        window.location = '../ConTran/updateUserAdress?userAdressId=new';
+    }
+
+    function updateAdress() {
+        var radios = document.getElementsByName("optionsRadios");
+        var userAdressId = '';
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked == true) {
+                i++;
+                userAdressId = radios[--i].value;
+                //alert("你选中的是第" + i + "个单选框。值为：" + radios[--i].value);
+            }
+        }
+        window.location = '../ConTran/updateUserAdress?userAdressId=' + userAdressId;
+    }
+
+    function deleteAdress() {
+        var radios = document.getElementsByName("optionsRadios");
+        var userAdressId = '';
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked == true) {
+                i++;
+                userAdressId = radios[--i].value;
+                //alert("你选中的是第" + i + "个单选框。值为：" + radios[--i].value);
+            }
+        }
+
+        $.post('../ConTran/deleteUserAdress', { userAdressId: userAdressId }, function (data) {
+            if (data.code == 0) {
+                alert_layui(data.msg, 1);
+                getUserAdress();
+            }
+            else {
+                alert_layui(data.msg, 2);
+            }
+        });
+    }
+
+    function getUserAdress() {
+        $.post('../ConTran/getUserAdress', function (data) {
+            if (data == 0) {
+            }
+            else {
+                $('#UserAdress').html(data);
+            }
+        });
+    }
+
+</script>
+
+<div class="col-lg-8 col-md-8 col-sm-12 con_right">
+    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
+        <h1 class="ma_top_10 col-lg-10 col-md-10 col-sm-10"><span class="c_deepPink f_w_bold">收貨地址維護</span></h1>
+    </div>
+
+    <div id="UserAdress" class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 f_s_20">
+        @*<div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                    陈虹宇-132********<br />
+                    四川省-成都市-双流区-四川省成都市双流区 四川省成都市双流区
+                </label>
+
+            </div>*@
+
+    </div>
+
+    <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
+        <button type="button" class="btn btn-danger " onclick="createAdress()">新增</button>
+    </div>
+    <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
+        <button type="button" class="btn btn-danger " onclick="updateAdress()">修改</button>
+    </div>
+    <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
+        <button type="button" class="btn btn-danger " onclick="deleteAdress()">刪除</button>
+    </div>
+
+</div>

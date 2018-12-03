@@ -1,285 +1,110 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutContran.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>付款</title>
-    <link rel="favicon" href="~/assets/images/favicon.png">
-    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css">
-    <!-- Custom styles for our template -->
-    <link rel="stylesheet" href="~/assets/css/bootstrap-theme.css" media="screen">
-    <link rel="stylesheet" href="~/assets/css/style.css">
-    <link rel="stylesheet" href="~/assets/css/kgoos.css">
-    <link rel="stylesheet" href="~/assets/layui/css/layui.css">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="assets/js/html5shiv.js"></script>
-    <script src="assets/js/respond.min.js"></script>
-    <![endif]-->
-</head>
+<script>
+    $(function () {
+        build_active("li_2");
+        build_con_active("li_con_2");
+        getFreight();
+        getCoupon();
+    });
 
-<body>
-    <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <!-- Button for smallest screens -->
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a class="navbar-brand" href="index.html">
-                    <img src="../../assets/images/logo.png" alt="Techro HTML5 template">
-                </a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav pull-right mainNav">
-                    <li><a href="index.html">主 頁</a></li>
-                    <li class="active"><a href="about.html" style="font-size:30px;">開始集運</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="price.html">Price</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="sidebar-right.html">Right Sidebar</a></li>
-                            <li><a href="#">Dummy Link1</a></li>
-                            <li><a href="#">Dummy Link2</a></li>
-                            <li><a href="#">Dummy Link3</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
-        </div>
-    </div>
-    <!-- /.navbar -->
-    @*<header id="head" class="secondary">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <h1></h1>
-                    </div>
-                    <div class="col-sm-8">
-                        <h1 style="color:black">登 錄</h1>
-                    </div>
-                </div>
-            </div>
-        </header>*@
-
-    <!-- container -->
-    <div class="container">
-        <div class="fluid_container">
-            <div class="row" style="margin-top:15%;">
-                <!-- Article content -->
-                <div class="col-lg-3 col-md-3 col-sm-12 contran">
-                    <h3>開始集運</h3>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="~/ConTran/MySelf"><h4>大陸倉庫專屬地址</h4></a></li>
-                        <li><a href="~/ConTran/InputGoods" class="bc_pink"><h4 class="c_white f_s_20">货物登記&集運</h4></a></li>
-                        <li><a href="~/ConTran/Order"><h4>查看订单&付款</h4></a></li>
-                        <li><a href="#"><h4>物流跟踪</h4></a></li>
-                    </ul>
-                    <h3>用戶中心</h3>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#"><h4>基本信息管理</h4></a></li>
-                        <li><a href="#"><h4>優惠券</h4></a></li>
-                        <li><a href="#"><h4>個人積分</h4></a></li>
-                        <li><a href="#"><h4>兌換&充值</h4></a></li>
-                        <li><a href="#"><h4>推廣鏈接</h4></a></li>
-                        <li><a href="#"><h4>商業合作建議</h4></a></li>
-                    </ul>
-                </div>
-
-                <input type="text" style="display:none" id="weightIdList" value="@ViewBag.weightIdList" readonly="readonly" />
-                <input type="text" style="display:none" id="conCarrierId" value="@ViewBag.conCarrierId" readonly="readonly" />
-                <input type="text" style="display:none" id="userAdressId" value="@ViewBag.userAdressId" readonly="readonly" />
-                
-                <div class="col-lg-8 col-md-8 col-sm-12 con_right pad_top_30">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <span class="h3">您本次集運費用為 <span id="firstFreight" class="c_red f_w_bold">XX</span> 元</span>
-                    </div>
-
-                    <form role="form">
-                        <div class="col-lg-12 col-md-12 col-sm-12 pad_top_30">
-                            <div class="col-lg-3 col-md-3 col-sm-6">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">是否保價
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6">
-                                <input type="text" class="form-control" id="name" placeholder="請輸入保價金額">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-md-12 col-sm-12 pad_top_30">
-                            <div class="col-lg-3 col-md-3 col-sm-6">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">是否包稅
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-md-12 col-sm-12 pad_top_30">
-                            <div class="form-group col-lg-3 col-md-3 col-sm-6">
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                            <div class="checkbox col-lg-3 col-md-3 col-sm-6">
-                                <label for="name">使用優惠券</label>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-md-12 col-sm-12 pad_top_30">
-                            <div class="col-lg-3 col-md-3 col-sm-4">
-                                <input type="text" class="form-control" id="name" placeholder="請輸入积分">
-                            </div>
-                            <div class="checkbox col-lg-6 col-md-6 col-sm-8">
-                                <label for="name">使用積分   可用積分為  <span class="c_red f_w_bold">XX</span></label>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-md-12 col-sm-12 pad_top_30">
-                            <div class="col-lg-3 col-md-3 col-sm-4">
-                                <input type="text" class="form-control" id="name" placeholder="請輸入K幣">
-                            </div>
-                            <div class="checkbox col-lg-6 col-md-6 col-sm-8">
-                                <label for="name">使用K幣，您可使用的K幣為  <span class="c_red f_w_bold">XX</span></label>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-md-12 col-sm-12 pad_top_30">
-                            <span class="h3">您本次集運還需支付 <span id="lastFreight" class="c_red f_w_bold">XX</span> 元</span>
-                        </div>
-
-                        <div class="col-lg-12 col-md-12 col-sm-12 pad_top_30">
-                            <span class="h3">请按下宝贝链接，支付相应金额，如有任何问题，欢迎联系旺旺联系我们</span>
-                        </div>
-
-                        <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 pad_top_30">
-                            <button data-method="notice" type="button" class="btn btn-danger btn-lg"
-                                    onclick="upPay();">確認</button>
-                        </div>
-
-                    </form>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /container -->
-
-
-
-    <footer id="footer">
-        <div class="container">
-            <div class="social text-center">
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-dribbble"></i></a>
-                <a href="#"><i class="fa fa-flickr"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
-            </div>
-
-            <div class="clear"></div>
-            <!--CLEAR FLOATS-->
-        </div>
-        <div class="footer2">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-6 panel">
-                        <div class="panel-body">
-                            <p class="simplenav">
-                                <a href="index.html">Home</a> |
-                                <a href="about.html">About</a> |
-                                <a href="services.html">Services</a> |
-                                <a href="price.html">Price</a> |
-                                <a href="projects.html">Projects</a> |
-                                <a href="contact.html">Contact</a>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 panel">
-                        <div class="panel-body">
-                            <p class="text-right">
-                                Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /row of panels -->
-            </div>
-        </div>
-    </footer>
-
-
-    <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-    <script src="~/assets/js/modernizr-latest.js"></script>
-    <script type='text/javascript' src='~/assets/js/jquery.min-login.js'></script>
-    <script type='text/javascript' src='~/assets/js/jquery.min.js'></script>
-    @*<script type='text/javascript' src='~/assets/js/fancybox/jquery.fancybox.pack.js'></script>
-        <script type='text/javascript' src='~/assets/js/jquery.mobile.customized.min.js'></script>
-        <script type='text/javascript' src='~/assets/js/jquery.easing.1.3.js'></script>
-        <script type='text/javascript' src='~/assets/js/camera.min.js'></script>*@
-    <script src="~/assets/js/bootstrap.min.js"></script>
-    <script src="~/assets/js/custom.js"></script>
-    <script src="~/assets/layui/layui.js"></script>
-    <script src="~/assets/js/kgoos.js"></script>
-    <script>
-
-        $(function () {
-            getFreight();
+    function getCoupon() {
+        $.post('../ConTran/getCouponList', function (data) {
+            if (data == 0) {
+            }
+            else {
+                $('#div_Coupon').html(data);
+            }
+            
         });
+    }
 
-        function getFreight() {
-            var weightIdList = $('#weightIdList').val();
-            var conCarrierId = $('#conCarrierId').val();
-            //var userAdressId = $('#userAdressId').val();
-            $.post('../ConTran/getFeightByConId',
-                { weightIdList: weightIdList, conCarrierId: conCarrierId},
-                function (data) {
-
-                    if (data.code == 0) {
-                        $('#firstFreight').text(data.freight);
-                        $('#lastFreight').text(data.freight);
-                    }
-                    else {
-                        alert_layui(data.msg, 2);
-                    }
-                });
+    function lastFreight_Change() {
+        var firstFreight = parseFloat($('#firstFreight').text());
+        var lastFreight = firstFreight;
+        document.getElementById("support_lab").style.display = 'none';
+        document.getElementById("tax_lab").style.display = 'none';
+        $('#support_lab').text("保價手續費：0");
+        $('#tax_lab').text("包稅服務費為：0");
+        if ($('#support_check').is(':checked') && $('#support_value').val().length > 0) {
+            var support_value = parseFloat($('#support_value').val());
+            lastFreight = lastFreight + support_value * 0.05;
+            $('#support_lab').text("保稅價格為：" + (support_value * 0.05).toFixed(2));
+            document.getElementById("support_lab").style.display = 'block';
         }
-    </script>
+        if ($('#tax_check').is(':checked')) {
+            lastFreight = lastFreight + 15;
+            $('#tax_lab').text("包稅服務費為：15.00");
+            document.getElementById("tax_lab").style.display = 'block';
+        }
+        if (document.getElementById("coupon").value.length > 0) {
+            var coupon = document.getElementById("coupon").value;
+            var coupon_num_strs = new Array(); //定义一数组 
+            coupon_num_strs = coupon.split("?");
+            var coupon_num = parseFloat(coupon_num_strs[0]);
+            lastFreight = lastFreight - coupon_num;
+        }
+        $('#lastFreight').text(lastFreight.toFixed(2));
+    }
+    function getFreight() {
+        var weightIdList = $('#weightIdList').val();
+        var conCarrierId = $('#conCarrierId').val();
+        //var userAdressId = $('#userAdressId').val();
+        $.post('../ConTran/getFeightByConId',
+            { weightIdList: weightIdList, conCarrierId: conCarrierId },
+            function (data) {
 
-    <script>
-        function upPay() {
-            var weightIdList = $('#weightIdList').val();
-            var conCarrierId = $('#conCarrierId').val();
-            var userAdressId = $('#userAdressId').val();
-            var lastFreight = $('#lastFreight').text();
-            $.post('../ConTran/getPopups',
-                {
-                    weightIdList: weightIdList, conCarrierId: conCarrierId,
-                    userAdressId: userAdressId, lastFreight: lastFreight
-                },
-                function (data) {
+                if (data.code == 0) {
+                    $('#firstFreight').text(data.freight);
+                    $('#font_helf').val(data.helf);
+                    $('#lastFreight').text(data.freight);
+                }
+                else {
+                    alert_layui(data.msg, 2);
+                }
+            });
+    }
+</script>
+
+<script>
+    function upPay() {
+        var weightIdList = $('#weightIdList').val();
+        var conCarrierId = $('#conCarrierId').val();
+        var userAdressId = $('#userAdressId').val();
+        var lastFreight = $('#lastFreight').text();
+        var font_helf = $('#font_helf').val();
+        var coupon = document.getElementById("coupon").value;
+        var support = $('#support_lab').text();
+        var tax = $('#tax_lab').text();
+
+        var coupon_strs = new Array(); //定义一数组 
+        coupon_strs = coupon.split("?");
+        var coupon_id = coupon_strs[1];
+        var order_coupon = coupon_strs[0];
+
+        var support_strs = new Array(); //定义一数组 
+        support_strs = support.split("：");
+        var order_support = support_strs[1];
+
+        var tax_strs = new Array(); //定义一数组 
+        tax_strs = tax.split("：");
+        var order_tax = tax_strs[1];
+
+        var order_integral = 0;
+        var order_kb = 0;
+
+        $.post('../ConTran/getPopups',
+            {
+                weightIdList: weightIdList, conCarrierId: conCarrierId,
+                userAdressId: userAdressId, lastFreight: lastFreight,
+                font_helf: font_helf, coupon_id: coupon_id,
+                order_coupon: order_coupon, order_support: order_support, 
+                order_tax: order_tax, order_integral: order_integral, 
+                order_kb: order_kb
+            },
+            function (data) {
                 if (data == '') {
                 }
                 else {
@@ -299,13 +124,13 @@
                             var btn = layero.find('.layui-layer-btn');
                             btn.find('.layui-layer-btn0').attr({
                                 onclick: 'toOrder(' + lastFreight + ')'
-                              //, href: 'http://www.layui.com/'
+                                //, href: 'http://www.layui.com/'
                               , target: '_blank'
                             });
                         }
-                        ,btn2: function(index, layero){
+                        , btn2: function (index, layero) {
                             //按钮【按钮二】的回调
-    
+
                             //return false 开启该代码可禁止点击该按钮关闭
                             window.location = '../ConTran/Order';
                         }
@@ -313,30 +138,121 @@
                     });
                 }
             });
-        }
-    
-        function toOrder(lastFreight) {
-            window.location = '../ConTran/Order';
-            //alert('数据库出差，暂停提交，请稍等');
-            //var weightIdList = $('#weightIdList').val();
-            //var conCarrierId = $('#conCarrierId').val();
-            //var userAdressId = $('#userAdressId').val();
-            //$.post('../ConTran/inputPackInfo',
-            //    {
-            //        weightIdList: weightIdList, conCarrierId: conCarrierId,
-            //        userAdressId: userAdressId, lastFreight: lastFreight
-            //    },
-            //    function (data) {
-            //        if (data.code == 0) {
-            //            window.location = '../ConTran/Order';
-            //        }
-            //        else {
-            //            alert_layui(data.msg, 2);
-            //        }
-            //    });
-        }
-    </script>
+    }
+
+    function toOrder(lastFreight) {
+        window.location = '../ConTran/Order';
+        //alert('数据库出差，暂停提交，请稍等');
+        //var weightIdList = $('#weightIdList').val();
+        //var conCarrierId = $('#conCarrierId').val();
+        //var userAdressId = $('#userAdressId').val();
+        //$.post('../ConTran/inputPackInfo',
+        //    {
+        //        weightIdList: weightIdList, conCarrierId: conCarrierId,
+        //        userAdressId: userAdressId, lastFreight: lastFreight
+        //    },
+        //    function (data) {
+        //        if (data.code == 0) {
+        //            window.location = '../ConTran/Order';
+        //        }
+        //        else {
+        //            alert_layui(data.msg, 2);
+        //        }
+        //    });
+    }
+</script>
 
 
-</body>
-</html>
+
+<input type="text" style="display:none" id="weightIdList" value="@ViewBag.weightIdList" readonly="readonly" />
+<input type="text" style="display:none" id="conCarrierId" value="@ViewBag.conCarrierId" readonly="readonly" />
+<input type="text" style="display:none" id="userAdressId" value="@ViewBag.userAdressId" readonly="readonly" />
+<input type="text" style="display:none" id="font_helf" value="" readonly="readonly" />
+
+<div class="col-lg-8 col-md-8 col-sm-12 con_right pad_top_30">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <span class="h3">您本次集運費用為 <span id="firstFreight" class="c_red f_w_bold">XX</span> 元</span>
+    </div>
+
+    <form role="form">
+        <div class="col-lg-12 col-md-12 col-sm-12 pad_top_30">
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="checkbox">
+                    <label>
+                        <input id="support_check" type="checkbox" onchange="lastFreight_Change()">是否保價
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <input type="text" class="form-control" id="support_value" placeholder="請輸入保價金額"
+                       onchange="lastFreight_Change()">
+            </div>
+            <div class="checkbox col-lg-5 col-md-5 col-sm-6">
+                <label id="support_lab" style="color:red;display:none">保價手續費：0</label>
+            </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 pad_top_30">
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="tax_check" onchange="lastFreight_Change()">是否包稅
+                    </label>
+                </div>
+            </div>
+            <div class="checkbox col-lg-6 col-md-6 col-sm-6">
+                <label id="tax_lab" style="color:red;display:none">包稅服務費為：0</label>
+            </div>
+            @*<div class="col-lg-3 col-md-3 col-sm-6">
+                    <input type="text" class="form-control" id="tax_value" placeholder="請輸入包税金額"
+                           onchange="lastFreight_Change()">
+                </div>*@
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 pad_top_30">
+            <div class="form-group col-lg-6 col-md-6 col-sm-6" id="div_Coupon">
+                <select class=form-control>
+                    <option>請選擇優惠券</option>
+                </select>
+            </div>
+            <div class="checkbox col-lg-3 col-md-3 col-sm-6">
+                <label for="name">使用優惠券</label>
+            </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 pad_top_30">
+            <div class="col-lg-3 col-md-3 col-sm-4">
+                <input type="text" class="form-control" id="name" placeholder="請輸入积分">
+            </div>
+            <div class="checkbox col-lg-6 col-md-6 col-sm-8">
+                <label for="name">使用積分   可用積分為  <span class="c_red f_w_bold">XX</span></label>
+            </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 pad_top_30">
+            <div class="col-lg-3 col-md-3 col-sm-4">
+                <input type="text" class="form-control" id="name" placeholder="請輸入K幣">
+            </div>
+            <div class="checkbox col-lg-6 col-md-6 col-sm-8">
+                <label for="name">使用K幣，您可使用的K幣為  <span class="c_red f_w_bold">XX</span></label>
+            </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 pad_top_30">
+            <span class="h3">您本次集運還需支付 <span id="lastFreight" class="c_red f_w_bold">XX</span> 元</span>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 pad_top_30">
+            <span class="h3">请按下宝贝链接，支付相应金额，如有任何问题，欢迎联系旺旺联系我们</span>
+        </div>
+
+        <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 pad_top_30">
+            <button data-method="notice" type="button" class="btn btn-danger btn-lg"
+                    onclick="upPay();">
+                確認
+            </button>
+        </div>
+
+    </form>
+
+</div>

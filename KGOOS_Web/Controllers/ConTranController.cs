@@ -401,11 +401,10 @@ namespace KGOOS_Web.Controllers
                         }
 
                         _html += "<tr> " +
-                                    "<td>" + (i + 1).ToString() + "</td> " +
-                                    "<td><input type='checkbox' name='cb_Arrived' value='"+dt.Rows[i]["Id"].ToString()+"'></td> " +
+                                    "<td><input type='checkbox' name='cb_Arrived' value='" + dt.Rows[i]["Id"].ToString() + "'></td> " +
+                                    "<td>" + (i + 1).ToString() + "</td> " +                                  
                                     "<td>" + dt.Rows[i]["Region_Name"].ToString() + "</td> " +                                    
                                     "<td>" + dt.Rows[i]["Weight_ConID"].ToString() + "</td> " +
-
                                     "<td>" + "<a title='" + dt.Rows[i]["Web_Goods_Name"].ToString() + "'>" + shortName + "</td> " +
                                     "<td>" + dt.Rows[i]["Weight_Helf"].ToString() + "</td> " +
                                     "<td><a title='" + cs_Note + "'>" + size + "</a></td> " +
@@ -549,11 +548,14 @@ namespace KGOOS_Web.Controllers
         /// 付费弹窗
         /// </summary>
         /// <returns></returns>
-        public string getPopups(string weightIdList, string conCarrierId, string userAdressId, string lastFreight)
+        public string getPopups(string weightIdList, string conCarrierId, string userAdressId,
+            string lastFreight, string font_helf, string coupon_id, string order_coupon, 
+            string order_support, string order_tax, string order_integral, string order_kb)
         {
             string html = "";
             string OrderId = "";
-            OrderId = inputPackInfo(weightIdList, conCarrierId, userAdressId, lastFreight);
+            OrderId = inputPackInfo(weightIdList, conCarrierId, userAdressId, lastFreight, font_helf,
+                coupon_id, order_coupon, order_support, order_tax, order_integral, order_kb);
 
             html = 
                 "<div style='padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;'> " +
@@ -1246,6 +1248,7 @@ namespace KGOOS_Web.Controllers
                 return Json(new
                 {
                     code = 0,
+                    helf = helf,
                     freight = freight,
                     msg = "成功！"
                 }); 
@@ -1263,10 +1266,12 @@ namespace KGOOS_Web.Controllers
         #endregion
 
         #region 打包信息写入数据库
-        public string inputPackInfo(string weightIdList, string conCarrierId, string userAdressId, string lastFreight)
+        public string inputPackInfo(string weightIdList, string conCarrierId, string userAdressId,
+            string lastFreight, string font_helf, string coupon_id, string order_coupon, 
+            string order_support, string order_tax, string order_integral, string order_kb)            
         {
             string sql;
-            int n1 = 0, n2 = 0;
+            int n1 = 0, n2 = 0, n3 = 0;
             string orderId = "";
             string Con_Express_Id = "";
             SqlConnection conn = DBClass.getConnection();
@@ -1289,22 +1294,29 @@ namespace KGOOS_Web.Controllers
                 }
 
                 sql = "insert into T_Order " +
-                    "(id,user_id,user_tb,con_carrier_id,user_adress_id,Freight,order_time,Con_Express_Id) " +
+                    "(id,user_id,user_tb,con_carrier_id,user_adress_id,Freight,order_time,Con_Express_Id, " +
+                    "order_helf,order_coupon,order_support,order_tax,order_integral,order_kb) " +
                     "values " +
-                    "('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')";
+                    "('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}', " + 
+                    "'{11}','{12}','{13}')";
 
-                sql = string.Format(sql, orderId, userId, tbId, conCarrierId, userAdressId, 
-                    lastFreight, time, Con_Express_Id);
-                
+                sql = string.Format(sql, orderId, userId, tbId, conCarrierId, userAdressId,
+                    lastFreight, time, Con_Express_Id, font_helf,
+                    order_coupon, order_support, order_tax, order_integral, order_kb);               
 
                 n1 = DBClass.execUpdate(conn, sqlTran, sql);
 
-                sql = "update t_weight set Weight_Type = 'D', Order_id = '" + orderId + "' " +
+                sql = "update t_weight set Weight_Type = 'S', Order_id = '" + orderId + "' " +
                      "where id in (" + weightIdList + ");";
 
                 n2 = DBClass.execUpdate(conn, sqlTran, sql);
 
-                if (n1 > 0 && n2 > 0)
+                sql = "update T_User_Coupon set coupon_state = 'N' " +
+                     "where user_coupon_id = '" + coupon_id + "' ;";
+
+                n3 = DBClass.execUpdate(conn, sqlTran, sql);
+
+                if (n1 > 0 && n2 > 0 && n3 > 0)
                 {
                     sqlTran.Commit();
                     return orderId;
@@ -1348,7 +1360,8 @@ namespace KGOOS_Web.Controllers
                 sql = "select * from T_Order as t1 " +
                     "join T_User_Adress as t2 on t2.id = t1.user_adress_id " + 
                     "join T_con_carrier as t3 on t3.id = t1.con_carrier_id " +
-                    "where t1.user_id = '" + userId + "'";
+                    "where t1.user_id = '" + userId + "' " +
+                    "order by t1.order_time desc ";
                 ds = DBClass.execQuery(sql);
                 DataTable dt = ds.Tables[0];
                 if (dt.Rows.Count > 0)
@@ -1511,6 +1524,106 @@ namespace KGOOS_Web.Controllers
                 _html = e.Message;
             }
             return _html;
+        }
+        #endregion
+
+        #region 獲取已到件，未到件数量
+        /// <summary>
+        /// 獲取已到件，未到件数量
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult getNum()
+        {
+            string NoArriveNum = "", ArrivedNum = "";
+            string sql = "";
+            string userId = "";
+            DataSet ds = new DataSet();
+
+            try
+            {
+                userId = Session["id"].ToString();
+            }
+            catch (Exception e0)
+            {
+                userId = "test";
+            }
+
+            try
+            {
+                sql = "select count(*) from T_Weight as t1 " +
+                    " where t1.Web_UserId = '" + userId + "' " +
+                    " and t1.Weight_Type is null ; ";
+                sql += "select count(*) from T_Weight as t1 " +
+                    " where t1.Web_UserId = '" + userId + "' " +
+                    " and t1.Weight_Type = 'Y' ";
+                ds = DBClass.execQuery(sql);
+                NoArriveNum = ds.Tables[0].Rows[0][0].ToString();
+                ArrivedNum = ds.Tables[1].Rows[0][0].ToString();
+                Session["NoArriveNum"] = NoArriveNum;
+                Session["ArrivedNum"] = ArrivedNum;
+                return Json(new
+                {
+                    code = 0,
+                    NoArriveNum = NoArriveNum,
+                    ArrivedNum = ArrivedNum,
+                    msg = "成功！"
+                });
+            }
+            catch (Exception e)
+            {
+                return Json(new
+                {
+                    code = 0,
+                    msg = "系统错误：" + e.Message
+                });
+            }
+
+        }
+        #endregion
+
+        #region 优惠券列表
+        [HttpPost]
+        public string getCouponList()
+        {
+            string _html = "";
+            string sql = "";
+            string tbId = "", userId = "";
+            try
+            {
+                tbId = Session["tb_User"].ToString();
+                userId = Session["id"].ToString();
+            }
+            catch (Exception e0)
+            {
+                tbId = "test";
+                userId = "test";
+            }
+
+            sql = "select t2.coupon_name, t1.end_time, t2.coupon_num,  t1.user_coupon_id " + 
+                "from T_User_Coupon as t1 " +
+                "join T_Coupon as t2 on t2.coupon_id = t1.coupon_id " +
+                "where t1.user_id = '" + userId + "' " +
+                "and (t1.coupon_state = 'Y' or t1.coupon_state is null) " +
+                "order by t2.coupon_num desc, t1.end_time ";
+
+            DataSet ds = new DataSet();
+            ds = DBClass.execQuery(sql);
+            DataTable dt = new DataTable();
+            dt = ds.Tables[0];
+            _html = "<select class=form-control id=coupon onchange=lastFreight_Change()> " +
+                        "<option value=0 tag=0>請選擇優惠券</option> ";
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    _html += "<option value=" + dt.Rows[i][2].ToString() + "?" + dt.Rows[i][3].ToString() + ">" + 
+                        dt.Rows[i][0].ToString() + " 截止日期：" + dt.Rows[i][1].ToString() + "</option> ";
+                }
+            }
+            _html += "</select>";
+            return _html;
+           
         }
         #endregion
     }

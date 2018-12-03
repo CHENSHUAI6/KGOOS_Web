@@ -18,6 +18,16 @@
 .contran ul li a{
     color: gray; 
 }
+
+.contran li.active1{
+    color: white !important;
+    background-color: pink !important;
+}
+.contran li.active1 a{
+    color: white;
+    font-size: 20px;
+}
+
 .contran ul li a h3{
     margin: 0;
 }
@@ -25,7 +35,7 @@
     margin: 0;
 }
 .c_white{
-    color: white; 
+    color: white !important; 
 }
 .c_red{
     color: red; 
@@ -129,3 +139,58 @@
 .th_cen{
     text-align:center;vertical-align:middle;
 }
+/* 首页 最新消息 中部导航*/
+#myLinks .nav-stacked>li {
+    height: 50px;
+    font-size: 20px;
+}
+#latest .title-box{
+    font-size: 25px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+
+
+}
+#latest ul li{
+    overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+    margin-bottom: 10px;
+}
+#latest ul li a{
+    font-size:16px;
+}
+
+/* 首页 运费部分样式*/
+#myFreight h2{
+    font-size:25px;
+    margin-bottom:10px;
+    margin-left: 10px;
+
+}
+#myFreight .col-md-6{
+    padding:5px;
+    border:solid 3px #ddd;
+    border-radius: 10px;
+
+}
+
+/* 固定图标样式*/
+.fixed-bar{
+    position:fixed;
+    left:90%;
+    top:30%;
+    background-color:#fff;
+    border-radius: 10px;
+
+
+}
+.fixed-bar .text-center li{
+    margin-top:20px;
+
+}
+.fixed-bar .text-center li i{
+    font-size:50px;
+
+}
+

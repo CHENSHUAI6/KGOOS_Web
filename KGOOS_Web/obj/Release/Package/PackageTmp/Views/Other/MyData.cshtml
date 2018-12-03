@@ -1,0 +1,151 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutContran.cshtml";
+}
+
+<script>
+    $(function () {
+        build_active("li_2");
+        build_con_active("li_con_5");
+        getUserData();
+        getUserAdress();
+        getNum();
+    })
+
+    function getUserData() {
+        $.post('../ConTran/getUserData', function (data) {
+            if (data.code == 0) {
+                $('#integral').html(data.integral);
+                $('#coupon').html(data.coupon);
+                $('#k_con').html(data.k_con);
+            }
+            else {
+                alert_layui(data.msg, 2);
+            }
+
+        });
+    }
+
+    function getNum() {
+        $.post('../ConTran/getNum', function (data) {
+            if (data.code != 0) {
+                alert_layui(data.msg, 1, 200);
+            }
+        });
+    }
+
+    function createAdress() {
+        window.location = '../ConTran/updateUserAdress?userAdressId=new';
+    }
+
+    function updateAdress() {
+        var radios = document.getElementsByName("optionsRadios");
+        var userAdressId = '';
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked == true) {
+                i++;
+                userAdressId = radios[--i].value;
+                //alert("你选中的是第" + i + "个单选框。值为：" + radios[--i].value);
+            }
+        }
+        window.location = '../ConTran/updateUserAdress?userAdressId=' + userAdressId;
+    }
+
+    function deleteAdress() {
+        var radios = document.getElementsByName("optionsRadios");
+        var userAdressId = '';
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked == true) {
+                i++;
+                userAdressId = radios[--i].value;
+                //alert("你选中的是第" + i + "个单选框。值为：" + radios[--i].value);
+            }
+        }
+
+        $.post('../ConTran/deleteUserAdress', { userAdressId: userAdressId }, function (data) {
+            if (data.code == 0) {
+                alert_layui(data.msg, 1);
+                getUserAdress();
+            }
+            else {
+                alert_layui(data.msg, 2);
+            }
+        });
+    }
+
+    function getUserAdress() {
+        $.post('../ConTran/getUserAdress', function (data) {
+            if (data == 0) {
+            }
+            else {
+                $('#UserAdress').html(data);
+            }
+        });
+    }
+
+
+</script>
+
+
+
+    <div class="col-lg-8 col-md-8 col-sm-12 con_right">
+    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
+        <h1 class="ma_top_10">基本信息</h1>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 ta_cen">
+        <img src="~/assets/images/head.jpg"
+             class="alignleft img-circle img-thumbnail notopmargin nobottommargin"
+             alt="Avatar" style="width: 150px; height:150px;"><br />
+        <span class="h3">@Session["name"], 您好</span>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <br />
+        <div class="f_s_20">會員编号: @Session["id"]</div>
+        <div class="f_s_20 ma_top_10">淘寶ID: @Session["tb_User"]</div>
+        <div class="f_s_20 ma_top_10">積分: @Session["user_bp"]</div>
+        <div class="f_s_20 ma_top_10">優惠券: @Session["coupon"]</div>
+        <div class="f_s_20 ma_top_10">K幣: <span id="k_con"></span></div>
+        @*<h3>會員名: tangli5210a</h3>
+            <h3>淘寶ID: tangli5210a</h3>
+            <h3>積分: 30 分</h3>
+            <h3>優惠券: 3 張</h3>
+            <h3>K幣: 60</h3>*@
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <hr style="width:100%;" />
+    </div>
+
+
+    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 ta_cen">
+        <h1 class="ma_0">常用地址維護</h1>
+    </div>
+
+    <div id="UserAdress" class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 f_s_20">
+        @*<div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                    陈虹宇-132********<br />
+                    四川省-成都市-双流区-四川省成都市双流区 四川省成都市双流区
+                </label>
+
+            </div>*@
+
+    </div>
+
+    <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
+        <button type="button" class="btn btn-danger " onclick="createAdress()">新增</button>
+    </div>
+    <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
+        <button type="button" class="btn btn-danger " onclick="updateAdress()">修改</button>
+    </div>
+    <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
+        <button type="button" class="btn btn-danger " onclick="deleteAdress()">刪除</button>
+    </div>
+
+    @*<div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
+            <h4 class="ma_0">溫馨提示：</h4>
+            <span class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12 ma_top_10">如購買大件商品或在同一店鋪購買多件商品，請確認賣家是否分多個快遞單號發出，如分多個快遞單號發出，請賣家務必告訴您單號并登記認領，以免貨物漏發！</span>
+        </div>*@
+
+</div>
+

@@ -1,547 +1,398 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutContran.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>登記認領</title>
-    <link rel="favicon" href="~/assets/images/favicon.png">
-    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css">
-    <!-- Custom styles for our template -->
-    <link rel="stylesheet" href="~/assets/css/bootstrap-theme.css" media="screen">
-    <link rel="stylesheet" href="~/assets/css/style.css">
-    <link rel="stylesheet" href="~/assets/css/kgoos.css">
-    <link rel="stylesheet" href="~/assets/layui/css/layui.css">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="assets/js/html5shiv.js"></script>
-    <script src="assets/js/respond.min.js"></script>
-    <![endif]-->
-</head>
+<script>
+    $(function () {
+        build_active("li_2");
+        build_con_active("li_con_2");
+        getNum();
+    });
 
-<body>
-    <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <!-- Button for smallest screens -->
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a class="navbar-brand" href="index.html">
-                    <img src="../../assets/images/logo.png" alt="Techro HTML5 template">
-                </a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav pull-right mainNav">
-                    <li><a href="index.html">主 頁</a></li>
-                    <li class="active"><a href="about.html" style="font-size:30px;">開始集運</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="price.html">Price</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="sidebar-right.html">Right Sidebar</a></li>
-                            <li><a href="#">Dummy Link1</a></li>
-                            <li><a href="#">Dummy Link2</a></li>
-                            <li><a href="#">Dummy Link3</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
-        </div>
-    </div>
-    <!-- /.navbar -->
-    @*<header id="head" class="secondary">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <h1></h1>
-                    </div>
-                    <div class="col-sm-8">
-                        <h1 style="color:black">登 錄</h1>
-                    </div>
-                </div>
-            </div>
-        </header>*@
-
-    <!-- container -->
-    <div class="container">
-        <div class="fluid_container">
-            <div class="row" style="margin-top:15%;">
-                <!-- Article content -->
-                <div class="col-lg-3 col-md-3 col-sm-12 contran">
-                    <h3>開始集運</h3>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="~/ConTran/MySelf"><h4>大陸倉庫專屬地址</h4></a></li>
-                        <li><a href="~/ConTran/InputGoods" class="bc_pink"><h4 class="c_white f_s_20">货物登記&集運</h4></a></li>
-                        <li><a href="~/ConTran/Order"><h4>查看订单&付款</h4></a></li>
-                        <li><a href="#"><h4>物流跟踪</h4></a></li>
-                    </ul>
-
-                    <h3>用戶中心</h3>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#"><h4>基本信息管理</h4></a></li>
-                        <li><a href="#"><h4>優惠券</h4></a></li>
-                        <li><a href="#"><h4>個人積分</h4></a></li>
-                        <li><a href="#"><h4>兌換&充值</h4></a></li>
-                        <li><a href="#"><h4>推廣鏈接</h4></a></li>
-                        <li><a href="#"><h4>商業合作建議</h4></a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-8 col-md-8 col-sm-12 con_right">
-                    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
-                        <h1 class="ma_top_10 col-lg-10 col-md-10 col-sm-10"><span class="c_deepPink f_w_bold"> step 1：登記認領&集運</span></h1>
-                        <a href="javascript:void(0);" 
-                           class="ma_top_10 ta_left c_red col-lg-2 col-md-2 col-sm-2 f_w_bold">认领须知</a>
-
-                    </div>
-                      
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <ul id="myTab1" class="nav nav-pills">
-                            <li class="active"><a href="#inputThing" data-toggle="tab">登記物品</a></li>
-                            <li><a href="#NoArrive" onclick="getNoArrive();" data-toggle="tab">未到件</a></li>
-                            <li><a href="#Arrived" onclick="getArrived('All');" data-toggle="tab">已到件</a></li>
-                        </ul>
-
-                        <hr style="width:100%;" />
-
-                    </div>
-                    
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div id="myTab1Content" class="tab-content">
-                            <div class="tab-pane fade in active" id="inputThing">
-                                <section class="col-lg-12 col-md-12 col-sm-12 maincontent" style="text-align:center; background-color:white;">
-                                    <form class="form-horizontal" id="CommonForm" method="post" action="#">
-                                        <div class="form-group form-group-lg" style="margin-top:5%;text-align:right;width:100%">
-                                            <label class="col-sm-2 control-label"></label>
-                                            <div class="col-sm-10">
-                                                <a class="c_red" href="../Login/Register"><h5>*如何查找快递单号</h5></a>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group form-group-lg">
-                                            <label class=" col-lg-3 col-md-3 col-sm-12 control-label" for="name">快遞單號</label>
-                                            <div class="col-lg-9 col-md-9 col-sm-12">
-                                                <input class="form-control" type="text" id="conId" placeholder="請輸入快遞單號(必填)">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group form-group-lg" style="margin-top:5%;">
-                                            <label class=" col-lg-3 col-md-3 col-sm-12 control-label" for="name">物品名稱及數量</label>
-                                            <div class="col-lg-9 col-md-9 col-sm-12">
-                                                <input class="form-control" type="text" id="name" placeholder="如 衣服x2  褲子X5">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group form-group-lg" style="margin-top:5%;">
-                                            <label class=" col-lg-3 col-md-3 col-sm-12 control-label" for="name">購物鏈接</label>
-                                            <div class="col-lg-9 col-md-9 col-sm-12">
-                                                <input class="form-control" type="text" id="kgoos_herf" placeholder="購物鏈接以作為丟貨憑證">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group form-group-lg" style="margin-top:5%;">
-                                            <label class=" col-lg-3 col-md-3 col-sm-12 control-label ta_left" for="name">備註</label>
-                                            <div class="col-lg-9 col-md-9 col-sm-12">
-                                                <textarea style="height:10%" id="note" class="form-control" rows="3"></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group form-group-lg" style="margin-top:1%;text-align:left;width:100%">
-                                            <label class="col-lg-3 col-md-3 col-sm-3 control-label"></label>
-                                            <button type="button" class="col-lg-3 col-md-3 col-sm-3 btn btn-danger btn-lg" onclick="submitInput()">認領</button>
-                                            <label class="col-lg-3 col-md-3 col-sm-3 control-label"></label>
-                                            <button type="button" class="col-lg-3 col-md-3 col-sm-3 btn btn-danger btn-lg" onclick="resetInput(1)">重設</button>
-                                        </div>
-                                    </form>
-
-                                </section>
-                            </div>
-                            <div class="tab-pane fade" id="NoArrive">
-                                <table class="table table-bordered ta_cen">
-                                    <thead>
-                                        <tr>
-                                            <th class="ta_cen">序號</th>
-                                            <th class="ta_cen">快遞運單號</th>
-                                            <th class="ta_cen">物品名稱&數量</th>
-                                            <th class="ta_cen">備註</th>
-                                            <th colspan="2" class="ta_cen">操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="TB_NoArrive">
-                                        @*<tr>
-                                            <td>K0001</td>
-                                            <td>1234567890123456</td>
-                                            <td>敖德翁群 * 1件</td>
-                                            <td>阿斯頓撒大所大所多</td>
-                                            <td><a class="c_red" href="#">修改</a></td>
-                                            <td><a class="c_red" href="#">刪除</a></td>
-                                        </tr>*@
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="tab-pane fade" id="Arrived">
-
-                                <ul id="myTab2" class="nav nav-pills">
-                                    <li class="active"><a href="#all" data-toggle="tab" onclick="getArrived('All');" >全部</a></li>
-                                    <li><a href="#hongKong" data-toggle="tab" onclick="getArrived('香港');" >發往香港的貨物</a></li>
-                                    <li><a href="#taiWan" data-toggle="tab" onclick="getArrived('台灣');" >發往台灣的貨物</a></li>
-                                    <li><a href="#other" data-toggle="tab" onclick="getArrived('Other');" >發往海外其他地區的貨物</a></li>
-                                </ul>
-
-                                <hr style="width:100%;" />
-                                <div id="myTab2Content" class="tab-content">
-                                    <div class="tab-pane fade in active ta_cen" id="all">
-                                        <table class="table table-bordered">
-                                            @*<caption>边框表格布局</caption>*@
-                                            <thead>
-                                                <tr>
-                                                    <th>選擇</th>
-                                                    <th>序號</th>
-                                                    <th>倉庫</th>
-                                                    <th>快遞運單號</th>
-                                                    <th>物品名稱</th>
-                                                    <th>重量</th>
-                                                    <th>體積重</th>
-                                                    <th>超長/重</th>
-                                                    <th>入倉時間</th>
-                                                    <th>備註</th>
-                                                    @*<th colspan="2" class="ta_cen">操作</th>*@
-                                                </tr>
-                                            </thead>
-                                            <tbody id="TB_Arrived"></tbody>
-                                        </table>
-
-                                        <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
-                                            <a href="javascript:void(0);" onclick="AllChecked();"
-                                               class="ma_top_10 pad_0 ta_left col-lg-12 col-md-12 col-sm-12 f_s_20 c_red f_w_bold">全選</a>
-                                        </div>
-                                        <div class="form-group form-group-lg col-lg-8 col-md-8 col-sm-8 ta_left">
-                                            <button type="button" class="btn btn-danger btn-lg" onclick="inputArrived()">請集運給我</button>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="hongKong">
-                                        <table class="table table-bordered ta_cen">
-                                            <thead>
-                                                <tr>
-                                                    <th>選擇</th>
-                                                    <th>序號</th>
-                                                    <th>倉庫</th>
-                                                    <th>快遞運單號</th>
-                                                    <th>物品名稱</th>
-                                                    <th>重量</th>
-                                                    <th>體積重</th>
-                                                    <th>超長/重</th>
-                                                    <th>入倉時間</th>
-                                                    <th>備註</th>
-                                                    @*<th colspan="2" class="ta_cen">操作</th>*@
-                                                </tr>
-                                            </thead>
-                                            <tbody id="TB_HongKong"></tbody>
-                                        </table>
-                                        <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
-                                            <a href="javascript:void(0);" onclick="AllChecked();"
-                                               class="ma_top_10 pad_0 ta_left col-lg-12 col-md-12 col-sm-12 f_s_20 c_red f_w_bold">全選</a>
-                                        </div>
-                                        <div class="form-group form-group-lg col-lg-8 col-md-8 col-sm-8 ta_left">
-                                            <button type="button" class="btn btn-danger btn-lg" onclick="inputArrived()">請集運給我</button>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="taiWan">
-                                        <table class="table table-bordered ta_cen">
-                                            <thead>
-                                                <tr>
-                                                    <th>選擇</th>
-                                                    <th>序號</th>
-                                                    <th>倉庫</th>
-                                                    <th>快遞運單號</th>
-                                                    <th>物品名稱</th>
-                                                    <th>重量</th>
-                                                    <th>體積重</th>
-                                                    <th>超長/重</th>
-                                                    <th>入倉時間</th>
-                                                    <th>備註</th>
-                                                    @*<th colspan="2" class="ta_cen">操作</th>*@
-                                                </tr>
-                                            </thead>
-                                            <tbody id="TB_TaiWan"></tbody>
-                                        </table>
-                                        <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
-                                            <a href="javascript:void(0);" onclick="AllChecked();"
-                                               class="ma_top_10 pad_0 ta_left col-lg-12 col-md-12 col-sm-12 f_s_20 c_red f_w_bold">全選</a>
-                                        </div>
-                                        <div class="form-group form-group-lg col-lg-8 col-md-8 col-sm-8 ta_left">
-                                            <button type="button" class="btn btn-danger btn-lg" onclick="inputArrived()">請集運給我</button>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="other">
-                                        <table class="table table-bordered ta_cen">
-                                            <thead>
-                                                <tr>
-                                                    <th>選擇</th>
-                                                    <th>序號</th>
-                                                    <th>倉庫</th>
-                                                    <th>快遞運單號</th>
-                                                    <th>物品名稱</th>
-                                                    <th>重量</th>
-                                                    <th>體積重</th>
-                                                    <th>超長/重</th>
-                                                    <th>入倉時間</th>
-                                                    <th>備註</th>
-                                                    @*<th colspan="2" class="ta_cen">操作</th>*@
-                                                </tr>
-                                            </thead>
-                                            <tbody id="TB_Other"></tbody>
-                                        </table>
-                                        <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
-                                            <a href="javascript:void(0);" onclick="AllChecked();"
-                                               class="ma_top_10 pad_0 ta_left col-lg-12 col-md-12 col-sm-12 f_s_20 c_red f_w_bold">全選</a>
-                                        </div>
-                                        <div class="form-group form-group-lg col-lg-8 col-md-8 col-sm-8 ta_left">
-                                            <button type="button" class="btn btn-danger btn-lg" onclick="inputArrived()">請集運給我</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /container -->
-
-
-
-    <footer id="footer">
-        <div class="container">
-            <div class="social text-center">
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-dribbble"></i></a>
-                <a href="#"><i class="fa fa-flickr"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
-            </div>
-
-            <div class="clear"></div>
-            <!--CLEAR FLOATS-->
-        </div>
-        <div class="footer2">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-6 panel">
-                        <div class="panel-body">
-                            <p class="simplenav">
-                                <a href="index.html">Home</a> |
-                                <a href="about.html">About</a> |
-                                <a href="services.html">Services</a> |
-                                <a href="price.html">Price</a> |
-                                <a href="projects.html">Projects</a> |
-                                <a href="contact.html">Contact</a>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 panel">
-                        <div class="panel-body">
-                            <p class="text-right">
-                                Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /row of panels -->
-            </div>
-        </div>
-    </footer>
-
-
-    <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-    <script src="~/assets/js/modernizr-latest.js"></script>
-    <script type='text/javascript' src='~/assets/js/jquery.min-login.js'></script>
-    @*<script type='text/javascript' src='~/assets/js/fancybox/jquery.fancybox.pack.js'></script>
-        <script type='text/javascript' src='~/assets/js/jquery.mobile.customized.min.js'></script>
-        <script type='text/javascript' src='~/assets/js/jquery.easing.1.3.js'></script>
-        <script type='text/javascript' src='~/assets/js/camera.min.js'></script>*@
-    <script src="~/assets/js/bootstrap.min.js"></script>
-    <script src="~/assets/js/custom.js"></script>
-    <script src="~/assets/layui/layui.js"></script>
-    <script src="~/assets/js/kgoos.js"></script>
-    <script>
-        function submitInput() {
-            var conId = $('#conId').val();
-            var name = $('#name').val();
-            var kgoos_herf = $('#kgoos_herf').val();
-            var note = $('#note').val();
-
-            if (conId.length == 0) {
-                layui.use('layer', function () {
-                    var layer = layui.layer;
-                    layer.msg('快遞單號不能为空！', {
-                        icon: 2,
-                        time: 2000
-                    });
-                });
-                return;
+    function getNum() {
+        $.post('../ConTran/getNum', function (data) {
+            if (data.code != 0) {
+                alert_layui(data.msg, 1, 200);
             }
-            $.post('../ConTran/inputGoods', { conId: conId, name: name, kgoos_herf: kgoos_herf, note: note }, function (data) {
-                if (data.code == 0) {
-                    layui.use('layer', function () {
-                        var layer = layui.layer;
-                        layer.msg(data.msg, {
-                            icon: 1,
-                            time: 2000
-                        });
-                    });
-                    resetInput();
-                }
-                else {
-                    layui.use('layer', function () {
-                        var layer = layui.layer;
-                        layer.msg(data.msg, {
-                            icon: 2,
-                            time: 2000
-                        });
-                    });
-                }
+        });
+    }
 
+    function submitInput() {
+        var conId = $('#conId').val();
+        var name = $('#name').val();
+        var kgoos_herf = $('#kgoos_herf').val();
+        var note = $('#note').val();
+
+        if (conId.length == 0) {
+            layui.use('layer', function () {
+                var layer = layui.layer;
+                layer.msg('快遞單號不能为空！', {
+                    icon: 2,
+                    time: 2000
+                });
             });
+            return;
         }
-
-        function resetInput(n)
-        {
-            document.getElementById("conId").value = "";
-            document.getElementById("name").value = "";
-            document.getElementById("kgoos_herf").value = "";
-            document.getElementById("note").value = "";
-            if (n == 1)
-            {
+        $.post('../ConTran/inputGoods', { conId: conId, name: name, kgoos_herf: kgoos_herf, note: note }, function (data) {
+            if (data.code == 0) {
                 layui.use('layer', function () {
                     var layer = layui.layer;
-                    layer.msg('重置成功！', {
+                    layer.msg(data.msg, {
                         icon: 1,
                         time: 2000
                     });
                 });
+                resetInput();
             }
-            
-        }
-
-        function getNoArrive()
-        {
-            $.post('../ConTran/getNoArrive', function (data) {
-                if (data == '') {
-                }
-                else {                 
-                    $('#TB_NoArrive').html(data);
-                }
-            });
-        }
-
-        function delNoArrive(conId)
-        {       
-            $.post('../ConTran/delNoArrive', { conId: conId }, function (data) {
-                if (data.code == 0) {
-                    layui.use('layer', function () {
-                        var layer = layui.layer;
-                        layer.msg(data.msg, {
-                            icon: 1,
-                            time: 2000
-                        });
+            else {
+                layui.use('layer', function () {
+                    var layer = layui.layer;
+                    layer.msg(data.msg, {
+                        icon: 2,
+                        time: 2000
                     });
-                    getNoArrive();
-                }
-                else
-                {
-                    layui.use('layer', function () {
-                        var layer = layui.layer;
-                        layer.msg(data.msg, {
-                            icon: 2,
-                            time: 2000
-                        });
+                });
+            }
+
+        });
+    }
+
+    function resetInput(n) {
+        document.getElementById("conId").value = "";
+        document.getElementById("name").value = "";
+        document.getElementById("kgoos_herf").value = "";
+        document.getElementById("note").value = "";
+        if (n == 1) {
+            layui.use('layer', function () {
+                var layer = layui.layer;
+                layer.msg('重置成功！', {
+                    icon: 1,
+                    time: 2000
+                });
+            });
+        }
+
+    }
+
+    function getNoArrive() {
+        $.post('../ConTran/getNoArrive', function (data) {
+            if (data == '') {
+            }
+            else {
+                $('#TB_NoArrive').html(data);
+            }
+        });
+    }
+
+    function delNoArrive(conId) {
+        $.post('../ConTran/delNoArrive', { conId: conId }, function (data) {
+            if (data.code == 0) {
+                layui.use('layer', function () {
+                    var layer = layui.layer;
+                    layer.msg(data.msg, {
+                        icon: 1,
+                        time: 2000
                     });
-                }
-            });
-            
-        }
+                });
+                getNoArrive();
+            }
+            else {
+                layui.use('layer', function () {
+                    var layer = layui.layer;
+                    layer.msg(data.msg, {
+                        icon: 2,
+                        time: 2000
+                    });
+                });
+            }
+        });
 
-        function getArrived(region)
-        {
-            $.post('../ConTran/getArrived', { region:region }, function (data) {
-                if (data == '') {
-                }
-                else {
-                    if (region == 'All')
-                    {
-                        $('#TB_Arrived').html(data);
-                    }
-                    else if (region == '台灣') {
-                        $('#TB_TaiWan').html(data);
-                    }
-                    else if (region == '香港') {
-                        $('#TB_HongKong').html(data);
-                    }
-                    else if (region == 'Other') {
-                        $('#TB_Other').html(data);
-                    }
-                }
-            });
-        }
+    }
 
-        function inputArrived()
-        {        
-            var checkbox = document.getElementsByName("cb_Arrived");
-            var cb_value = "''";
-            for (var i = 0; i < checkbox.length; i++) {
-                if (checkbox[i].checked == true) {
-                    cb_value += ",'" + checkbox[i].value + "'";
+    function getArrived(region) {
+        $.post('../ConTran/getArrived', { region: region }, function (data) {
+            if (data == '') {
+            }
+            else {
+                if (region == 'All') {
+                    $('#TB_Arrived').html(data);
+                }
+                else if (region == '台灣') {
+                    $('#TB_TaiWan').html(data);
+                }
+                else if (region == '香港') {
+                    $('#TB_HongKong').html(data);
+                }
+                else if (region == 'Other') {
+                    $('#TB_Other').html(data);
                 }
             }
+        });
+    }
+
+    function inputArrived() {
+        var checkbox = document.getElementsByName("cb_Arrived");
+        var cb_value = "''";
+        var n = 0;
+        for (var i = 0; i < checkbox.length; i++) {
+            if (checkbox[i].checked == true) {
+                cb_value += ",'" + checkbox[i].value + "'";
+                n++;
+            }
+        }
+        if (n > 0) {
             //alert("你选中的值为：" + cb_value);
             window.location = '../ConTran/ConTran?weightIdList=' + cb_value;
         }
+        else {
+            alert_layui("请勾选您本次需要集运的单号！", 2, 2000);
+        }
 
-        function AllChecked() {
-            var n = 0;
-            var checkbox = document.getElementsByName("cb_Arrived");
-            var cb_value = '';
-            for (var i = 0; i < checkbox.length; i++) {
-                if (checkbox[i].checked == true) {
-                    n++;
-                }
-            }
-            if (n < checkbox.length)
-            {
-                for (var i = 0; i < checkbox.length; i++) {
-                    checkbox[i].checked = true;
-                }
-            }
-            else
-            {
-                for (var i = 0; i < checkbox.length; i++) {
-                    checkbox[i].checked = false;
-                }
+    }
+
+    function AllChecked() {
+        var n = 0;
+        var checkbox = document.getElementsByName("cb_Arrived");
+        var cb_value = '';
+        for (var i = 0; i < checkbox.length; i++) {
+            if (checkbox[i].checked == true) {
+                n++;
             }
         }
-    </script>
+        if (n < checkbox.length) {
+            for (var i = 0; i < checkbox.length; i++) {
+                checkbox[i].checked = true;
+            }
+        }
+        else {
+            for (var i = 0; i < checkbox.length; i++) {
+                checkbox[i].checked = false;
+            }
+        }
+    }
+</script>
+
+
+<div class="col-lg-8 col-md-8 col-sm-12 con_right">
+    <div class="form-group form-group-lg col-lg-12 col-md-12 col-sm-12">
+        <h1 class="ma_top_10 col-lg-10 col-md-10 col-sm-10"><span class="c_deepPink f_w_bold"> step 1：登記認領&集運</span></h1>
+        <a href="javascript:void(0);"
+           class="ma_top_10 ta_left c_red col-lg-2 col-md-2 col-sm-2 f_w_bold">认领须知</a>
+
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <ul id="myTab1" class="nav nav-pills">
+            <li class="active"><a href="#inputThing" data-toggle="tab">登記物品</a></li>
+            <li><a href="#NoArrive" onclick="getNoArrive();" data-toggle="tab">未到件(@Session["NoArriveNum"])</a></li>
+            <li><a href="#Arrived" onclick="getArrived('All');" data-toggle="tab">已到件(@Session["ArrivedNum"])</a></li>
+        </ul>
+
+        <hr style="width:100%;" />
+
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div id="myTab1Content" class="tab-content">
+            <div class="tab-pane fade in active" id="inputThing">
+                <section class="col-lg-12 col-md-12 col-sm-12 maincontent" style="text-align:center; background-color:white;">
+                    <form class="form-horizontal" id="CommonForm" method="post" action="#">
+                        <div class="form-group form-group-lg" style="margin-top:5%;text-align:right;width:100%">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <a class="c_red" href="../Login/Register"><h5>*如何查找快递单号</h5></a>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-group-lg">
+                            <label class=" col-lg-3 col-md-3 col-sm-12 control-label" for="name">快遞單號</label>
+                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                <input class="form-control" type="text" id="conId" placeholder="請輸入快遞單號(必填)">
+                            </div>
+                        </div>
+
+                        <div class="form-group form-group-lg" style="margin-top:5%;">
+                            <label class=" col-lg-3 col-md-3 col-sm-12 control-label" for="name">物品名稱及數量</label>
+                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                <input class="form-control" type="text" id="name" placeholder="如 衣服x2  褲子X5">
+                            </div>
+                        </div>
+
+                        <div class="form-group form-group-lg" style="margin-top:5%;">
+                            <label class=" col-lg-3 col-md-3 col-sm-12 control-label" for="name">購物鏈接</label>
+                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                <input class="form-control" type="text" id="kgoos_herf" placeholder="購物鏈接以作為丟貨憑證">
+                            </div>
+                        </div>
+
+                        <div class="form-group form-group-lg" style="margin-top:5%;">
+                            <label class=" col-lg-3 col-md-3 col-sm-12 control-label ta_left" for="name">備註</label>
+                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                <textarea style="height:10%" id="note" class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-group-lg" style="margin-top:1%;text-align:left;width:100%">
+                            <label class="col-lg-3 col-md-3 col-sm-3 control-label"></label>
+                            <button type="button" class="col-lg-3 col-md-3 col-sm-3 btn btn-danger btn-lg" onclick="submitInput()">認領</button>
+                            <label class="col-lg-3 col-md-3 col-sm-3 control-label"></label>
+                            <button type="button" class="col-lg-3 col-md-3 col-sm-3 btn btn-danger btn-lg" onclick="resetInput(1)">重設</button>
+                        </div>
+                    </form>
+
+                </section>
+            </div>
+            <div class="tab-pane fade" id="NoArrive">
+                <table class="table table-bordered ta_cen">
+                    <thead>
+                        <tr>
+                            <th class="ta_cen">序號</th>
+                            <th class="ta_cen">快遞運單號</th>
+                            <th class="ta_cen">物品名稱&數量</th>
+                            <th class="ta_cen">備註</th>
+                            <th colspan="2" class="ta_cen">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="TB_NoArrive">
+                        @*<tr>
+                                <td>K0001</td>
+                                <td>1234567890123456</td>
+                                <td>敖德翁群 * 1件</td>
+                                <td>阿斯頓撒大所大所多</td>
+                                <td><a class="c_red" href="#">修改</a></td>
+                                <td><a class="c_red" href="#">刪除</a></td>
+                            </tr>*@
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane fade" id="Arrived">
+
+                <ul id="myTab2" class="nav nav-pills">
+                    <li class="active"><a href="#all" data-toggle="tab" onclick="getArrived('All');">全部</a></li>
+                    <li><a href="#hongKong" data-toggle="tab" onclick="getArrived('香港');">發往香港的貨物</a></li>
+                    <li><a href="#taiWan" data-toggle="tab" onclick="getArrived('台灣');">發往台灣的貨物</a></li>
+                    <li><a href="#other" data-toggle="tab" onclick="getArrived('Other');">發往海外其他地區的貨物</a></li>
+                </ul>
+
+                <hr style="width:100%;" />
+                <div id="myTab2Content" class="tab-content">
+                    <div class="tab-pane fade in active ta_cen" id="all">
+                        <table class="table table-bordered">
+                            @*<caption>边框表格布局</caption>*@
+                            <thead>
+                                <tr>
+                                    <th>選擇</th>
+                                    <th>序號</th>
+                                    <th>倉庫</th>
+                                    <th>快遞運單號</th>
+                                    <th>物品名稱</th>
+                                    <th>重量</th>
+                                    <th>體積重</th>
+                                    <th>超長/重</th>
+                                    <th>入倉時間</th>
+                                    <th>備註</th>
+                                    @*<th colspan="2" class="ta_cen">操作</th>*@
+                                </tr>
+                            </thead>
+                            <tbody id="TB_Arrived"></tbody>
+                        </table>
+
+                        <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
+                            <a href="javascript:void(0);" onclick="AllChecked();"
+                               class="ma_top_10 pad_0 ta_left col-lg-12 col-md-12 col-sm-12 f_s_20 c_red f_w_bold">全選</a>
+                        </div>
+                        <div class="form-group form-group-lg col-lg-8 col-md-8 col-sm-8 ta_left">
+                            <button type="button" class="btn btn-danger btn-lg" onclick="inputArrived()">請集運給我</button>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="hongKong">
+                        <table class="table table-bordered ta_cen">
+                            <thead>
+                                <tr>
+                                    <th>選擇</th>
+                                    <th>序號</th>
+                                    <th>倉庫</th>
+                                    <th>快遞運單號</th>
+                                    <th>物品名稱</th>
+                                    <th>重量</th>
+                                    <th>體積重</th>
+                                    <th>超長/重</th>
+                                    <th>入倉時間</th>
+                                    <th>備註</th>
+                                    @*<th colspan="2" class="ta_cen">操作</th>*@
+                                </tr>
+                            </thead>
+                            <tbody id="TB_HongKong"></tbody>
+                        </table>
+                        <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
+                            <a href="javascript:void(0);" onclick="AllChecked();"
+                               class="ma_top_10 pad_0 ta_left col-lg-12 col-md-12 col-sm-12 f_s_20 c_red f_w_bold">全選</a>
+                        </div>
+                        <div class="form-group form-group-lg col-lg-8 col-md-8 col-sm-8 ta_left">
+                            <button type="button" class="btn btn-danger btn-lg" onclick="inputArrived()">請集運給我</button>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="taiWan">
+                        <table class="table table-bordered ta_cen">
+                            <thead>
+                                <tr>
+                                    <th>選擇</th>
+                                    <th>序號</th>
+                                    <th>倉庫</th>
+                                    <th>快遞運單號</th>
+                                    <th>物品名稱</th>
+                                    <th>重量</th>
+                                    <th>體積重</th>
+                                    <th>超長/重</th>
+                                    <th>入倉時間</th>
+                                    <th>備註</th>
+                                    @*<th colspan="2" class="ta_cen">操作</th>*@
+                                </tr>
+                            </thead>
+                            <tbody id="TB_TaiWan"></tbody>
+                        </table>
+                        <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
+                            <a href="javascript:void(0);" onclick="AllChecked();"
+                               class="ma_top_10 pad_0 ta_left col-lg-12 col-md-12 col-sm-12 f_s_20 c_red f_w_bold">全選</a>
+                        </div>
+                        <div class="form-group form-group-lg col-lg-8 col-md-8 col-sm-8 ta_left">
+                            <button type="button" class="btn btn-danger btn-lg" onclick="inputArrived()">請集運給我</button>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="other">
+                        <table class="table table-bordered ta_cen">
+                            <thead>
+                                <tr>
+                                    <th>選擇</th>
+                                    <th>序號</th>
+                                    <th>倉庫</th>
+                                    <th>快遞運單號</th>
+                                    <th>物品名稱</th>
+                                    <th>重量</th>
+                                    <th>體積重</th>
+                                    <th>超長/重</th>
+                                    <th>入倉時間</th>
+                                    <th>備註</th>
+                                    @*<th colspan="2" class="ta_cen">操作</th>*@
+                                </tr>
+                            </thead>
+                            <tbody id="TB_Other"></tbody>
+                        </table>
+                        <div class="form-group form-group-lg col-lg-4 col-md-4 col-sm-4">
+                            <a href="javascript:void(0);" onclick="AllChecked();"
+                               class="ma_top_10 pad_0 ta_left col-lg-12 col-md-12 col-sm-12 f_s_20 c_red f_w_bold">全選</a>
+                        </div>
+                        <div class="form-group form-group-lg col-lg-8 col-md-8 col-sm-8 ta_left">
+                            <button type="button" class="btn btn-danger btn-lg" onclick="inputArrived()">請集運給我</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
-</body>
-</html>
+</div>
+

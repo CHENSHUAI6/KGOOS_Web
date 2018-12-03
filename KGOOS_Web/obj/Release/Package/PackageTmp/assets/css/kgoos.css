@@ -18,6 +18,16 @@
 .contran ul li a{
     color: gray; 
 }
+
+.contran li.active1{
+    color: white !important;
+    background-color: pink !important;
+}
+.contran li.active1 a{
+    color: white;
+    font-size: 20px;
+}
+
 .contran ul li a h3{
     margin: 0;
 }
@@ -25,7 +35,7 @@
     margin: 0;
 }
 .c_white{
-    color: white; 
+    color: white !important; 
 }
 .c_red{
     color: red; 

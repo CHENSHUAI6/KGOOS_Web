@@ -27,3 +27,15 @@ function alert_layui(msg, icon, time) {
         });
     });
 }
+
+function IsLogin() {
+    $.post('../Login/getLoginData', function (data) {
+        if (data.code == 0) {
+        }
+        else {
+            alert_layui(data.msg, 2);
+            window.location = '../Login/Login';
+            return false;
+        }
+    });
+}

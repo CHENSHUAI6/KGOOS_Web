@@ -36,8 +36,9 @@ namespace KGOOS_Web.Controllers
             try
             {
                 string sql = "";
+                string user_bp = "";
                 password = BaseClass1.md5(password, 32);
-                sql = "select t1.id_user, t1.id_name, phone_phone, email_user,tb_user from t_user as t1 " +
+                sql = "select t1.id_user, t1.id_name, phone_phone, email_user,tb_user,t1.user_bp from t_user as t1 " +
                     "where t1.id_name = '" + name + "' " +
                     //"where (t1.id_name = '" + name + "' " +
                     //"or t1.phone_phone = '" + name + "' " +
@@ -52,12 +53,26 @@ namespace KGOOS_Web.Controllers
                     Session["phone"] = ds.Tables[0].Rows[0][2];
                     Session["email"] = ds.Tables[0].Rows[0][3];
                     Session["tb_User"] = ds.Tables[0].Rows[0][4];
+                    user_bp = ds.Tables[0].Rows[0][5].ToString();
+                    if (user_bp.Length > 0)
+                    {
+                        Session["user_bp"] = user_bp;
+                    }
+                    else
+                    {
+                        Session["user_bp"] = "0";
+                    }
+                    
+                    getCouponNum(ds.Tables[0].Rows[0][0].ToString());             
+
                     return Json(new
                     {
                         code = 0,
                         msg = "登錄成功！"
                     });
                 }
+
+                getLoginData();
                 return Json(new
                 {
                     code = 1,
@@ -148,6 +163,8 @@ namespace KGOOS_Web.Controllers
                     Session["tb_User"] = id;
                     Session["phone"] = phone;
                     Session["email"] = email;
+                    Session["tb_User"] = "0";
+                    getCouponNum(id_user);
                     return Json(new
                     {
                         code = 0,
@@ -171,5 +188,101 @@ namespace KGOOS_Web.Controllers
         }
 
         #endregion
+
+        public void getCouponNum(string user_id)
+        {
+            string num = "";
+            string sql = "";
+            DataSet ds = new DataSet();
+            sql = "select count(*) from T_User_Coupon as t1 " +
+                "where t1.start_time < Datename(year,GetDate())+Datename(month,GetDate())+Datename(day,GetDate()) " +
+                "and t1.end_time > Datename(year,GetDate())+Datename(month,GetDate())+Datename(day,GetDate()) " +
+                "and t1.user_id = '" + user_id + "' ";
+            ds = DBClass.execQuery(sql);
+            try
+            {
+                num = ds.Tables[0].Rows[0][0].ToString();
+            }
+            catch(Exception e)
+            {
+                num = "0";
+            }
+            Session["coupon"] = num;
+
+            
+        }
+
+        /// <summary>
+        /// 获取登录信息
+        /// </summary>
+        /// <param name="userid"></param>
+        [HttpPost]
+        public JsonResult getLoginData()
+        {
+            try
+            {
+                string sql = "";
+                string id_user = "", user_bp = "";
+
+                try
+                {
+                    id_user = Session["id"].ToString();
+                }
+                catch(Exception e1)
+                {
+                    return Json(new
+                    {
+                        code = 1,
+                        msg = "登录信息过期，请重新登录"
+                    });
+                }
+
+                sql = "select t1.id_user, t1.id_name, phone_phone, email_user,tb_user,t1.user_bp from t_user as t1 " +
+                    "where t1.id_user = '" + id_user + "' ";
+                    
+                DataSet ds = new DataSet();
+                ds = DBClass.execQuery(sql);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    Session["id"] = ds.Tables[0].Rows[0][0];
+                    Session["name"] = ds.Tables[0].Rows[0][1];
+                    Session["phone"] = ds.Tables[0].Rows[0][2];
+                    Session["email"] = ds.Tables[0].Rows[0][3];
+                    Session["tb_User"] = ds.Tables[0].Rows[0][4];
+                    user_bp = ds.Tables[0].Rows[0][5].ToString();
+                    if (user_bp.Length > 0)
+                    {
+                        Session["user_bp"] = user_bp;
+                    }
+                    else
+                    {
+                        Session["user_bp"] = "0";
+                    }
+                    getCouponNum(ds.Tables[0].Rows[0][0].ToString());
+
+                    return Json(new
+                    {
+                        code = 0,
+                        msg = ""
+                    });
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        code = 1,
+                        msg = "登录信息过期，请重新登录"
+                    });
+                }
+            }
+            catch(Exception e)
+            {
+                return Json(new
+                {
+                    code = -1,
+                    msg = "系统繁忙，请重新登录"
+                });
+            }
+        }
     }
 }
